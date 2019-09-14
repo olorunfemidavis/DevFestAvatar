@@ -27,6 +27,8 @@ var TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137375
 var SetWidth = 0;
 var cloudUrl = '';
 var general_to_crop;
+var cloud_url = '';
+
 
 $(document).ready(function () {
 
@@ -264,6 +266,9 @@ $(document).ready(function () {
 
                 }
                 else {
+                    var splite = data.split(",");
+                    cloud_url = splite[0];
+                    data = splite[1];
                     data = 'data:image/png;base64,' + data;
                     TempImage = data;
                     //set the main view.

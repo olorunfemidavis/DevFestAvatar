@@ -34,7 +34,7 @@ function statusChangeCallback(response) {
 
             FB.ui({
                 method: 'share',
-                href: 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137375/3e7c135c31f0456681632808109ed557.png',
+                href: cloud_url,
                 hashtag: '#DevFest'
             }, function (response) { });
 
