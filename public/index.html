@@ -31,7 +31,7 @@
     <meta name="twitter:description" content="Create your #DevFest Avatar" />
     <meta name="twitter:title" content="Create your #DevFest Avatar" />
 
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="css/site.css" />
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
@@ -42,10 +42,10 @@
         integrity="sha384-qVnmyLTtnGPGEN3HDG2MCEOXWH1Yk/i70lKRuV+gMCDQg+jblQlFGPf1mejWUyYG" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/fontawesome.css"
         integrity="sha384-hM7EQerc09E4O3zhtvF2iqcB4ZkEu9xkLQndhXdGGCEJ/sB4JK54SuKGmIC35UTf" crossorigin="anonymous">
-    <link href="~/css/loading.css" rel="stylesheet" />
+    <link href="css/loading.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <link href="~/css/cropme.css" rel="stylesheet" />
+    <link href="css/cropme.css" rel="stylesheet" />
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
@@ -67,7 +67,14 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/6.6.1/firebase-app.js"></script>
 
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#reserved-urls -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
     <script>
         window.fbAsyncInit = function () {
             FB.init({
@@ -230,9 +237,9 @@
         </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="~/js/cropme.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="/js/face.js"></script>
+    <script src="js/cropme.js"></script>
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script src="js/face.js"></script>
 </body>
 
 </html>
