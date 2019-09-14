@@ -1,0 +1,377 @@
+﻿.dialog-mask {
+    z-index: 8;
+    background-color: rgba(0,0,0,.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%
+}
+
+.dialog-hidden {
+    display: none
+}
+
+.dialog-status {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%
+}
+
+    .dialog-status .progress-ring .progress-circle:after {
+        color: #fff
+    }
+
+.dialog-status-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+.dialog-status-message {
+    font-family: Segoe UI Semibold;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: .6px;
+    line-height: 24px
+}
+
+.dialog {
+    position: absolute;
+    min-width: 270px;
+    max-width: 60vw;
+    border: 1px solid #999;
+    padding: 30px;
+    background-color: #fff
+}
+
+    .dialog h2 + p {
+        margin-top: 1em
+    }
+
+    .dialog .button-panel {
+        margin-top: 25px;
+        text-align: right
+    }
+
+        .dialog .button-panel button {
+            margin-left: 20px
+        }
+
+    .dialog .danger button.default-button {
+        background-color: #c50f1f
+    }
+
+        .dialog .danger button.default-button:active, .dialog .danger button.default-button:hover {
+            background-color: #a80000
+        }
+
+.dialog-panel {
+    position: relative
+}
+
+.dialog-close-button {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer
+}
+
+    .dialog-close-button, .dialog-close-button:after {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0
+    }
+
+        .dialog-close-button:after {
+            font-family: Glyphs;
+            font-size: 11px;
+            content: "\E106"
+        }
+
+        .dialog-close-button:focus, .dialog-close-button:hover {
+            background-color: transparent;
+            color: #0063b1
+        }
+
+        .dialog-close-button:active {
+            background-color: transparent;
+            color: #004e8c
+        }
+
+.status-bar {
+    width: 100%;
+    min-height: 40px;
+    position: fixed;
+    padding: 8px 32px;
+    z-index: 1
+}
+
+    .status-bar.info {
+        background-color: #fff;
+        text-align: center
+    }
+
+    .status-bar.info, .status-bar.warn {
+        box-shadow: 0 0 2px 0 rgba(0,0,0,.08),0 2px 2px 0 rgba(0,0,0,.16)
+    }
+
+    .status-bar.warn {
+        background-color: #f28a8a;
+        top: 104px
+    }
+
+    .status-bar.progress {
+        background-color: #6bb700;
+        text-align: center;
+        color: #fff;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center;
+        top: 104px
+    }
+
+        .status-bar.progress .progress-ring {
+            margin-right: 16px;
+            top: -6px
+        }
+
+            .status-bar.progress .progress-ring .progress-circle {
+                width: 32px;
+                height: 32px
+            }
+
+                .status-bar.progress .progress-ring .progress-circle:after {
+                    color: #fff
+                }
+
+.status-mask.progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+    background: rgba(43,43,43,.72)
+}
+
+    .status-mask.progress, .status-mask.progress .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+
+        .status-mask.progress .row {
+            width: 100%
+        }
+
+            .status-mask.progress .row + p {
+                margin-top: 32px;
+                font-family: Segoe UI Semibold,sans-serif;
+                color: #fff
+            }
+
+        .status-mask.progress .progress-ring .progress-circle:after {
+            color: #fff
+        }
+
+.paging-progress {
+    text-align: center
+}
+
+.progress-ring {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    float: left
+}
+
+    .progress-ring .progress-circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        opacity: 0;
+        transform: rotate(225deg);
+        animation: b 5s infinite
+    }
+
+        .progress-ring .progress-circle:after {
+            content: "\2022";
+            position: absolute;
+            font-size: 10px;
+            color: #0078d7
+        }
+
+        .progress-ring .progress-circle:nth-child(2) {
+            animation-delay: .3s
+        }
+
+        .progress-ring .progress-circle:nth-child(3) {
+            animation-delay: .6s
+        }
+
+        .progress-ring .progress-circle:nth-child(4) {
+            animation-delay: .9s
+        }
+
+        .progress-ring .progress-circle:nth-child(5) {
+            animation-delay: 1.2s
+        }
+
+    .progress-ring.progress-medium {
+        width: 40px;
+        height: 40px
+    }
+
+    .progress-ring.progress-large {
+        width: 60px;
+        height: 60px
+    }
+
+    .progress-ring.progress-medium .progress-circle {
+        width: 40px;
+        height: 40px
+    }
+
+        .progress-ring.progress-medium .progress-circle:after {
+            font-size: 16px
+        }
+
+    .progress-ring.progress-large .progress-circle {
+        width: 60px;
+        height: 60px
+    }
+
+        .progress-ring.progress-large .progress-circle:after {
+            font-size: 20px
+        }
+
+@keyframes a {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(1turn)
+    }
+}
+
+@keyframes b {
+    0% {
+        transform: rotate(225deg);
+        opacity: 1;
+        animation-timing-function: ease-out
+    }
+
+    7% {
+        transform: rotate(345deg);
+        animation-timing-function: linear
+    }
+
+    30% {
+        transform: rotate(455deg);
+        animation-timing-function: ease-in-out
+    }
+
+    39% {
+        transform: rotate(690deg);
+        animation-timing-function: linear
+    }
+
+    70% {
+        transform: rotate(815deg);
+        opacity: 1;
+        animation-timing-function: ease-out
+    }
+
+    75% {
+        transform: rotate(945deg);
+        animation-timing-function: ease-out
+    }
+
+    76% {
+        transform: rotate(945deg);
+        opacity: 0
+    }
+
+    to {
+        transform: rotate(945deg);
+        opacity: 0
+    }
+}
+
+.progress-bar {
+    position: relative;
+    width: 180px;
+    height: 4px;
+    margin-top: -12px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+    .progress-bar .progress-circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 4px;
+        opacity: 0;
+        animation: c 3s infinite
+    }
+
+        .progress-bar .progress-circle:after {
+            content: "\2022";
+            position: absolute;
+            font-size: 10px;
+            color: #0078d7
+        }
+
+        .progress-bar .progress-circle:nth-child(2) {
+            animation-delay: .2s
+        }
+
+        .progress-bar .progress-circle:nth-child(3) {
+            animation-delay: .4s
+        }
+
+        .progress-bar .progress-circle:nth-child(4) {
+            animation-delay: .6s
+        }
+
+        .progress-bar .progress-circle:nth-child(5) {
+            animation-delay: .8s
+        }
+
+    .progress-bar.progress-medium {
+        width: 296px
+    }
+
+    .progress-bar.progress-large {
+        width: 100%
+    }
