@@ -198,6 +198,7 @@ $(document).ready(function () {
     $(".export").click(function () {
         if (currentResult === '') {
             toastr.warning('Choose an image first!');
+            event.preventDefault();
         }
         else {
             console.log($(this).attr('title'));
@@ -259,11 +260,11 @@ $(document).ready(function () {
         var bytesLength = byteCharacters.length;
         var slicesCount = Math.ceil(bytesLength / sliceSize);
         var byteArrays = new Array(slicesCount);
-    
+
         for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
             var begin = sliceIndex * sliceSize;
             var end = Math.min(begin + sliceSize, bytesLength);
-    
+
             var bytes = new Array(end - begin);
             for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
                 bytes[i] = byteCharacters[offset].charCodeAt(0);
@@ -288,8 +289,9 @@ $(document).ready(function () {
                 else {
                     var splite = data.split(",");
                     cloud_url = splite[0];
+
                     data = splite[1];
-                   //  data = 'data:image/png;base64,' + data;
+                    //  data = 'data:image/png;base64,' + data;
                     TempImage = 'data:image/png;base64,' + data;
                     //set the main view.
                     general_to_crop.cropme('bind', {
@@ -309,12 +311,20 @@ $(document).ready(function () {
                     // console.log(data);
                     // set buttons for download.
 
+                    //set for share
+                    console.log(cloud_url);
+                    $('#shareimg').attr('href', cloud_url);
+                    //remove disabled property
+                    //disabled
+                    //$("#elementID").prop("disabled", true);
+
+
                     $('#downloadimg').attr({
                         "href": URL.createObjectURL(base64toBlob(data)),
                         "download": 'DevFestExport-' + getFormattedTime() + '.png'
                     });
 
-                     //$('#downloadimg').attr('href', data);
+                    //$('#downloadimg').attr('href', data);
                     // $('#downloadimg').attr('download', 'DevFestExport-' + getFormattedTime() + '.png');
                     $('#downloadimg').get(0).click();
 
@@ -324,13 +334,10 @@ $(document).ready(function () {
 
                     //set for facebook.
 
-                    //try to download
-                    // var link = document.createElement('a');
-                    // link.href = currentResult;
-                    // link.download = 'DevFestExport-' + getFormattedTime() + '.png';
-                    // document.body.appendChild(link);
-                    // link.click();
-                    // document.body.removeChild(link);
+
+
+
+
                 }
                 hideloading();
             },
