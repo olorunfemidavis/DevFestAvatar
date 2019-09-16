@@ -67,14 +67,14 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/6.6.1/firebase-app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/6.6.1/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#reserved-urls -->
 
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
     <script>
         window.fbAsyncInit = function () {
             FB.init({
@@ -114,7 +114,8 @@
         <main role="main" class="pb-3" style="max-width:1000px; margin: 0 auto;">
 
             <h3 class="component-catalog-panel__header-elements mdc-typography--headline3">#DevFest Avatar Creator</h3>
-            <em>Note: There are two sliders around the canvas. The buttom is for rotation while the left is for zooming. Share your creations on Twitter with the Hashtag #DevFest.</em>
+            <em>Note: There are two sliders around the canvas. The buttom is for rotation while the left is for zooming.
+                Share your creations on Twitter with the Hashtag #DevFest.</em>
             <div class="mdc-card mdc-card--outlined">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
@@ -213,10 +214,10 @@
                     </div>
                 </div>
                 <div class="mdc-card__action-icons">
-                    <button class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export"
+                    <a href="#" asp-action="Download" download id="downloadimg" class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded"
                         aria-pressed="false" aria-label="Download" download title="Download">
                         <i class="fas fa-download"></i>
-                    </button>
+                    </a>
                     <button class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export"
                         aria-pressed="false" aria-label="Share on Facebook" title="Facebook">
                         <i class="fab fa-facebook"></i>
@@ -227,7 +228,7 @@
             </div>
             <footer class="border-top footer text-muted" style="max-width:1000px; margin: 0 auto;">
                 <div class="container">
-                    Made with ❤ by <a href="https://www.meetup.com/gdgadoekiti">GDG Ado-Ekiti</a>
+                    Made with ❤ by <a href="https://www.meetup.com/gdgadoekiti">GDG Ado-Ekiti </a>
                 </div>
             </footer>
         </main>

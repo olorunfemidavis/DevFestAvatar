@@ -16,7 +16,7 @@ window.onload = function () {
 
 
     mdc.autoInit();
-     $(".dialog-mask").hide();
+    $(".dialog-mask").hide();
 
 };
 var currentType = 's';
@@ -201,15 +201,15 @@ $(document).ready(function () {
         }
         else {
             console.log($(this).attr('title'));
-            
+
             switch ($(this).attr('title')) {
                 case 'Download': {
-                    var link = document.createElement('a');
-                    link.href = currentResult;
-                    link.download = 'DevFestExport-' + getFormattedTime() + '.png';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    // var link = document.createElement('a');
+                    // link.href = currentResult;
+                    // link.download = 'DevFestExport-' + getFormattedTime() + '.png';
+                    // document.body.appendChild(link);
+                    // link.click();
+                    // document.body.removeChild(link);
                     break;
                 }
                 case 'Facebook': {
@@ -218,12 +218,12 @@ $(document).ready(function () {
                         method: 'share_open_graph',
                         action_type: 'og.likes',
                         action_properties: JSON.stringify({
-                            object: 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137375/3e7c135c31f0456681632808109ed557.png',
+                            object: cloud_url,
                         })
                     }, function (response) {
                         // Debug response (optional)
                         console.log(response);
-                        });
+                    });
 
                     //checkLoginState();
                     break;
@@ -244,7 +244,7 @@ $(document).ready(function () {
                 type: 'base64',
                 width: SetWidth
             }).then(function (output) {
-               // console.log(output);
+                // console.log(output);
                 //show loading
                 showloading();
                 UploadImage(output);
@@ -252,6 +252,26 @@ $(document).ready(function () {
 
         }
     });
+    function base64toBlob(base64Data) {
+        contentType = 'image/png';
+        var sliceSize = 1024;
+        var byteCharacters = atob(base64Data);
+        var bytesLength = byteCharacters.length;
+        var slicesCount = Math.ceil(bytesLength / sliceSize);
+        var byteArrays = new Array(slicesCount);
+    
+        for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+            var begin = sliceIndex * sliceSize;
+            var end = Math.min(begin + sliceSize, bytesLength);
+    
+            var bytes = new Array(end - begin);
+            for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
+                bytes[i] = byteCharacters[offset].charCodeAt(0);
+            }
+            byteArrays[sliceIndex] = new Uint8Array(bytes);
+        }
+        return new Blob(byteArrays, { type: contentType });
+    }
 
     function UploadImage(dat) {
         $.ajax('https://devfest.azurewebsites.net/image/processstring', {
@@ -269,8 +289,8 @@ $(document).ready(function () {
                     var splite = data.split(",");
                     cloud_url = splite[0];
                     data = splite[1];
-                    data = 'data:image/png;base64,' + data;
-                    TempImage = data;
+                   //  data = 'data:image/png;base64,' + data;
+                    TempImage = 'data:image/png;base64,' + data;
                     //set the main view.
                     general_to_crop.cropme('bind', {
                         url: TempImage,
@@ -284,25 +304,33 @@ $(document).ready(function () {
                             height: 300
                         }
                     });
-                   // console.log(data);
-                    currentResult = data;
-                    //set buttons for download.
-                    //$('#downloadimg').attr('href', data);
-                    //var ressplt = data.split("/").pop();
-                    //$('#downloadimg').attr('download', ressplt);
+                    // console.log(data);
+                    currentResult = 'data:image/png;base64,' + data;
+                    // console.log(data);
+                    // set buttons for download.
 
+                    $('#downloadimg').attr({
+                        "href": URL.createObjectURL(base64toBlob(data)),
+                        "download": 'DevFestExport-' + getFormattedTime() + '.png'
+                    });
+
+                     //$('#downloadimg').attr('href', data);
+                    // $('#downloadimg').attr('download', 'DevFestExport-' + getFormattedTime() + '.png');
+                    $('#downloadimg').get(0).click();
+
+                    // $('#downloadimg').click();
                     //set buttons for whatsapp
-                   // $('#whatsappimg').attr('href', 'whatsapp://send?text=' + encodeURIComponent(data));
+                    // $('#whatsappimg').attr('href', 'whatsapp://send?text=' + encodeURIComponent(data));
 
                     //set for facebook.
 
                     //try to download
-                    var link = document.createElement('a');
-                    link.href = currentResult;
-                    link.download = 'DevFestExport-' + getFormattedTime() + '.png';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    // var link = document.createElement('a');
+                    // link.href = currentResult;
+                    // link.download = 'DevFestExport-' + getFormattedTime() + '.png';
+                    // document.body.appendChild(link);
+                    // link.click();
+                    // document.body.removeChild(link);
                 }
                 hideloading();
             },
