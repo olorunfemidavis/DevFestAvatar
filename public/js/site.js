@@ -204,15 +204,6 @@ $(document).ready(function () {
             console.log($(this).attr('title'));
 
             switch ($(this).attr('title')) {
-                case 'Download': {
-                    // var link = document.createElement('a');
-                    // link.href = currentResult;
-                    // link.download = 'DevFestExport-' + getFormattedTime() + '.png';
-                    // document.body.appendChild(link);
-                    // link.click();
-                    // document.body.removeChild(link);
-                    break;
-                }
                 case 'Facebook': {
                     isfbsr = true;
                     FB.ui({
@@ -240,14 +231,13 @@ $(document).ready(function () {
         else {
             console.log('submit clicked');
 
-
+            showloading();
             general_to_crop.cropme('crop', {
                 type: 'base64',
                 width: SetWidth
             }).then(function (output) {
                 // console.log(output);
                 //show loading
-                showloading();
                 UploadImage(output);
             });
 

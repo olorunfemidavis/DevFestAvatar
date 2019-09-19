@@ -196,9 +196,10 @@
 
                             </div>
 
-                            <div>
+                            <div style="display: flex">
                                 <h3 class="mdc-typography--subtitle1"></h3>
                                 <input id="fileInput" name="upload" type="file" accept="image/*" />
+                                <div class="fb-login-button" style="vertical-align:center" data-width=""  data-onlogin="checkLoginState();" data-size="small" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
                             </div>
                             <div>
                                 <h3 class="mdc-typography--subtitle1"></h3>
@@ -207,7 +208,6 @@
                                         class="material-icons mdc-button__icon">cloud_upload</i><span
                                         class="mdc-button__label">Submit</span></button>
 
-                                        <div class="fb-login-button" style="vertical-align:center" data-width=""  data-onlogin="checkLoginState();" data-size="small" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
                             </div>
                         </div>
                     </div>
@@ -215,7 +215,7 @@
 
                 <div class="mdc-card__action-icons">
                     <a href="#" asp-action="Download" download id="downloadimg"
-                        class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded" aria-pressed="false"
+                        class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export" aria-pressed="false"
                         aria-label="Download" download title="Download">
                         <i class="fas fa-download"></i>
                     </a>
