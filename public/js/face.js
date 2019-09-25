@@ -30,49 +30,23 @@ function statusChangeCallback(response) {
         console.log(fbuid);
         if (isfbsr) {
             //share
-            console.log('about to share');
+            //console.log('about to share');
 
             FB.ui({
                 method: 'share',
                 href: cloud_url,
                 hashtag: '#DevFest'
-            }, function (response) { });
-
-
-            //var isCircle = false;
-            //if (currentType === 'o')
-            //    isCircle = true;
-            //FB.api(
-            //    '/' + fbuid +  '/photos',
-            //    "POST",
-            //    {
-            //        "url": "https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137375/3e7c135c31f0456681632808109ed557.png",
-            //        "published": "false", "allow_spherical_photo": isCircle,
-            //        "caption": "I just created my #DevFest Avatar using: https://devfestavatar.azurewebsites.net"
-            //    },
-            //    function (response) {
-            //        console.log(response);
-            //        if (response && !response.error) {
-            //            FB.api("/" + response.id, "GET", {
-            //                "fields": "link"
-            //            }, function (picture) {
-            //                    console.log(picture);
-            //               // window.location = picture["link"] + "&makeprofile=1";
-            //            });
-            //        }
-            //    }
-            //);
-           
+            }, function (response) { });           
         }
         else {
             //fetch
-            console.log('about to fetch');
+           // console.log('about to fetch');
          
             FB.api(
                 '/' + fbuid + '/picture?type=large&redirect=false',
                 function (response) {
                     if (response && !response.error) {
-                        console.log(response.data.url);
+                       // console.log(response.data.url);
 
                         toDataURL(response.data.url, function (dataUrl) {                       
                             currentResult = dataUrl;
@@ -90,9 +64,9 @@ function statusChangeCallback(response) {
                         });
                         SetWidth = response.data.width;
                         if (response.data.height < response.data.width) {
-                            SetWidth = this.height;
+                            SetWidth = response.data.height;
                         }
-                        console.log(SetWidth);
+                        //console.log(SetWidth);
                         });
                     }
                    
@@ -101,7 +75,7 @@ function statusChangeCallback(response) {
         }
     } else  {
         // The person is logged into Facebook, but not your app.
-        console.log('Please log into this app.');
+       // console.log('Please log into this app.');
         FB.login();
     } 
 }

@@ -12,6 +12,9 @@ a.navbar-brand {
 html {
   font-size: 14px;
 }
+h3{
+  margin: auto;
+}
 @media (min-width: 768px) {
   html {
     font-size: 16px;

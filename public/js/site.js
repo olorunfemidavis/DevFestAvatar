@@ -1,24 +1,10 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-window.onload = function () {
-    // Write your Javascript code.
-    //const button = document.querySelector('.foo-button');
-    //mdc.ripple.MDCRipple.attachTo(button);
-
-
-    //const secondButton = document.querySelector('.bar-button');
-    //mdc.ripple.MDCRipple.attachTo(secondButton);
-
-    //const radio = new MDCRadio(document.querySelector('.mdc-radio'));
-    //const formField = new MDCFormField(document.querySelector('.mdc-form-field'));
-    //formField.input = radio;
-
+﻿window.onload = function () {
 
     mdc.autoInit();
     $(".dialog-mask").hide();
 
 };
+//not using some of these
 var currentType = 's';
 var currentFullType = 'square';
 var currentColor = 'green';
@@ -32,6 +18,7 @@ var cloud_url = '';
 
 $(document).ready(function () {
 
+    //just in case of cors wahala
     $('img').attr('crossorigin', 'anonymous');
 
     function getFormattedTime() {
@@ -47,49 +34,39 @@ $(document).ready(function () {
     }
 
 
+    //initial bind
     general_to_crop = $('#tocrop').cropme();
     general_to_crop.cropme('bind', {
         url: TempImage
     });
 
 
-
+    function CropGeneral(method) {
+        general_to_crop.cropme(method, {
+            viewport: {
+                type: currentFullType,
+                width: 300,
+                height: 300,
+                border: {
+                    enable: true,
+                    width: 2,
+                    color: '#fff'
+                }
+            }
+        });
+    }
 
     $('input:radio').change(function () {
         var tp = $(this).val();
         if (tp === 'square') {
             currentType = 's';
             currentFullType = tp;
-            console.log(currentFullType);
-            general_to_crop.cropme('reload', {
-                viewport: {
-                    type: currentFullType,
-                    width: 300,
-                    height: 300,
-                    border: {
-                        enable: true,
-                        width: 2,
-                        color: '#fff'
-                    }
-                }
-            });
+            CropGeneral('reload');
         }
         else if (tp === 'circle') {
             currentType = 'o';
             currentFullType = tp;
-            console.log(currentFullType);
-            general_to_crop.cropme('reload', {
-                viewport: {
-                    type: currentFullType,
-                    width: 300,
-                    height: 300,
-                    border: {
-                        enable: true,
-                        width: 2,
-                        color: '#fff'
-                    }
-                }
-            });
+            CropGeneral('reload');
         }
         else {
             currentColor = tp;
@@ -98,34 +75,31 @@ $(document).ready(function () {
             }
         }
     });
+    function CropTemp(){
+        general_to_crop.cropme('bind', {
+            url: TempImage
+        });
+    }
     function SetPreset() {
         switch (currentColor) {
             case 'blue': {
                 TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137274/03d231e019be46af94c83a0ea1e8116b.png';
-                general_to_crop.cropme('bind', {
-                    url: TempImage
-                });
+                CropTemp();
                 break;
             }
             case 'yellow': {
                 TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137303/3986557df6d8470390b2d235c5ca5208.png';
-                general_to_crop.cropme('bind', {
-                    url: TempImage
-                });
+                CropTemp();
                 break;
             }
             case 'green': {
                 TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137375/3e7c135c31f0456681632808109ed557.png';
-                general_to_crop.cropme('bind', {
-                    url: TempImage
-                });
+                CropTemp();
                 break;
             }
             case 'red': {
                 TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137205/80e005c2010b47768406aec11e4e87dd.png';
-                general_to_crop.cropme('bind', {
-                    url: TempImage
-                });
+                CropTemp();
                 break;
             }
             default:
@@ -138,34 +112,15 @@ $(document).ready(function () {
         tempFilename = $(this).val();
         readFile(this);
     });
-
-    //$uploadCrop = $('#cropper').croppie({
-    //    viewport: { width: 300, height: 300, type: currentFullType },
-    //   // boundary: { width: 350, height: 350 },
-    //    enforceBoundary: true,
-    //    enableExif: true,
-    //    //enableResize: true,
-    //    //enableOrientation: true,
-    //});
-
+   
+    //reader things
     function readFile(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
                 rawImg = e.target.result;
                 currentResult = rawImg;
-                general_to_crop.cropme('bind', {
-                    url: rawImg,
-                    viewport: {
-                        type: currentFullType,
-                        width: 300,
-                        height: 300
-                    },
-                    container: {
-                        width: 300,
-                        height: 300
-                    }
-                });
+                CropGeneral('bind');
                 var image = new Image();
                 image.src = rawImg;
 
@@ -201,7 +156,7 @@ $(document).ready(function () {
             event.preventDefault();
         }
         else {
-            console.log($(this).attr('title'));
+            // console.log($(this).attr('title'));
 
             switch ($(this).attr('title')) {
                 case 'Facebook': {
@@ -214,7 +169,7 @@ $(document).ready(function () {
                         })
                     }, function (response) {
                         // Debug response (optional)
-                        console.log(response);
+                        // console.log(response);
                     });
 
                     //checkLoginState();
@@ -229,7 +184,7 @@ $(document).ready(function () {
             toastr.warning('Choose an image first!');
         }
         else {
-            console.log('submit clicked');
+            //console.log('submit clicked');
 
             showloading();
             general_to_crop.cropme('crop', {
@@ -281,24 +236,10 @@ $(document).ready(function () {
                     cloud_url = splite[0];
 
                     data = splite[1];
-                    //  data = 'data:image/png;base64,' + data;
                     TempImage = 'data:image/png;base64,' + data;
                     //set the main view.
-                    general_to_crop.cropme('bind', {
-                        url: TempImage,
-                        viewport: {
-                            type: currentFullType,
-                            width: 300,
-                            height: 300
-                        },
-                        container: {
-                            width: 300,
-                            height: 300
-                        }
-                    });
-                    // console.log(data);
+                    CropGeneral('bind');
                     currentResult = 'data:image/png;base64,' + data;
-                    // console.log(data);
                     // set buttons for download.
 
                     //set for share
@@ -306,7 +247,6 @@ $(document).ready(function () {
                     $('#shareimg').attr('href', cloud_url);
                     //remove disabled property
                     //disabled
-                    //$("#elementID").prop("disabled", true);
 
 
                     $('#downloadimg').attr({
@@ -314,8 +254,6 @@ $(document).ready(function () {
                         "download": 'DevFestExport-' + getFormattedTime() + '.png'
                     });
 
-                    //$('#downloadimg').attr('href', data);
-                    // $('#downloadimg').attr('download', 'DevFestExport-' + getFormattedTime() + '.png');
                     $('#downloadimg').get(0).click();
 
                     // $('#downloadimg').click();
@@ -323,10 +261,6 @@ $(document).ready(function () {
                     // $('#whatsappimg').attr('href', 'whatsapp://send?text=' + encodeURIComponent(data));
 
                     //set for facebook.
-
-
-
-
 
                 }
                 hideloading();
