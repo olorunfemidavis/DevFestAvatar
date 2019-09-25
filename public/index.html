@@ -8,7 +8,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'UA-46154594-4');
     </script>
 
@@ -46,6 +45,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link href="css/cropme.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
@@ -111,12 +111,12 @@
         </div>
     </div>
     <div class="container">
-        <main role="main" class="pb-3" style="max-width:1000px; margin: 0 auto;">
+        <main role="main" class="" style="max-width:1000px; margin: 0 auto;">
 
             <h3 class="component-catalog-panel__header-elements mdc-typography--headline3">#DevFest Avatar Creator</h3>
             <em>Note: There are two sliders around the canvas. The buttom is for rotation while the left is for zooming.
                 Share your creations on Twitter with the Hashtag #DevFest.</em>
-            <div class="mdc-card mdc-card--outlined">
+            <div class="mdc-card mdc-card--outlined" style="margin-top: 20px">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell">
@@ -145,7 +145,6 @@
                                         </div>
                                     </div>
                                     <label for="radio-r">Circle</label>
-
                                 </div>
 
                             </div>
@@ -153,7 +152,6 @@
 
                             <div>
                                 <h3 class="mdc-typography--subtitle1">Colour</h3>
-
                                 <div class="mdc-form-field">
                                     <div class="mdc-radio">
                                         <input class="mdc-radio__native-control" value="green" type="radio" id="radio-1"
@@ -191,16 +189,18 @@
                                         </div>
                                     </div>
                                     <label for="radio-4">Yellow</label>
-
                                 </div>
-
                             </div>
 
-                            <div style="display: flex">
+                            <div style="display: flex; margin-top: 1.2rem;">
                                 <h3 class="mdc-typography--subtitle1"></h3>
                                 <input id="fileInput" name="upload" type="file" accept="image/*" />
-                                <div class="fb-login-button" style="vertical-align:center" data-width=""  data-onlogin="checkLoginState();" data-size="small" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                                <div class="fb-login-button" style="vertical-align:center" data-width=""
+                                    data-onlogin="checkLoginState();" data-size="small" data-button-type="login_with"
+                                    data-auto-logout-link="false" data-use-continue-as="false"></div>
                             </div>
+
+
                             <div>
                                 <h3 class="mdc-typography--subtitle1"></h3>
                                 <button id="finalSubmit" class="mdc-button mdc-button--unelevated mdc-ripple-upgraded"
@@ -215,12 +215,12 @@
 
                 <div class="mdc-card__action-icons">
                     <a href="#" asp-action="Download" download id="downloadimg"
-                        class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export" aria-pressed="false"
-                        aria-label="Download" download title="Download">
+                        class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export"
+                        aria-pressed="false" aria-label="Download" download title="Download">
                         <i class="fas fa-download"></i>
                     </a>
                     <button class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export"
-                        aria-pressed="false" aria-label="Share on Facebook" title="Facebook">
+                        aria-pressed="false" aria-label="Share on Facebook" title="Facebook" id="btn">
                         <i class="fab fa-facebook"></i>
                     </button>
                     <a href="" target="_blank" id="shareimg"
@@ -232,10 +232,11 @@
                 </div>
             </div>
             <footer class="border-top footer text-muted" style="max-width:1000px; margin: 0 auto;">
-                <div class="container">
-                    Made with ❤ by <a href="https://www.meetup.com/gdgadoekiti">GDG Ado-Ekiti</a>
+                <div class="container" id="container">
+                    Made with ❤ by <a href="https://www.meetup.com/gdgadoekiti"><b>GDG Ado-Ekiti</b></a>
                 </div>
-                <em>Uploading your picture means you've given this tool the right to process your image and store for processing purposes. </em>
+                <em>Uploading your picture means you've given this tool the right to process your image and store for
+                    processing purposes. </em>
             </footer>
         </main>
     </div>

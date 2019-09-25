@@ -11,7 +11,34 @@ a.navbar-brand {
 -------------------------------------------------- */
 html {
   font-size: 14px;
+  font-family: 'Roboto', sans-serif;
 }
+
+#container a {
+  color: #5507e6;
+  text-decoration: none;
+}
+
+#btn i {
+  color: #5507e6;
+}
+
+
+#downloadimg i {
+  color: #5cb85c;
+}
+
+#shareimg i {
+  color: rgb(53, 50, 223);
+}
+/* body{
+  background: #d3d3d3;
+  background-image: url('../asset/img/DevFest2019.png'), linear-gradient(#eb01a5, #d13531);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
 @media (min-width: 768px) {
   html {
     font-size: 16px;
