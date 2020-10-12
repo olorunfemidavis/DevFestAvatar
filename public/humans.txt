@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+  Olorunfemi Ajibulu -- Creator -- fzanya
+  David Oluwabusayo -- Editor -- david_stont
+
+
+# THANKS
+
+  Lamidi Babatunde (GDG Ojo-Festac)
+
+# TECHNOLOGY COLOPHON
+
+  HTML5, CSS3

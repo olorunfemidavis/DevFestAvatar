@@ -1,23 +1,35 @@
 ﻿window.onload = function () {
+    // const MDCSnackbar = mdc.snackbar.MDCSnackbar;
 
     mdc.autoInit();
+
+    // const MDCTooltip = mdc.tooltip.MDCTooltip;
+    //const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
+    //const tooltip = new mdc.tooltip.MDCTooltip(document.querySelector('.mdc-tooltip'));
+
     $(".dialog-mask").hide();
 
 };
+
 //not using some of these
-var currentType = 's';
-var currentFullType = 'square';
-var currentColor = 'green';
+var currentType = 'bg';
 var currentResult = '';
-var TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137375/3e7c135c31f0456681632808109ed557.png';
+var TempImage = "images/bg.png";
 var SetWidth = 0;
 var cloudUrl = '';
 var general_to_crop;
 var cloud_url = '';
+var createdcount = 0;
 
 
 $(document).ready(function () {
 
+    $.get("https://devfest.azurewebsites.net/api/v2020/image/count", function (data) {
+        createdcount = data;
+        if (createdcount > 0) {
+            $("#foot").append("Stat: " + createdcount + " images created");
+        }
+    });
     //just in case of cors wahala
     $('img').attr('crossorigin', 'anonymous');
 
@@ -41,70 +53,20 @@ $(document).ready(function () {
     });
 
 
-    function CropGeneral(method) {
-        general_to_crop.cropme(method, {
-            viewport: {
-                type: currentFullType,
-                width: 300,
-                height: 300,
-                border: {
-                    enable: true,
-                    width: 2,
-                    color: '#fff'
-                }
-            }
-        });
-    }
+
 
     $('input:radio').change(function () {
-        var tp = $(this).val();
-        if (tp === 'square') {
-            currentType = 's';
-            currentFullType = tp;
-            CropGeneral('reload');
-        }
-        else if (tp === 'circle') {
-            currentType = 'o';
-            currentFullType = tp;
-            CropGeneral('reload');
-        }
-        else {
-            currentColor = tp;
-            if (currentResult === '') {
-                SetPreset();
-            }
+        currentType = $(this).val();
+        if (currentResult === '') {
+            SetPreset();
         }
     });
-    function CropTemp(){
+    function SetPreset() {
+        var directory = 'images/';
+        TempImage = directory.concat(currentType, '.png');
         general_to_crop.cropme('bind', {
             url: TempImage
         });
-    }
-    function SetPreset() {
-        switch (currentColor) {
-            case 'blue': {
-                TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137274/03d231e019be46af94c83a0ea1e8116b.png';
-                CropTemp();
-                break;
-            }
-            case 'yellow': {
-                TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137303/3986557df6d8470390b2d235c5ca5208.png';
-                CropTemp();
-                break;
-            }
-            case 'green': {
-                TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137375/3e7c135c31f0456681632808109ed557.png';
-                CropTemp();
-                break;
-            }
-            case 'red': {
-                TempImage = 'https://res.cloudinary.com/gdgadoekiti/image/upload/v1568137205/80e005c2010b47768406aec11e4e87dd.png';
-                CropTemp();
-                break;
-            }
-            default:
-            // code block
-        }
     }
 
     $('input:file').change(function () {
@@ -112,7 +74,7 @@ $(document).ready(function () {
         tempFilename = $(this).val();
         readFile(this);
     });
-   
+
     //reader things
     function readFile(input) {
         if (input.files && input.files[0]) {
@@ -120,7 +82,17 @@ $(document).ready(function () {
             reader.onload = function (e) {
                 rawImg = e.target.result;
                 currentResult = rawImg;
-                CropGeneral('bind');
+                general_to_crop.cropme('bind', {
+                    url: rawImg,
+                    viewport: {
+                        width: 300,
+                        height: 300
+                    },
+                    container: {
+                        width: 300,
+                        height: 300
+                    }
+                });
                 var image = new Image();
                 image.src = rawImg;
 
@@ -219,10 +191,14 @@ $(document).ready(function () {
         return new Blob(byteArrays, { type: contentType });
     }
 
+    //anyone can plug in here. //https://devfest.azurewebsites.net/api/v2020/image/avatar
     function UploadImage(dat) {
-        $.ajax('https://devfest.azurewebsites.net/image/processstring', {
-            data: JSON.stringify({ "type": currentColor + currentType, "data": dat }),
+       // $.ajax('https://localhost:5500/api/v2020/image/avatar', {
+        $.ajax('https://devfest.azurewebsites.net/api/v2020/image/avatar', {
+            data: JSON.stringify({ "type": currentType, "data": dat }),
             contentType: 'application/json',
+            // crossDomain: true,
+            // headers: {  'Access-Control-Allow-Origin': '*' },
             dataType: 'json',
             type: 'POST',
             success: function (data) {
@@ -236,10 +212,23 @@ $(document).ready(function () {
                     cloud_url = splite[0];
 
                     data = splite[1];
+                    //  data = 'data:image/png;base64,' + data;
                     TempImage = 'data:image/png;base64,' + data;
                     //set the main view.
-                    CropGeneral('bind');
+                    general_to_crop.cropme('bind', {
+                        url: TempImage,
+                        viewport: {
+                            width: 300,
+                            height: 300
+                        },
+                        container: {
+                            width: 300,
+                            height: 300
+                        }
+                    });
+                    // console.log(data);
                     currentResult = 'data:image/png;base64,' + data;
+                    // console.log(data);
                     // set buttons for download.
 
                     //set for share
@@ -247,20 +236,24 @@ $(document).ready(function () {
                     $('#shareimg').attr('href', cloud_url);
                     //remove disabled property
                     //disabled
+                    //$("#elementID").prop("disabled", true);
 
 
                     $('#downloadimg').attr({
                         "href": URL.createObjectURL(base64toBlob(data)),
-                        "download": 'DevFestExport-' + getFormattedTime() + '.png'
+                        "download": 'DevFestAvatar-' + getFormattedTime() + '.png'
                     });
 
                     $('#downloadimg').get(0).click();
 
-                    // $('#downloadimg').click();
                     //set buttons for whatsapp
                     // $('#whatsappimg').attr('href', 'whatsapp://send?text=' + encodeURIComponent(data));
 
                     //set for facebook.
+
+
+
+
 
                 }
                 hideloading();
@@ -279,3 +272,63 @@ var $uploadCrop,
     tempFilename,
     rawImg,
     imageId;
+
+
+/* eslint-env browser */
+(function () {
+    'use strict';
+
+    // Check to make sure service workers are supported in the current browser,
+    // and that the current page is accessed from a secure origin. Using a
+    // service worker from an insecure origin will trigger JS console errors. See
+    // http://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features
+    var isLocalhost = Boolean(window.location.hostname === 'localhost' ||
+        // [::1] is the IPv6 localhost address.
+        window.location.hostname === '[::1]' ||
+        // 127.0.0.1/8 is considered localhost for IPv4.
+        window.location.hostname.match(
+            /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+        )
+    );
+
+    if ('serviceWorker' in navigator &&
+        (window.location.protocol === 'https:' || isLocalhost)) {
+        navigator.serviceWorker.register('service-worker.js')
+            .then(function (registration) {
+                // updatefound is fired if service-worker.js changes.
+                registration.onupdatefound = function () {
+                    // updatefound is also fired the very first time the SW is installed,
+                    // and there's no need to prompt for a reload at that point.
+                    // So check here to see if the page is already controlled,
+                    // i.e. whether there's an existing service worker.
+                    if (navigator.serviceWorker.controller) {
+                        // The updatefound event implies that registration.installing is set:
+                        // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
+                        var installingWorker = registration.installing;
+
+                        installingWorker.onstatechange = function () {
+                            switch (installingWorker.state) {
+                                case 'installed':
+                                    // At this point, the old content will have been purged and the
+                                    // fresh content will have been added to the cache.
+                                    // It's the perfect time to display a "New content is
+                                    // available; please refresh." message in the page's interface.
+                                    break;
+
+                                case 'redundant':
+                                    throw new Error('The installing ' +
+                                        'service worker became redundant.');
+
+                                default:
+                                // Ignore
+                            }
+                        };
+                    }
+                };
+            }).catch(function (e) {
+                console.error('Error during service worker registration:', e);
+            });
+    }
+
+    // Your custom JavaScript goes here
+})();

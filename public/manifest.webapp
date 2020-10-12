@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "name": "DevFest Avatar Creator",
+  "launch_path": "/index.html",
+  "description": "A tool that helps you create your DevFest Avatar with options of shape and colours.",
+  "icons": {
+    "128": "/images/dva128.png"
+  },
+  "developer": {
+    "name": "Olorunfemi Ajibulu",
+    "url": "https://twitter.com/fzanya"
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "en",
+  "permissions": {
+  },
+  "locales": {
+    "en": {
+      "name": "DevFest Avatar Creator",
+      "description": "A tool that helps you create your DevFest Avatar with options of shape and colours."
+    }
+  }
+}

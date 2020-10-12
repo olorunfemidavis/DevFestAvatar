@@ -138,3 +138,60 @@ img {
     background-color: #5cb85c;
     color: white;
 }
+
+.options input{
+  margin:0;padding:0;
+  -webkit-appearance:none;
+     -moz-appearance:none;
+          appearance:none;
+}
+
+.r1{background-image:url(../images/bg.png);}
+.r2{background-image:url(../images/gy.png);}
+.r3{background-image:url(../images/yb.png);}
+.r4{background-image:url(../images/yr.png);}
+
+.cc-selector{
+display: flex;
+margin: auto;
+}
+.cc-selector input:active +.avatar-cc{opacity: .9;}
+.cc-selector input:checked +.avatar-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.avatar-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+            -webkit-filter: brightness(1.8) grayscale(.3) opacity(.7);
+            -moz-filter: brightness(1.8) grayscale(.3) opacity(.7);
+                 filter: brightness(1.8) grayscale(.3) opacity(.7);
+}
+.avatar-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.8) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.8) opacity(.9);
+            filter: brightness(1.2) grayscale(.8) opacity(.9);
+}
+input[type="radio"]{
+  visibility:hidden;
+}
+
+.uploader{
+  display: flex; 
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.pamo{
+  opacity: 0;
+}
+.back{
+  background-color: #3339E5;
+}

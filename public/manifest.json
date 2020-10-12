@@ -1,0 +1,25 @@
+{
+  "name": "DevFest Avatar",
+  "short_name": "Avatar",
+  "icons": [{
+        "src": "images/dva128.png",
+        "sizes": "128x128",
+        "type": "image/png"
+      }, {
+        "src": "images/dva152.png",
+        "sizes": "152x152",
+        "type": "image/png"
+      }, {
+        "src": "images/dva144.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      }, {
+        "src": "dva192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#3E4EB8",
+  "theme_color": "#2F3BA2"
+}

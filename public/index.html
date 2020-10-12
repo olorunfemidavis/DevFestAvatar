@@ -14,10 +14,32 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>#DevFest Avatar Creator</title>
     <link rel="shortcut icon" href="https://res.cloudinary.com/gdgadoekiti/image/upload/v1568050119/gdg_nmwyzu.png" />
     <meta name="theme-color" content="#23457C">
 
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="DevFest Avatar">
+    <link rel="icon" sizes="192x192" href="images/dva192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="DevFest Avatar">
+    <link rel="apple-touch-icon" href="images/dva152.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/dva144.png">
+    <meta name="msapplication-TileColor" content="#23457C">
 
     <meta name="description" content="Create your #DevFest Avatar" />
     <link rel="canonical" href="https://devfestavatar.firebaseapp.com/" />
@@ -59,7 +81,8 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body style="background-color:#F7F7F7">
+<body>
+
     <!-- Google Tag Manager (noscript) -->
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRNMXXW" height="0" width="0"
@@ -110,132 +133,77 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container v2_3">
         <main role="main" class="pb-3" style="max-width:1000px; margin: 0 auto;">
 
-            <h3 style="font-size:2rem;" class="component-catalog-panel__header-elements mdc-typography--headline3">#DevFest Avatar Creator</h3>
-            <em>Note: There are two sliders around the canvas. The buttom is for rotation while the left is for zooming.
-                Share your creations on Twitter with the Hashtag #DevFest.</em>
+            <h3 class="component-catalog-panel__header-elements mdc-typography--headline3">#DevFest Avatar Creator
+                <button class="mdc-icon-button material-icons" aria-describedby="tooltip-1">info</button></h3>
+
+            <em>Share your creations on Twitter with the Hashtag #DevFest.</em>
             <div class="mdc-card mdc-card--outlined">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell">
                             <div id="tocrop"></div>
-
                         </div>
                         <div class="mdc-layout-grid__cell">
                             <div>
-                                <h3 class="mdc-typography--subtitle1">Shape</h3>
-                                <div class="mdc-form-field">
-                                    <div class="mdc-radio">
-                                        <input class="mdc-radio__native-control shape" value="square" type="radio"
-                                            id="radio-s" name="radios" checked>
-                                        <div class="mdc-radio__background">
-                                            <div class="mdc-radio__outer-circle"></div>
-                                            <div class="mdc-radio__inner-circle"></div>
-                                        </div>
-                                    </div>
-                                    <label for="radio-s">Square</label>
-                                    <div class="mdc-radio">
-                                        <input class="mdc-radio__native-control shape" value="circle" type="radio"
-                                            id="radio-r" name="radios">
-                                        <div class="mdc-radio__background">
-                                            <div class="mdc-radio__outer-circle"></div>
-                                            <div class="mdc-radio__inner-circle"></div>
-                                        </div>
-                                    </div>
-                                    <label for="radio-r">Circle</label>
+                                <h3 class="mdc-typography--subtitle1">Select Shape</h3>
+
+                                <div class="cc-selector">
+                                    <input id="r1" type="radio" name="shaper" value="bg" checked />
+                                    <label class="avatar-cc r1" for="r1"></label>
+
+                                    <input id="r2" type="radio" name="shaper" value="gy" />
+                                    <label class="avatar-cc r2" for="r2"></label>
+
+                                    <input id="r3" type="radio" name="shaper" value="yb" />
+                                    <label class="avatar-cc r3" for="r3"></label>
+
+                                    <input id="r4" type="radio" name="shaper" value="yr" />
+                                    <label class="avatar-cc r4" for="r4"></label>
 
                                 </div>
 
-                            </div>
+                                <div class="uploader row">
+                                    <input id="fileInput" name="upload" type="file" accept="image/*" />
 
-
-                            <div>
-                                <h3 class="mdc-typography--subtitle1">Colour</h3>
-
-                                <div class="mdc-form-field">
-                                    <div class="mdc-radio">
-                                        <input class="mdc-radio__native-control" value="green" type="radio" id="radio-1"
-                                            name="radioc" checked>
-                                        <div class="mdc-radio__background">
-                                            <div class="mdc-radio__outer-circle"></div>
-                                            <div class="mdc-radio__inner-circle"></div>
-                                        </div>
-                                    </div>
-                                    <label for="radio-1">Green</label>
-                                    <div class="mdc-radio">
-                                        <input class="mdc-radio__native-control" value="red" type="radio" id="radio-2"
-                                            name="radioc">
-                                        <div class="mdc-radio__background">
-                                            <div class="mdc-radio__outer-circle"></div>
-                                            <div class="mdc-radio__inner-circle"></div>
-                                        </div>
-                                    </div>
-                                    <label for="radio-2">Red</label>
-                                    <div class="mdc-radio">
-                                        <input class="mdc-radio__native-control" value="blue" type="radio" id="radio-3"
-                                            name="radioc">
-                                        <div class="mdc-radio__background">
-                                            <div class="mdc-radio__outer-circle"></div>
-                                            <div class="mdc-radio__inner-circle"></div>
-                                        </div>
-                                    </div>
-                                    <label for="radio-3">Blue</label>
-                                    <div class="mdc-radio">
-                                        <input class="mdc-radio__native-control" value="yellow" type="radio"
-                                            id="radio-4" name="radioc">
-                                        <div class="mdc-radio__background">
-                                            <div class="mdc-radio__outer-circle"></div>
-                                            <div class="mdc-radio__inner-circle"></div>
-                                        </div>
-                                    </div>
-                                    <label for="radio-4">Yellow</label>
+                                    <div class="fb-login-button" style="vertical-align:center" data-width=""
+                                        data-onlogin="checkLoginState();" data-size="small"
+                                        data-button-type="login_with" data-auto-logout-link="false"
+                                        data-use-continue-as="false"></div>
+                                </div>
+                                <div class="row">
+                                    <h3 class="mdc-typography--subtitle1"></h3>
+                                    <button id="finalSubmit"
+                                        class="mdc-button mdc-button--unelevated mdc-ripple-upgraded"
+                                        style="--mdc-ripple-fg-size:52px; --mdc-ripple-fg-scale:2.00269; --mdc-ripple-fg-translate-start:39.6406px, -20.5469px; --mdc-ripple-fg-translate-end:17.4922px, -8px;"><i
+                                            class="material-icons mdc-button__icon">cloud_upload</i><span
+                                            class="mdc-button__label">Submit</span></button>
 
                                 </div>
-
-                            </div>
-
-                            <div style="display: flex">
-                                <h3 class="mdc-typography--subtitle1"></h3>
-                                <input id="fileInput" name="upload" type="file" accept="image/*" />
-                                <div class="fb-login-button" style="vertical-align:center" data-width=""  data-onlogin="checkLoginState();" data-size="small" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
-                            </div>
-                            <div>
-                                <h3 class="mdc-typography--subtitle1"></h3>
-                                <button id="finalSubmit" class="mdc-button mdc-button--unelevated mdc-ripple-upgraded"
-                                    style="--mdc-ripple-fg-size:52px; --mdc-ripple-fg-scale:2.00269; --mdc-ripple-fg-translate-start:39.6406px, -20.5469px; --mdc-ripple-fg-translate-end:17.4922px, -8px;"><i
-                                        class="material-icons mdc-button__icon">cloud_upload</i><span
-                                        class="mdc-button__label">Submit</span></button>
-
+                                <a target="_blank" class="uploader" href="https://twitter.com/intent/tweet?button_hashtag=DevFest&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-size="large" data-text="I just made my Avatar! Join me in Celebrating the season. " data-url="https://devfestavatar.firebaseapp.com/" data-related="gdgadoekiti,fzanyA" data-show-count="false">Tweet #DevFest</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="mdc-card__action-icons pamo">
+                        <a href="#" asp-action="Download" download id="downloadimg"
+                            class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export"
+                            aria-pressed="false" aria-label="Download" download title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
 
-                <div class="mdc-card__action-icons">
-                    <a href="#" asp-action="Download" download id="downloadimg"
-                        class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export" aria-pressed="false"
-                        aria-label="Download" download title="Download">
-                        <i class="fas fa-download"></i>
-                    </a>
-                    <button class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export"
-                        aria-pressed="false" aria-label="Share on Facebook" title="Facebook">
-                        <i class="fab fa-facebook"></i>
-                    </button>
-                    <a href="" target="_blank" id="shareimg"
-                        class="mdc-icon-button mdc-card__action mdc-card__action--icon--unbounded export"
-                        aria-pressed="false" aria-label="Share" download title="Share">
-                        <i class="fas fa-share"></i>
-                    </a>
-
+                    </div>
                 </div>
-            </div>
-            <footer class="border-top footer text-muted" style="max-width:1000px; margin: 0 auto;">
-                <div class="container">
-                    Made with ❤ by <a href="https://www.meetup.com/gdgadoekiti">GDG Ado-Ekiti</a> | <a target="_blank" href="https://sites.google.com/view/devfestavatarcreatorprivacy/home">Privacy</a>
-                </div>
-            </footer>
+                <footer class="border-top footer text-muted" style="max-width:1000px; margin: 0 auto;">
+                    <div class="container">
+                        Made with ❤ by <a href="https://www.meetup.com/gdgadoekiti">GDG Ado-Ekiti</a> | <a
+                            target="_blank"
+                            href="https://sites.google.com/view/devfestavatarcreatorprivacy/home">Privacy</a>
+                    </div>
+                    <div class="container" id="foot" style="line-height:0px; margin:5px">
+                    </div>
+                </footer>
         </main>
     </div>
 
