@@ -12,9 +12,9 @@
 };
 
 //not using some of these
-var currentType = 'bg';
+var currentType = 'gy';
 var currentResult = '';
-var TempImage = "images/bg.png";
+var TempImage = "images/gy.jpg";
 var SetWidth = 0;
 var cloudUrl = '';
 var general_to_crop;
@@ -24,12 +24,12 @@ var createdcount = 0;
 
 $(document).ready(function () {
 
-    $.get("https://devfest.azurewebsites.net/api/v2020/image/count", function (data) {
-        createdcount = data;
-        if (createdcount > 0) {
-            $("#foot").append("Stat: " + createdcount + " images created");
-        }
-    });
+    // $.get("https://devfest.azurewebsites.net/api/v2020/image/count", function (data) {
+    //     createdcount = data;
+    //     if (createdcount > 0) {
+    //         $("#foot").append("Stat: " + createdcount + " images created");
+    //     }
+    // });
     //just in case of cors wahala
     $('img').attr('crossorigin', 'anonymous');
 
@@ -53,8 +53,6 @@ $(document).ready(function () {
     });
 
 
-
-
     $('input:radio').change(function () {
         currentType = $(this).val();
         if (currentResult === '') {
@@ -63,7 +61,7 @@ $(document).ready(function () {
     });
     function SetPreset() {
         var directory = 'images/';
-        TempImage = directory.concat(currentType, '.png');
+        TempImage = directory.concat(currentType, '.jpg');
         general_to_crop.cropme('bind', {
             url: TempImage
         });
@@ -72,8 +70,13 @@ $(document).ready(function () {
     $('input:file').change(function () {
         imageId = $(this).data('id');
         tempFilename = $(this).val();
+        console.log(tempFilename);
         readFile(this);
     });
+
+    $('.fileInput').click(function() {
+        $('input:file').trigger('click')
+    })
 
     //reader things
     function readFile(input) {
@@ -83,15 +86,7 @@ $(document).ready(function () {
                 rawImg = e.target.result;
                 currentResult = rawImg;
                 general_to_crop.cropme('bind', {
-                    url: rawImg,
-                    viewport: {
-                        width: 300,
-                        height: 300
-                    },
-                    container: {
-                        width: 300,
-                        height: 300
-                    }
+                    url: rawImg
                 });
                 var image = new Image();
                 image.src = rawImg;
@@ -127,37 +122,14 @@ $(document).ready(function () {
             toastr.warning('Choose an image first!');
             event.preventDefault();
         }
-        else {
-            // console.log($(this).attr('title'));
-
-            switch ($(this).attr('title')) {
-                case 'Facebook': {
-                    isfbsr = true;
-                    FB.ui({
-                        method: 'share_open_graph',
-                        action_type: 'og.likes',
-                        action_properties: JSON.stringify({
-                            object: cloud_url,
-                        })
-                    }, function (response) {
-                        // Debug response (optional)
-                        // console.log(response);
-                    });
-
-                    //checkLoginState();
-                    break;
-                }
-                default:
-            }
-        }
     });
     $("#finalSubmit").click(function () {
+        console.log('su');
         if (currentResult === '') {
             toastr.warning('Choose an image first!');
         }
         else {
             //console.log('submit clicked');
-
             showloading();
             general_to_crop.cropme('crop', {
                 type: 'base64',
@@ -193,7 +165,7 @@ $(document).ready(function () {
 
     //anyone can plug in here. //https://devfest.azurewebsites.net/api/v2020/image/avatar
     function UploadImage(dat) {
-       // $.ajax('https://localhost:5500/api/v2020/image/avatar', {
+        // $.ajax('https://localhost:5500/api/v2020/image/avatar', {
         $.ajax('https://devfest.azurewebsites.net/api/v2020/image/avatar', {
             data: JSON.stringify({ "type": currentType, "data": dat }),
             contentType: 'application/json',
@@ -216,15 +188,7 @@ $(document).ready(function () {
                     TempImage = 'data:image/png;base64,' + data;
                     //set the main view.
                     general_to_crop.cropme('bind', {
-                        url: TempImage,
-                        viewport: {
-                            width: 300,
-                            height: 300
-                        },
-                        container: {
-                            width: 300,
-                            height: 300
-                        }
+                        url: TempImage
                     });
                     // console.log(data);
                     currentResult = 'data:image/png;base64,' + data;
@@ -245,16 +209,6 @@ $(document).ready(function () {
                     });
 
                     $('#downloadimg').get(0).click();
-
-                    //set buttons for whatsapp
-                    // $('#whatsappimg').attr('href', 'whatsapp://send?text=' + encodeURIComponent(data));
-
-                    //set for facebook.
-
-
-
-
-
                 }
                 hideloading();
             },

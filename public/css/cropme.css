@@ -18,7 +18,7 @@
     margin: 0 auto;
 }
 
-    .cropme-container img {
+    .cropme-x img {
         width: initial !important;
         cursor: move;
         opacity: 0;
@@ -38,7 +38,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    box-shadow: 0 0 2000px 2000px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 0 2000px 2000px rgba(0, 0, 0, 0.5); */
     z-index: 0;
     pointer-events: none;
 }

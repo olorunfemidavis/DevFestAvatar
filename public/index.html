@@ -1,16 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46154594-4"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-46154594-4');
-    </script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,6 +57,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/fontawesome.css"
         integrity="sha384-hM7EQerc09E4O3zhtvF2iqcB4ZkEu9xkLQndhXdGGCEJ/sB4JK54SuKGmIC35UTf" crossorigin="anonymous">
     <link href="css/loading.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link href="css/cropme.css" rel="stylesheet" />
@@ -81,7 +74,7 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body>
+<body class="mother">
 
     <!-- Google Tag Manager (noscript) -->
     <noscript>
@@ -90,34 +83,9 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/6.6.1/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#reserved-urls -->
-
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
-    <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '2325033887594862',
-                autoLogAppEvents: true,
-                xfbml: true,
-                version: 'v4.0'
-            });
-
-            FB.AppEvents.logPageView();
-        };
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
 
     <div class="dialog-mask collapse">
         <div class="dialog-status">
@@ -133,14 +101,14 @@
             </div>
         </div>
     </div>
-    <div class="container v2_3">
-        <main role="main" class="pb-3" style="max-width:1000px; margin: 0 auto;">
-
-            <h3 class="component-catalog-panel__header-elements mdc-typography--headline3">#DevFest Avatar Creator
+    <div class="container">
+        <main role="main" style="max-width:100%; margin: 0 auto;">
+            <h3 class="funfun component-catalog-panel__header-elements mdc-typography--headline3">#DevFest Avatar
+                Creator
                 <button class="mdc-icon-button material-icons" aria-describedby="tooltip-1">info</button></h3>
 
-            <em>Share your creations on Twitter with the Hashtag #DevFest.</em>
-            <div class="mdc-card mdc-card--outlined">
+            <em class="funfun">Share your creations on Twitter with the Hashtag #DevFest.</em>
+            <div style="background: transparent;">
                 <div class="mdc-layout-grid">
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell">
@@ -148,13 +116,13 @@
                         </div>
                         <div class="mdc-layout-grid__cell">
                             <div>
-                                <h3 class="mdc-typography--subtitle1">Select Shape</h3>
+                                <h3 class="mdc-typography--subtitle1 funfun">Select Colour</h3>
 
                                 <div class="cc-selector">
-                                    <input id="r1" type="radio" name="shaper" value="bg" checked />
+                                    <input id="r1" type="radio" name="shaper" value="bg" />
                                     <label class="avatar-cc r1" for="r1"></label>
 
-                                    <input id="r2" type="radio" name="shaper" value="gy" />
+                                    <input id="r2" type="radio" name="shaper" value="gy" checked />
                                     <label class="avatar-cc r2" for="r2"></label>
 
                                     <input id="r3" type="radio" name="shaper" value="yb" />
@@ -164,25 +132,28 @@
                                     <label class="avatar-cc r4" for="r4"></label>
 
                                 </div>
-
                                 <div class="uploader row">
-                                    <input id="fileInput" name="upload" type="file" accept="image/*" />
-
-                                    <div class="fb-login-button" style="vertical-align:center" data-width=""
-                                        data-onlogin="checkLoginState();" data-size="small"
-                                        data-button-type="login_with" data-auto-logout-link="false"
-                                        data-use-continue-as="false"></div>
+                                    <input id="fileInput" name="upload" type="file" style="display: none;"
+                                        accept="image/*" />
+                                    <div class="v4_9">
+                                        <div class="v4_4 fileInput"></div>
+                                        <span class="v4_6 fileInput">Upload</span>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <h3 class="mdc-typography--subtitle1"></h3>
-                                    <button id="finalSubmit"
-                                        class="mdc-button mdc-button--unelevated mdc-ripple-upgraded"
-                                        style="--mdc-ripple-fg-size:52px; --mdc-ripple-fg-scale:2.00269; --mdc-ripple-fg-translate-start:39.6406px, -20.5469px; --mdc-ripple-fg-translate-end:17.4922px, -8px;"><i
-                                            class="material-icons mdc-button__icon">cloud_upload</i><span
-                                            class="mdc-button__label">Submit</span></button>
-
+                                    <div class="v4_17" type="button" id="finalSubmit">
+                                        <div class="v4_12">
+                                            <i class="material-icons mdc-button__icon button">cloud_upload</i>
+                                        </div>
+                                        <span class="v4_11">Submit</span>
+                                    </div>
                                 </div>
-                                <a target="_blank" class="uploader" href="https://twitter.com/intent/tweet?button_hashtag=DevFest&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-size="large" data-text="I just made my Avatar! Join me in Celebrating the season. " data-url="https://devfestavatar.firebaseapp.com/" data-related="gdgadoekiti,fzanyA" data-show-count="false">Tweet #DevFest</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                <div class="row olofofo">
+                                    <!-- <h3 class="mdc-typography--subtitle1"></h3> -->
+                                    <a target="_blank" class="uploader funfun"
+                                        href="https://twitter.com/intent/tweet?text=I%20just%20made%20my%20%23DevFest%20Avatar%21%20Join%20me%20in%20Celebrating%20the%20season%20with%20%40gdgadoekiti%20%40fzanyA.%0D%0ACreate%20yours%20at%20goo.gle%2Fdevfest-avatar">Tweet #DevFest</a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -195,13 +166,14 @@
 
                     </div>
                 </div>
-                <footer class="border-top footer text-muted" style="max-width:1000px; margin: 0 auto;">
-                    <div class="container">
-                        Made with ❤ by <a href="https://www.meetup.com/gdgadoekiti">GDG Ado-Ekiti</a> | <a
-                            target="_blank"
+                <footer class="footer text-muted" style="max-width:1000px; margin: 0 auto;">
+                    <div class="container funfun">
+                        Made with ❤ by <a style="text-decoration: none; color: white;"
+                            href="https://gdg.community.dev/gdg-ado-ekiti">GDG Ado-Ekiti</a> | <a target="_blank"
+                            style="text-decoration: none; color: white;"
                             href="https://sites.google.com/view/devfestavatarcreatorprivacy/home">Privacy</a>
                     </div>
-                    <div class="container" id="foot" style="line-height:0px; margin:5px">
+                    <div class="container funfun" id="foot" style="line-height:0px; margin:5px">
                     </div>
                 </footer>
         </main>
@@ -214,7 +186,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="js/cropme.js"></script>
     <script src="js/site.js" asp-append-version="true"></script>
-    <script src="js/face.js"></script>
 </body>
 
 </html>

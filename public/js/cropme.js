@@ -716,7 +716,7 @@
     var defaultOptions = {
         container: {
             width: "100%",
-            height: 300
+            height: 400
         },
         viewport: {
             width: 300,
@@ -731,7 +731,7 @@
         },
         transformOrigin: 'viewport',
         zoom: {
-            min: 0.01,
+            // min: 0.01,
             max: 3,
             enable: true,
             mouseWheel: true,
@@ -739,8 +739,8 @@
         },
         customClass: '',
         rotation: {
-            slider: true,
-            enable: true,
+            slider: false,
+            enable: false,
             position: 'left'
         }
     };
