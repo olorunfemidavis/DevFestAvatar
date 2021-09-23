@@ -715,7 +715,7 @@
 
     var defaultOptions = {
         container: {
-            width: "100%",
+            width: 400,
             height: 400
         },
         viewport: {
@@ -724,7 +724,8 @@
             border: {
                 enable: true,
                 width: 2,
-                color: '#23457C'
+                color: "#fff"
+
             },
             type: 'square'
 
