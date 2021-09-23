@@ -713,14 +713,25 @@
             return Cropme;
         }();
 
+    //If screen is less than 400px,  Use Lower values for container and viewport. 
+    var containerLenght = 400;
+
+    if (screen.width < 400)
+        containerLenght = 360;
+
+    if (screen.width < 325)
+        containerLenght = 310;
+
+    var viewportLenght = 3 / 4 * containerLenght;
+
     var defaultOptions = {
         container: {
-            width: 400,
-            height: 400
+            width: containerLenght,
+            height: containerLenght
         },
         viewport: {
-            width: 300,
-            height: 300,
+            width: viewportLenght,
+            height: viewportLenght,
             border: {
                 enable: true,
                 width: 2,

@@ -114,41 +114,50 @@
                     <p class="fileInput upload">Pick</p>
                 </div>
 
-                <h2 class="mdc-typography--headline6 funfun center_text">Choose color to download.</h2>
+                <p class="mdc-typography--headline6 funfun center_text">Choose color to download.</p>
 
-                <div class="grid-horizontal-container">
+                <div class="grid-horizontal-container square-thumbnails">
+                    <input type="image" src="./images/goto_Circle.png" class="thumbnail-cc img-circle" alt="circle"/>  
                     <input type="image" src="./images/thumbnail-green.png" class="thumbnail-cc" alt="green"/>  
                     <input type="image" src="./images/thumbnail-yellow.png" class="thumbnail-cc" alt="yellow"/> 
                     <input type="image" src="./images/thumbnail-blue.png" class="thumbnail-cc" alt="blue"/> 
                     <input type="image" src="./images/thumbnail-red.png" class="thumbnail-cc" alt="red"/> 
                 </div>
 
+                <div class="grid-horizontal-container circle-thumbnails">
+                    <input type="image" src="./images/goto_Square.png" class="thumbnail-cc" alt="square"/>  
+                    <input type="image" src="./images/thumbnail-green-circle.png" class="thumbnail-cc img-circle" alt="green"/>  
+                    <input type="image" src="./images/thumbnail-yellow-circle.png" class="thumbnail-cc img-circle" alt="yellow"/> 
+                    <input type="image" src="./images/thumbnail-blue-circle.png" class="thumbnail-cc img-circle" alt="blue"/> 
+                    <input type="image" src="./images/thumbnail-red-circle.png" class="thumbnail-cc img-circle" alt="red"/> 
+                </div>
+
                 <a style="display: none;" href="#" asp-action="Download" download id="downloadimg" download title="Download"></a>
 
 
             </div>
+            <footer class="footer">
+                <div class="grid-vertical-container">
+                    <div class="olofofo">
+                        <a target="_blank" class="uploader funfun"
+                            href="https://twitter.com/intent/tweet?text=I%20just%20made%20my%20%23DevFest%20Avatar%21%20Join%20me%20in%20Celebrating%20the%20season%20with%20%40gdgadoekiti%20%40fzanyA.%0D%0ACreate%20yours%20at%20goo.gle%2Fdevfest-avatar">Tweet
+                            #DevFest</a>
+                    </div>
+        
+                    <div class="funfun center_text">
+                        Made with ❤ by <a style="color: white;"
+                            href="https://gdg.community.dev/gdg-ado-ekiti">GDG Ado-Ekiti</a> 🇳🇬 | <a target="_blank"
+                            style="color: white;"
+                            href="https://sites.google.com/view/devfestavatarcreatorprivacy/home">Privacy</a>
+                    </div>
+        
+                    <p class="center_text funfun" style="line-height:0px; margin:5px">2021 Stat: <span id="foot"></span> images created.</p>
+        
+                </div>
+        
+            </footer>
         </main>
     </div>
-    <footer class="footer aarin">
-        <div class="grid-vertical-container">
-            <div class="olofofo">
-                <a target="_blank" class="uploader funfun"
-                    href="https://twitter.com/intent/tweet?text=I%20just%20made%20my%20%23DevFest%20Avatar%21%20Join%20me%20in%20Celebrating%20the%20season%20with%20%40gdgadoekiti%20%40fzanyA.%0D%0ACreate%20yours%20at%20goo.gle%2Fdevfest-avatar">Tweet
-                    #DevFest</a>
-            </div>
-
-            <div class="funfun center_text">
-                Made with ❤ by <a style="text-decoration: none; color: white;"
-                    href="https://gdg.community.dev/gdg-ado-ekiti">GDG Ado-Ekiti</a> | <a target="_blank"
-                    style="text-decoration: none; color: white;"
-                    href="https://sites.google.com/view/devfestavatarcreatorprivacy/home">Privacy</a>
-            </div>
-
-            <div class="center_text funfun" id="foot" style="line-height:0px; margin:5px"></div>
-
-        </div>
-
-    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">

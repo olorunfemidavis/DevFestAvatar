@@ -3,26 +3,28 @@
     $(".dialog-mask").hide();
 };
 
-//not using some of these
-var currentColor = 'gy';
+//some useful variables
+var currentColor = '';
+var currentShape = '';
 var rawImg = '';
 var TempImage = "images/empty.png";
 var ImageLength = 0;
 var general_to_crop;
-var cloud_url = '';
-var createdcount = 0;
 var templateMaxSize = 1080;
 
-
+//gbebodi
 $(document).ready(function () {
 
+    ShowCircle(false);
     $.getJSON("https://api.countapi.xyz/get/devfestavatar.web.app/counts", function (response) {
-        $("#foot").text("Stat: " + response.value + " images created");
+        $("#foot").text(response.value);
     });
 
     //just in case of cors wahala
+    //edit: 2021: why is this here? check..
     $('img').attr('crossorigin', 'anonymous');
 
+    //Useful for unique file naming
     function getFormattedTime() {
         var today = new Date();
         var y = today.getFullYear();
@@ -46,8 +48,18 @@ $(document).ready(function () {
         },
     });
 
-    //Handles click by Tenplate thumbnails.
+    //Handles click by Template thumbnails.
     $('input:image').click(function () {
+
+        if ($(this).attr("alt") == "circle") {
+            ShowCircle(true);
+            return;
+        }
+        if ($(this).attr("alt") == "square") {
+            ShowCircle(false);
+            return;
+        }
+
         currentColor = $(this).attr("alt");
         DownloadColor();
     });
@@ -57,7 +69,7 @@ $(document).ready(function () {
     //Step 2:  Perform the Join
     function DownloadColor() {
         var directory = 'images/';
-        var template = directory.concat('template-', currentColor, '.png');
+        var template = directory.concat('template-', currentColor, currentShape, '.png');
 
         //Check if an image is chosen.
         if (rawImg === '') {
@@ -100,7 +112,7 @@ $(document).ready(function () {
                 toastr.success('Downloading');
 
                 $.getJSON("https://api.countapi.xyz/hit/devfestavatar.web.app/counts", function (response) {
-                    $("#foot").text("Stat: " + response.value + " images created");
+                    $("#foot").text(response.value);
                 });
             });
 
@@ -142,7 +154,7 @@ $(document).ready(function () {
                     if (ImageLength > templateMaxSize) {
                         ImageLength = templateMaxSize;
                     }
-                   // console.log(ImageLength);
+                    // console.log(ImageLength);
                 };
             };
             reader.readAsDataURL(input.files[0]);
@@ -156,8 +168,20 @@ $(document).ready(function () {
         if (show == true)
             $(".dialog-mask").show().removeClass('collapse');
         else
-            $(".dialog-mask").hide().addClass("collapse");;
+            $(".dialog-mask").hide().addClass("collapse");
+    }
 
+    function ShowCircle(show) {
+        if (show == true) {
+            $(".circle-thumbnails").show().removeClass('collapse');
+            $(".square-thumbnails").hide().addClass("collapse");
+            currentShape = '-circle';
+        }
+        else {
+            $(".square-thumbnails").show().removeClass('collapse');
+            $(".circle-thumbnails").hide().addClass("collapse");
+            currentShape = '';
+        }
     }
 
 
@@ -188,8 +212,6 @@ $(document).ready(function () {
     }
 
 });
-
-
 
 
 var $uploadCrop;
