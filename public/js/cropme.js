@@ -714,11 +714,10 @@
         }();
 
     //If screen is less than 400px,  Use Lower values for container and viewport. 
-    //alert("Your screen size is: " + window.screen.width + "x" + window.screen.height); //pc height is 768
 
     var containerLenght = 400;
 
-    if (window.screen.height < 800) //Small Size Tablets or PC
+    if (window.screen.height < 800) //Small Size Tablets or PC.  15" Notebook
         containerLenght = 320;
 
     if (screen.width < 600)
