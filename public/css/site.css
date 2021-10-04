@@ -24,6 +24,7 @@
   margin-top: 30px;
 }
 
+
 .funfun {
   color: white;
 }
@@ -125,6 +126,10 @@ html {
 }
 
 @media only screen and (max-width: 500px) {
+ 
+  .crop_element {
+    margin-top: 15px;
+  }
   .thumbnail-cc {
     width: 60px;
     height: 60px;
