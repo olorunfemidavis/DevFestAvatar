@@ -1,5 +1,5 @@
 ﻿.mother {
-  background-image: url(../images/background.png);
+  background-image: url(../images/devfest-social.png);
   background-repeat: no-repeat;
   background-size: cover;
   font-family: Roboto;
@@ -11,7 +11,6 @@
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   grid-gap: 10px;
-  
 }
 
 .grid-vertical-container {
@@ -21,12 +20,15 @@
 }
 
 .crop_element {
-  margin-top: 30px;
+  margin-top: 40px;
 }
-
 
 .funfun {
   color: white;
+}
+
+.dudu {
+  color: black;
 }
 
 html {
@@ -44,7 +46,7 @@ h3 {
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
 html {
@@ -58,16 +60,15 @@ html {
   align-content: center;
 
   position: fixed;
-   left: 0;
-   bottom: 10px;
-   width: 100%;
-   text-align: center;
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
 }
 
 .img-circle {
   border-radius: 50%;
 }
-
 
 .thumbnail-cc {
   cursor: pointer;
@@ -80,11 +81,10 @@ html {
   transition: all 100ms ease-in;
 }
 
-
 .thumbnail-cc:hover {
-  -webkit-filter: brightness(1.2) grayscale(.8) opacity(1);
-  -moz-filter: brightness(1.2) grayscale(.8) opacity(1);
-  filter: brightness(1.2) grayscale(.8) opacity(1);
+  -webkit-filter: brightness(1.2) grayscale(0.8) opacity(1);
+  -moz-filter: brightness(1.2) grayscale(0.8) opacity(1);
+  filter: brightness(1.2) grayscale(0.8) opacity(1);
 }
 
 .uploader {
@@ -96,14 +96,21 @@ html {
 
 .upload {
   width: 150px;
-  height: 35px;
-  border-radius: 17px;
-  background: rgba(196, 196, 196, 1);
-  padding-top: 15px;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  background: #fff;
   cursor: pointer;
   margin: auto;
   font-size: 22px;
   text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.upload:hover {
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
 }
 
 .olofofo {
@@ -126,7 +133,6 @@ html {
 }
 
 @media only screen and (max-width: 500px) {
- 
   .crop_element {
     margin-top: 15px;
   }
