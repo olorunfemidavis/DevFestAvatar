@@ -168,33 +168,3 @@ html {
     grid-gap: 5px;
   }
 }
-
-/* background logo animation */
-:root {
-  --size: 100px;
-}
-
-.x {
-  animation: x 13s linear infinite alternate;
-}
-
-.y {
-  animation: y 7s linear infinite alternate;
-}
-img.y {
-  width: 150px;
-  height: 150px;
-  position: absolute;
-}
-
-@keyframes x {
-  100% {
-    transform: translateX(calc(100vw - var(--size)));
-  }
-}
-
-@keyframes y {
-  100% {
-    transform: translateY(calc(100vh - var(--size)));
-  }
-}
