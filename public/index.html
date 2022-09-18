@@ -137,21 +137,20 @@
     </div>
 
     <div class="container">
-      <div class="x">
-        <img class="y" src="/DevFestAvatar/public/images/DF22.webp" alt="gdg" />
-      </div>
       <main role="main" class="aarin">
         <div style="background: transparent" class="aarin">
-          <div id="tocrop" class="crop_element"></div>
+          <div class="slat">
+            <div id="tocrop" class="crop_element"></div>
 
-          <div class="uploader row">
-            <input type="file" style="display: none" accept="image/*" />
-            <p class="fileInput upload">Pick</p>
+            <div class="uploader row">
+              <input type="file" style="display: none" accept="image/*" />
+              <p class="fileInput upload">Upload Image</p>
+            </div>
+
+            <p class="mdc-typography--headline6 dudu center_text">
+              Choose color to download.
+            </p>
           </div>
-
-          <p class="mdc-typography--headline6 funfun center_text">
-            Choose color to download.
-          </p>
 
           <div class="grid-horizontal-container square-thumbnails">
             <input
@@ -231,27 +230,30 @@
         </div>
         <footer class="footer">
           <div class="grid-vertical-container">
-            <div class="dudu center_text">
+            <div class="bluetxt center_text">
               With <span style="color: red">❤</span> by
               <a
-                style="color: black"
+                style="color: #2b83fc"
                 href="https://gdg.community.dev/gdg-ado-ekiti"
                 >GDG Ado-Ekiti</a
               >
               🇳🇬 |
               <a
                 target="_blank"
-                style="color: black"
+                style="color: #2b83fc"
                 href="https://sites.google.com/view/devfestavatarcreatorprivacy/home"
                 >Privacy</a
               >
             </div>
 
-            <p class="center_text dudu" style="line-height: 0px; margin: 5px">
+            <p
+              class="center_text bluetxt"
+              style="line-height: 0px; margin: 5px"
+            >
               2022 Stat: <b><span id="countSpan"></span></b> imgs.
               <a
                 target="_blank"
-                class="uploader dudu"
+                class="uploader bluetxt"
                 href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdevfestavatar.web.app&via=fzanyA&text=I%20just%20made%20my%20Avatar%21%20Join%20me%20in%20Celebrating%20the%20season%20with%20@gdgadoekiti.%20Create%20yours%20&hashtags=DevFest"
                 >Tweet #DevFest</a
               >
@@ -330,7 +332,7 @@
         countVariable = Number(snapshot.val());
 
         // Abeg count if you see "Downloading"
-        if (toastr.success("Downloading")) countVariable++;
+        if (toastr.success) countVariable++;
         else null;
 
         update(ref(db, "/"), { counter: countVariable });
