@@ -1,10 +1,11 @@
 ﻿.mother {
-  background-image: url(../images/devfest-social.png);
+  background-image: url(../images/DevFest_General_01.gif);
   background-repeat: no-repeat;
   background-size: cover;
   font-family: Roboto;
   font-weight: Regular;
-  background-color: #4285f4;
+  background-color: #2b83fc;
+  overflow: hidden;
 }
 
 .grid-horizontal-container {
@@ -20,7 +21,7 @@
 }
 
 .crop_element {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .funfun {
@@ -29,6 +30,10 @@
 
 .dudu {
   color: black;
+}
+
+.bluetxt {
+  color: #2b83fc;
 }
 
 html {
@@ -65,6 +70,8 @@ html {
   width: 100%;
   text-align: center;
 }
+/* .crop_element {
+} */
 
 .img-circle {
   border-radius: 50%;
@@ -79,6 +86,12 @@ html {
   -webkit-transition: all 100ms ease-in;
   -moz-transition: all 100ms ease-in;
   transition: all 100ms ease-in;
+  background: rgba(250, 252, 255, 0.41);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgb(0, 0, 0);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(250, 252, 255, 0.3);
 }
 
 .thumbnail-cc:hover {
@@ -97,9 +110,10 @@ html {
 .upload {
   width: 150px;
   padding: 0.3rem 0.5rem;
+  color: white;
   border-radius: 5px;
-  border: 1px solid transparent;
-  background: #fff;
+  border: 2px solid transparent;
+  background-color: #2b83fc;
   cursor: pointer;
   margin: auto;
   font-size: 22px;
@@ -108,15 +122,23 @@ html {
 }
 
 .upload:hover {
-  border: 1px solid #fff;
-  background-color: transparent;
-  color: #fff;
+  background-color: white;
+  color: black;
 }
 
 .olofofo {
   margin-top: 1em;
   color: white;
   text-align: center;
+}
+
+.slat {
+  padding-top: 0.5rem;
+  border-radius: 16px;
+  background: rgba(158, 159, 161, 0.41);
+  box-shadow: 5px 7px 8px rgba(14, 14, 14, 0.384);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .aarin {
@@ -126,6 +148,7 @@ html {
   margin-right: auto;
   max-width: 400px;
   margin: 0 auto;
+  padding: auto;
 }
 
 .center_text {
