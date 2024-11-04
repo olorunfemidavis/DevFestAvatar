@@ -92,16 +92,16 @@
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
-          "gtm.start": new Date().getTime(),
-          event: "gtm.js",
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js',
         });
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
+          dl = l != 'dataLayer' ? '&l=' + l : '';
         j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WRNMXXW");
+      })(window, document, 'script', 'dataLayer', 'GTM-WRNMXXW');
     </script>
     <!-- End Google Tag Manager -->
   </head>
@@ -230,7 +230,7 @@
         </div>
         <footer class="footer">
           <div class="grid-vertical-container">
-            <div class="bluetxt center_text">
+            <div class="dudu center_text">
               With <span style="color: red">❤</span> by
               <a
                 style="color: #2b83fc"
@@ -246,18 +246,17 @@
               >
             </div>
 
-            <p
-              class="center_text bluetxt"
-              style="line-height: 0px; margin: 5px"
-            >
-              2022 Stat: <b><span id="countSpan"></span></b> imgs.
+            <p class="center_text dudu" style="line-height: 0px; margin: 5px">
+              <span id="year"></span> Stat:
+              <b><span id="countSpan"></span></b> imgs.
               <a
                 target="_blank"
-                class="uploader bluetxt"
+                class="uploader dudu"
                 href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fdevfestavatar.web.app&via=fzanyA&text=I%20just%20made%20my%20Avatar%21%20Join%20me%20in%20Celebrating%20the%20season%20with%20@gdgadoekiti.%20Create%20yours%20&hashtags=DevFest"
                 >Tweet #DevFest</a
               >
             </p>
+
             <a
               href="https://github.com/fzany/DevFestAvatar"
               target="_blank"
@@ -274,6 +273,9 @@
       </main>
     </div>
 
+    <script>
+      document.getElementById('year').innerText = new Date().getFullYear();
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
       crossorigin="anonymous"
@@ -289,56 +291,67 @@
 
   <script type="module">
     // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    const firebaseConfig = {
-      apiKey: "AIzaSyC0Q8Gzq2rwqDJTO66-1Ve3nnjJb61f2xI",
-      authDomain: "fyi-app-a9a7e.firebaseapp.com",
-      databaseURL: "https://fyi-app-a9a7e-default-rtdb.firebaseio.com",
-      projectId: "fyi-app-a9a7e",
-      storageBucket: "fyi-app-a9a7e.appspot.com",
-      messagingSenderId: "866475993075",
-      appId: "1:866475993075:web:c390ac8d20c4d1701bd486",
-      measurementId: "G-YR8GM7E8YF",
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
     import {
       getDatabase,
       ref,
       child,
       get,
       update,
-    } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+    } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js';
 
-    const db = getDatabase();
-    let span = document.getElementById("countSpan");
-    let btn = document.getElementById("downloadimg");
-    let countVariable;
-    // Idan gangan (the magician)
-    btn.onclick = function () {
-      const dbref = ref(db);
-      get(child(dbref, "counter")).then((snapshot) => {
-        countVariable = Number(snapshot.val());
-        // Abeg count if you see "Downloading"
-        if (toastr.success) countVariable++;
-        else null;
-        update(ref(db, "/"), { counter: countVariable });
-        // Display the total here
-        span.innerHTML = countVariable;
-      });
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: 'AIzaSyCTkRQKgYsT6mWwem6LYJpi18-ErDVfp10',
+      authDomain: 'devfest-2e57f.firebaseapp.com',
+      databaseURL: 'https://devfest-2e57f-default-rtdb.firebaseio.com/',
+      projectId: 'devfest-2e57f',
+      storageBucket: 'devfest-2e57f.firebasestorage.app',
+      messagingSenderId: '843375373608',
+      appId: '1:843375373608:web:2f5884560d50845c23741d',
     };
-    //  get initial value
-    $(document).ready(function () {
-      const dbref = ref(db);
-      get(child(dbref, "counter")).then((snapshot) => {
-        countVariable = Number(snapshot.val());
-        // Display the total here
-        span.innerHTML = countVariable;
-      });
-    });
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // DOM elements
+    const span = document.getElementById('countSpan');
+    const btn = document.getElementById('downloadimg');
+    let countVariable;
+
+    // Function to load the initial count from Firebase
+    function loadInitialCount() {
+      const dbRef = ref(db);
+      get(child(dbRef, 'counter'))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            countVariable = Number(snapshot.val());
+            span.textContent = countVariable;
+          } else {
+            console.log('No data available');
+            countVariable = 0; // Set to 0 if no data exists yet
+            span.textContent = countVariable;
+          }
+        })
+        .catch((error) => {
+          console.error('Error loading initial count:', error);
+        });
+    }
+
+    // Increment the counter and update Firebase
+    btn.onclick = function () {
+      const newCount = countVariable + 1;
+      update(ref(db, '/'), { counter: newCount })
+        .then(() => {
+          countVariable = newCount;
+          span.textContent = countVariable;
+        })
+        .catch((error) => {
+          console.error('Error updating count:', error);
+        });
+    };
+
+    // Load the initial count on page load
+    document.addEventListener('DOMContentLoaded', loadInitialCount);
   </script>
 </html>
