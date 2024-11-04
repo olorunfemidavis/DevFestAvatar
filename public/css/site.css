@@ -86,7 +86,7 @@ html {
   -webkit-transition: all 100ms ease-in;
   -moz-transition: all 100ms ease-in;
   transition: all 100ms ease-in;
-  background: rgba(250, 252, 255, 0.41);
+  background: rgba(214, 128, 240, 0.747);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgb(0, 0, 0);
   backdrop-filter: blur(3px);
