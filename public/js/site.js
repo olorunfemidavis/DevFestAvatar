@@ -5,16 +5,14 @@
 
 //some useful variables
 var currentColor = "";
-var currentShape = "";
 var rawImg = "";
-var TempImage = "images/empty.png";
+var TempImage = "images/assets/picker.jpg";
 var ImageLength = 0;
 var general_to_crop;
 var templateMaxSize = 1080;
 
 //gbebodi
 $(document).ready(function () {
-  ShowCircle(false);
   $.getJSON(
     "https://api.countapi.xyz/get/devfestavatar.web.app/counts",
     function (response) {
@@ -50,19 +48,32 @@ $(document).ready(function () {
     },
   });
 
-  //Handles click by Template thumbnails.
-  $("input:image").click(function () {
-    if ($(this).attr("alt") == "circle") {
-      ShowCircle(true);
-      return;
-    }
-    if ($(this).attr("alt") == "square") {
-      ShowCircle(false);
-      return;
-    }
+  //Pick a random color from the available buttons on page load
+  var colors = ["blue", "green", "pink", "yellow", "date", "general"];
+  var randomColor = colors[Math.floor(Math.random() * colors.length)];
+  var template = 'images/avatar/' + randomColor + '.jpg';
+  TempImage = template;
+  if (general_to_crop) {
+    general_to_crop.cropme('bind', {
+      url: TempImage,
+      position: { scale: 1 },
+    });
+    toastr.info('Random template applied: ' + randomColor);
+  }
 
-    currentColor = $(this).attr("alt");
-    DownloadColor();
+  //Handles click by color buttons for circular avatars
+  $(".color-btn").on("click", function () {
+    currentColor = $(this).data("color");
+    //Use template image from images/avatar/{color}.jpg
+    var template = "images/avatar/" + currentColor + ".jpg";
+    TempImage = template;
+    if (general_to_crop) {
+      general_to_crop.cropme("bind", {
+        url: TempImage,
+        position: { scale: 1 },
+      });
+      toastr.success("Template applied: " + currentColor);
+    }
   });
 
   //Process the chosen color
@@ -73,7 +84,6 @@ $(document).ready(function () {
     var template = directory.concat(
       "template-",
       currentColor,
-      currentShape,
       ".png"
     );
 
@@ -189,18 +199,6 @@ $(document).ready(function () {
     else $(".dialog-mask").hide().addClass("collapse");
   }
 
-  function ShowCircle(show) {
-    if (show == true) {
-      $(".circle-thumbnails").show().removeClass("collapse");
-      $(".square-thumbnails").hide().addClass("collapse");
-      currentShape = "-circle";
-    } else {
-      $(".square-thumbnails").show().removeClass("collapse");
-      $(".circle-thumbnails").hide().addClass("collapse");
-      currentShape = "";
-    }
-  }
-
   function base64toBlob(base64Data) {
     if (base64Data.includes(",")) {
       //remove data:image/png;base64, and co.
@@ -225,6 +223,21 @@ $(document).ready(function () {
     }
     return new Blob(byteArrays, { type: contentType });
   }
+
+  // Set background color based on system theme
+  function setThemeBackground() {
+    const mother = document.querySelector('.mother');
+    if (!mother) return;
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      mother.style.backgroundColor = '#111';
+      mother.style.color = '#fff';
+    } else {
+      mother.style.backgroundColor = '#fff';
+      mother.style.color = '#111';
+    }
+  }
+  setThemeBackground();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeBackground);
 });
 
 var $uploadCrop;
