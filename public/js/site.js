@@ -9,7 +9,7 @@ var rawImg = "";
 var TempImage = "images/assets/picker.jpg";
 var ImageLength = 0;
 var general_to_crop;
-var templateMaxSize = 1080;
+var templateMaxSize = 1200;
 
 //gbebodi
 $(document).ready(function () {
@@ -40,39 +40,38 @@ $(document).ready(function () {
   //Initialize CropMe
   general_to_crop = $("#tocrop").cropme();
 
-  //Add the template Image
+  // Show picker.jpg as the default image
   general_to_crop.cropme("bind", {
     url: TempImage,
     position: {
       scale: 1,
     },
   });
+  rawImg = TempImage; // Set picker.jpg as the initial image
+  currentColor = ""; // No color selected yet
 
-  //Pick a random color from the available buttons on page load
-  var colors = ["blue", "green", "pink", "yellow", "date", "general"];
-  var randomColor = colors[Math.floor(Math.random() * colors.length)];
-  var template = 'images/avatar/' + randomColor + '.jpg';
-  TempImage = template;
-  if (general_to_crop) {
-    general_to_crop.cropme('bind', {
-      url: TempImage,
-      position: { scale: 1 },
-    });
-    toastr.info('Random template applied: ' + randomColor);
-  }
+  // Remove automatic template binding and avatar creation on load
 
   //Handles click by color buttons for circular avatars
   $(".color-btn").on("click", function () {
     currentColor = $(this).data("color");
-    //Use template image from images/avatar/{color}.jpg
-    var template = "images/avatar/" + currentColor + ".jpg";
+    console.log("Color button clicked:", currentColor);
+    //Use template image from images/avatar/{color}.png
+    var template = "images/avatar/" + currentColor + ".png";
     TempImage = template;
     if (general_to_crop) {
       general_to_crop.cropme("bind", {
-        url: TempImage,
-        position: { scale: 1 },
+        url: rawImg, // Use the uploaded or default image
       });
       toastr.success("Template applied: " + currentColor);
+      if (rawImg !== "") {
+        console.log("Image present, triggering download.");
+        DownloadColor();
+      } else {
+        console.log("No image present, download not triggered.");
+      }
+    } else {
+      console.log("general_to_crop not initialized.");
     }
   });
 
@@ -80,23 +79,17 @@ $(document).ready(function () {
   //Step 1:  Crop the image from the  ViewPort within the Container
   //Step 2:  Perform the Join
   function DownloadColor() {
-    var directory = "images/";
-    var template = directory.concat(
-      "template-",
-      currentColor,
-      ".png"
-    );
-
+    // Use correct template path
+    var template = "images/avatar/" + currentColor + ".png";
+    console.log("DownloadColor called with currentColor:", currentColor, "template:", template);
     //Check if an image is chosen.
     if (rawImg === "") {
       toastr.warning("Pick an image");
+      console.log("DownloadColor: No image present, aborting download.");
       return;
     }
-
     ShowLoading(true);
-
     //Crop
-
     general_to_crop
       .cropme("crop", {
         type: "base64",
@@ -105,13 +98,10 @@ $(document).ready(function () {
       .then(function (output) {
         //Stitch Image
         console.log("about to stitch");
-
         //position the crop output relative to the resolved width.
         var finalImageLength = (90.62962962962963 / 100) * ImageLength;
-
         var outputX = (6.16046296296296 / 100) * ImageLength;
         var outputY = (4.2025 / 100) * ImageLength;
-
         mergeImages(
           [
             {
@@ -134,19 +124,19 @@ $(document).ready(function () {
             height: ImageLength,
           }
         ).then((b64) => {
+          console.log("Image stitched, preparing download.");
           $("#downloadimg").attr({
             href: URL.createObjectURL(base64toBlob(b64)),
             download: "DevFestMe-" + getFormattedTime() + ".png",
           });
-
           ShowLoading(false);
           $("#downloadimg").get(0).click();
           toastr.success("Downloading");
-
           $.getJSON(
             "https://api.countapi.xyz/hit/devfestavatar.web.app/counts",
             function (response) {
               $("#foot").text(response.value);
+              console.log("Download count updated:", response.value);
             }
           );
         });
@@ -167,6 +157,7 @@ $(document).ready(function () {
   //Read and process file
   function readFile(input) {
     if (input.files && input.files[0]) {
+      console.log("File input detected.");
       var reader = new FileReader();
       reader.onload = function (e) {
         rawImg = e.target.result;
@@ -175,7 +166,6 @@ $(document).ready(function () {
         });
         var image = new Image();
         image.src = rawImg;
-
         image.onload = function () {
           // access image size here
           ImageLength = this.width;
@@ -185,12 +175,13 @@ $(document).ready(function () {
           if (ImageLength > templateMaxSize) {
             ImageLength = templateMaxSize;
           }
-          // console.log(ImageLength);
+          console.log("Image loaded. ImageLength:", ImageLength);
         };
       };
       reader.readAsDataURL(input.files[0]);
     } else {
       toastr.info("No Input.");
+      console.log("readFile: No file input detected.");
     }
   }
 
@@ -239,70 +230,3 @@ $(document).ready(function () {
   setThemeBackground();
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeBackground);
 });
-
-var $uploadCrop;
-
-/* eslint-env browser */
-(function () {
-  "use strict";
-
-  // Check to make sure service workers are supported in the current browser,
-  // and that the current page is accessed from a secure origin. Using a
-  // service worker from an insecure origin will trigger JS console errors. See
-  // http://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features
-  var isLocalhost = Boolean(
-    window.location.hostname === "localhost" ||
-      // [::1] is the IPv6 localhost address.
-      window.location.hostname === "[::1]" ||
-      // 127.0.0.1/8 is considered localhost for IPv4.
-      window.location.hostname.match(
-        /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-      )
-  );
-
-  if (
-    "serviceWorker" in navigator &&
-    (window.location.protocol === "https:" || isLocalhost)
-  ) {
-    navigator.serviceWorker
-      .register("service-worker.js")
-      .then(function (registration) {
-        // updatefound is fired if service-worker.js changes.
-        registration.onupdatefound = function () {
-          // updatefound is also fired the very first time the SW is installed,
-          // and there's no need to prompt for a reload at that point.
-          // So check here to see if the page is already controlled,
-          // i.e. whether there's an existing service worker.
-          if (navigator.serviceWorker.controller) {
-            // The updatefound event implies that registration.installing is set:
-            // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
-            var installingWorker = registration.installing;
-
-            installingWorker.onstatechange = function () {
-              switch (installingWorker.state) {
-                case "installed":
-                  // At this point, the old content will have been purged and the
-                  // fresh content will have been added to the cache.
-                  // It's the perfect time to display a "New content is
-                  // available; please refresh." message in the page's interface.
-                  break;
-
-                case "redundant":
-                  throw new Error(
-                    "The installing " + "service worker became redundant."
-                  );
-
-                default:
-                // Ignore
-              }
-            };
-          }
-        };
-      })
-      .catch(function (e) {
-        console.error("Error during service worker registration:", e);
-      });
-  }
-
-  // Your custom JavaScript goes here
-})();
