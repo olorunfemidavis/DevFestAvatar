@@ -86,54 +86,54 @@ $(document).ready(function () {
     general_to_crop
       .cropme("crop", {
         type: "base64",
-        width: ImageLength,
+        width: ImageLength, // Use actual image size or template size
       })
       .then(function (output) {
         //Stitch Image
         console.log("about to stitch");
-        //position the crop output relative to the resolved width.
-        var finalImageLength = (90.62962962962963 / 100) * ImageLength;
-        var outputX = (6.16046296296296 / 100) * ImageLength;
-        var outputY = (4.2025 / 100) * ImageLength;
-    mergeImages(
-      [
-        {
-          src: output,
-          x: outputX,
-          y: outputY,
+        // Center and size crop output to match template
+        var finalImageLength = ImageLength;
+        var outputX = 0;
+        var outputY = 0;
+        mergeImages(
+          [
+            {
+              src: output,
+              x: outputX,
+              y: outputY,
               height: finalImageLength,
               width: finalImageLength,
-        },
-        {
-          src: template,
-          x: 0,
-          y: 0,
-              height: ImageLength,
-              width: ImageLength,
-        },
-      ],
-      {
-            width: ImageLength,
-            height: ImageLength,
-      }
-    ).then((b64) => {
-      console.log("Image stitched, preparing download.");
-      $("#downloadimg").attr({
-        href: URL.createObjectURL(base64toBlob(b64)),
-        download: "DevFestMe-" + getFormattedTime() + ".png",
-      });
-      ShowLoading(false);
-      $("#downloadimg").get(0).click();
-      toastr.success("Downloading");
-      $.getJSON(
-        "https://api.countapi.xyz/hit/devfestavatar.web.app/counts",
-        function (response) {
-          $("#foot").text(response.value);
-          console.log("Download count updated:", response.value);
-        }
-      );
+            },
+            {
+              src: template,
+              x: 0,
+              y: 0,
+              height: finalImageLength,
+              width: finalImageLength,
+            },
+          ],
+          {
+            width: finalImageLength,
+            height: finalImageLength,
+          }
+        ).then((b64) => {
+          console.log("Image stitched, preparing download.");
+          $("#downloadimg").attr({
+            href: URL.createObjectURL(base64toBlob(b64)),
+            download: "DevFestMe-" + getFormattedTime() + ".png",
+          });
+          ShowLoading(false);
+          $("#downloadimg").get(0).click();
+          toastr.success("Downloading");
+          $.getJSON(
+            "https://api.countapi.xyz/hit/devfestavatar.web.app/counts",
+            function (response) {
+              $("#foot").text(response.value);
+              console.log("Download count updated:", response.value);
+            }
+          );
         });
-    });
+      });
   }
 
   //Handle click from Upload input
@@ -164,9 +164,6 @@ $(document).ready(function () {
           ImageLength = this.width;
           if (this.height < this.width) {
             ImageLength = this.height;
-          }
-          if (ImageLength > templateMaxSize) {
-            ImageLength = templateMaxSize;
           }
           console.log("Image loaded. ImageLength:", ImageLength);
         };
