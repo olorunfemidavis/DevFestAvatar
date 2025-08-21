@@ -1,285 +1,246 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>#DevFest Avatar Creator</title>
-    <link rel="shortcut icon" href="images/icons/logos/gdg_logo.png" />
-    <meta name="theme-color" content="#23457C" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- Disable tap highlight on IE -->
-    <meta name="msapplication-tap-highlight" content="no" />
+  <title>#DevFest Avatar Creator</title>
+  <link rel="shortcut icon" href="images/icons/logos/gdg_logo.png" />
+  <meta name="theme-color" content="#23457C" />
 
-    <!-- Web Application Manifest -->
-    <link rel="manifest" href="manifest.json" />
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no" />
 
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="application-name" content="DevFest Avatar" />
-    <link rel="icon" sizes="192x192" href="images/icons/logos/dva192.png" />
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="manifest.json" />
 
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="DevFest Avatar" />
-    <link rel="apple-touch-icon" href="images/icons/logos/dva152.png" />
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="DevFest Avatar" />
+  <link rel="icon" sizes="192x192" href="images/icons/logos/dva192.png" />
 
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/icons/logos/dva144.png" />
-    <meta name="msapplication-TileColor" content="#23457C" />
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="DevFest Avatar" />
+  <link rel="apple-touch-icon" href="images/icons/logos/dva152.png" />
 
-    <meta name="description" content="Create your #DevFest Avatar" />
-    <link rel="canonical" href="https://devfestavatar.web.app" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="#DevFest Avatar Creator" />
-    <meta property="og:description" content="Create your #DevFest Avatar" />
-    <meta property="og:url" content="https://devfestavatar.web.app" />
-    <meta property="og:site_name" content="#DevFest Avatar Creator" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="Create your #DevFest Avatar" />
-    <meta name="twitter:title" content="Create your #DevFest Avatar" />
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="images/icons/logos/dva144.png" />
+  <meta name="msapplication-TileColor" content="#23457C" />
 
-    <link rel="stylesheet" href="css/site.css" />
-    <link
-      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <meta name="description" content="Create your #DevFest Avatar" />
+  <link rel="canonical" href="https://devfestavatar.web.app" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="#DevFest Avatar Creator" />
+  <meta property="og:description" content="Create your #DevFest Avatar" />
+  <meta property="og:url" content="https://devfestavatar.web.app" />
+  <meta property="og:site_name" content="#DevFest Avatar Creator" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:description" content="Create your #DevFest Avatar" />
+  <meta name="twitter:title" content="Create your #DevFest Avatar" />
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.10.2/css/solid.css"
-      integrity="sha384-qPldrzmea0i8jhonuql0da/kQWeaXdQl+krGXcTQUdRUGHcXBfSrBbZLbyMcCWcF"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.10.2/css/brands.css"
-      integrity="sha384-qVnmyLTtnGPGEN3HDG2MCEOXWH1Yk/i70lKRuV+gMCDQg+jblQlFGPf1mejWUyYG"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.10.2/css/fontawesome.css"
-      integrity="sha384-hM7EQerc09E4O3zhtvF2iqcB4ZkEu9xkLQndhXdGGCEJ/sB4JK54SuKGmIC35UTf"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="stylesheet" href="css/site.css" />
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet" />
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-    />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/solid.css"
+    integrity="sha384-qPldrzmea0i8jhonuql0da/kQWeaXdQl+krGXcTQUdRUGHcXBfSrBbZLbyMcCWcF" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/brands.css"
+    integrity="sha384-qVnmyLTtnGPGEN3HDG2MCEOXWH1Yk/i70lKRuV+gMCDQg+jblQlFGPf1mejWUyYG" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/fontawesome.css"
+    integrity="sha384-hM7EQerc09E4O3zhtvF2iqcB4ZkEu9xkLQndhXdGGCEJ/sB4JK54SuKGmIC35UTf" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/cropme@latest/dist/cropme.min.css"
-    />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-          'gtm.start': new Date().getTime(),
-          event: 'gtm.js',
-        });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-WRNMXXW');
-    </script>
-    <!-- End Google Tag Manager -->
-  </head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropme@latest/dist/cropme.min.css" />
 
-  <body class="mother">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WRNMXXW"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js',
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WRNMXXW');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
+<body class="mother">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRNMXXW" height="0" width="0"
+      style="display: none; visibility: hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#reserved-urls -->
 
 
-    <div class="container">
-      <main role="main" class="aarin">
-        <div style="background: transparent" class="aarin">
-          <div class="slat">
-            <div id="tocrop" class="crop_element"></div>
-
-            <div class="uploader row">
-              <input type="file" style="display: none" accept="image/*" />
-              <p class="fileInput upload">Upload Image</p>
-            </div>
-
-            <p class="mdc-typography--headline6 center_text">
-              Choose color to download.
-            </p>
+  <div class="container">
+    <main role="main" class="aarin">
+      <div class="main-content-wrapper">
+        <div id="main-content" class="main-content">
+          <div id="tocrop" class="crop_element"></div>
+          <div class="uploader row">
+            <input type="file" style="display: none" accept="image/*" />
+            <p class="fileInput upload">Upload Image</p>
           </div>
-
-          <div class="color-buttons-container" style="display: flex; gap: 16px; justify-content: center; margin: 20px 0;">
-            <button class="color-btn" data-color="blue" style="background: linear-gradient(135deg, #b8ecf7 0%, #00ccff 100%);"></button>
-            <button class="color-btn" data-color="green" style="background: linear-gradient(135deg, #c2f7bf 0%, #00df5e 100%);"></button>
-            <button class="color-btn" data-color="pink" style="background: linear-gradient(135deg, #fed8d7 0%, #fe72af 100%);"></button>
-            <button class="color-btn" data-color="yellow" style="background: linear-gradient(135deg, #ffe89c 0%, #ffd102 100%);"></button>
-            <button class="color-btn" data-color="date" style="background: #fff url('images/icons/buttons/date.png') center/100% no-repeat;"></button>
-            <button class="color-btn" data-color="general" style="background: #fff url('images/icons/buttons/general.png') center/100% no-repeat;"></button>
+          <p class="mdc-typography--headline6 center_text">Choose color to download.</p>
+          <div class="color-buttons-container"
+            style="display: flex; gap: 16px; justify-content: center; margin: 20px 0;">
+            <button class="color-btn" data-color="blue"
+              style="background: linear-gradient(135deg, #b8ecf7 0%, #00ccff 100%);"></button>
+            <button class="color-btn" data-color="green"
+              style="background: linear-gradient(135deg, #c2f7bf 0%, #00df5e 100%);"></button>
+            <button class="color-btn" data-color="pink"
+              style="background: linear-gradient(135deg, #fed8d7 0%, #fe72af 100%);"></button>
+            <button class="color-btn" data-color="yellow"
+              style="background: linear-gradient(135deg, #ffe89c 0%, #ffd102 100%);"></button>
+            <button class="color-btn" data-color="date"
+              style="background: #fff url('images/icons/buttons/date.png') center/100% no-repeat;"></button>
+            <button class="color-btn" data-color="general"
+              style="background: #fff url('images/icons/buttons/general.png') center/100% no-repeat;"></button>
           </div>
-
-          <a
-            style="display: none"
-            href="#"
-            asp-action="Download"
-            download
-            id="downloadimg"
-            download
-            title="Download"
-          ></a>
+          <a style="display: none" href="#" asp-action="Download" download id="downloadimg" download
+            title="Download"></a>
         </div>
-        <footer class="footer themed-footer">
-          <div class="grid-vertical-container">
-            <div class="dudu center_text">
-              With <span style="color: red">❤</span> by
-              <a
-                style="color: #2b83fc"
-                href="https://gdg.community.dev/gdg-ado-ekiti"
-                >GDG Ado-Ekiti</a
-              >
-              🇳🇬 |
-              <a
-                target="_blank"
-                style="color: #2b83fc"
-                href="https://sites.google.com/view/devfestavatarcreatorprivacy/home"
-                >Privacy</a
-              >
-            </div>
-
-            <p class="center_text dudu" style="line-height: 0px; margin: 5px">
-              <span id="year"></span> Stat:
-              <b><span id="countSpan"></span></b> imgs.
-              <span class="share-label">Share image:</span>
-              <div class="share-options" style="display: inline-block; margin-left: 10px;">
-                <a target="_blank" class="uploader dudu" href="#" onclick="shareTo('x')">X</a> |
-                <a target="_blank" class="uploader dudu" href="#" onclick="shareTo('linkedin')">LinkedIn</a> |
-                <a target="_blank" class="uploader dudu" href="#" onclick="shareTo('facebook')">Facebook</a>
-              </div>
-            </p>
-
-            <a
-              href="https://github.com/olorunfemidavis/DevFestAvatar"
-              target="_blank"
-              class="aarin"
-            >
-              <img
-                src="./images/open_source.png"
-                alt="Open source"
-                class="aarin"
-              />
-            </a>
+        <div id="share-section" class="share-section" style="display:none;">
+          <h3>Your DevFest avatar is ready!</h3>
+          <img id="share-avatar-img" src="" alt="Your Avatar"
+            style="max-width:200px; border-radius:16px; margin-bottom:1em;" />
+          <div style="margin-bottom:1em;">
+            <button onclick="shareTo('x')">Share on X</button>
+            <button onclick="shareTo('facebook')">Share on Facebook</button>
+            <button onclick="shareTo('linkedin')">Share on LinkedIn</button>
+            <button onclick="copyCaption()">Copy Caption</button>
+            <a id="downloadimg2" href="#" download="DevFestAvatar.png" style="margin-left:1em;">Download</a>
           </div>
-        </footer>
-      </main>
-    </div>
+          <p id="captionText">Just generated my look for #DevFest2025! Join the movement: https://devfestavatar.web.app
+          </p>
+          <p style="color:#f9ab00; font-weight:bold;">Don't forget to upload your avatar image to your post!</p>
+        </div>
+      </div>
+      <footer class="footer themed-footer">
+        <div class="grid-vertical-container">
+          <div class="dudu center_text">
+            With <span style="color: red">❤</span> by
+            <a style="color: #2b83fc" href="https://gdg.community.dev/gdg-ado-ekiti">GDG Ado-Ekiti</a>
+            🇳🇬 |
+            <a target="_blank" style="color: #2b83fc"
+              href="https://sites.google.com/view/devfestavatarcreatorprivacy/home">Privacy</a>
+          </div>
 
-    <script>
-      document.getElementById('year').innerText = new Date().getFullYear();
-    </script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-      crossorigin="anonymous"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="js/cropme.js"></script>
-    <script src="js/merge.js"></script>
-    <script src="js/site.js" asp-append-version="true"></script>
-  </body>
+          <div class="center_text dudu" style="line-height: 0px; margin: 5px">
+            <span id="year"></span> Stat:
+            <b><span id="countSpan"></span></b> imgs.
+            <span class="share-label">Share image:</span>
+            <div class="share-options" style="display: inline-block; margin-left: 10px;">
+              <a target="_blank" class="uploader dudu" href="#" onclick="shareTo('x')">X</a> |
+              <a target="_blank" class="uploader dudu" href="#" onclick="shareTo('linkedin')">LinkedIn</a> |
+              <a target="_blank" class="uploader dudu" href="#" onclick="shareTo('facebook')">Facebook</a>
+            </div>
+          </div>
 
-  <!-- Import firebase configuration for image generate counter using Realtime database -->
+          <a href="https://github.com/olorunfemidavis/DevFestAvatar" target="_blank">
+            <img src="./images/open_source.png" alt="Open source" class="open-source-logo" />
+          </a>
+        </div>
+      </footer>
+    </main>
+  </div>
 
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
-    import {
-      getDatabase,
-      ref,
-      child,
-      get,
-      update,
-    } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js';
-
-    // Firebase configuration
-    const firebaseConfig = {
-      apiKey: 'AIzaSyCTkRQKgYsT6mWwem6LYJpi18-ErDVfp10',
-      authDomain: 'devfest-2e57f.firebaseapp.com',
-      databaseURL: 'https://devfest-2e57f-default-rtdb.firebaseio.com/',
-      projectId: 'devfest-2e57f',
-      storageBucket: 'devfest-2e57f.firebasestorage.app',
-      messagingSenderId: '843375373608',
-      appId: '1:843375373608:web:2f5884560d50845c23741d',
-    };
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-
-    // DOM elements
-    const span = document.getElementById('countSpan');
-    const btn = document.getElementById('downloadimg');
-    let countVariable;
-
-    // Function to load the initial count from Firebase
-    function loadInitialCount() {
-      const dbRef = ref(db);
-      get(child(dbRef, 'counter'))
-        .then((snapshot) => {
-          if (snapshot.exists()) {
-            countVariable = Number(snapshot.val());
-            span.textContent = countVariable;
-          } else {
-            console.log('No data available');
-            countVariable = 0; // Set to 0 if no data exists yet
-            span.textContent = countVariable;
-          }
-        })
-        .catch((error) => {
-          console.error('Error loading initial count:', error);
-        });
-    }
-
-    // Increment the counter and update Firebase
-    btn.onclick = function () {
-      const newCount = countVariable + 1;
-      update(ref(db, '/'), { counter: newCount })
-        .then(() => {
-          countVariable = newCount;
-          span.textContent = countVariable;
-        })
-        .catch((error) => {
-          console.error('Error updating count:', error);
-        });
-    };
-
-    // Load the initial count on page load
-    document.addEventListener('DOMContentLoaded', loadInitialCount);
+  <script>
+    document.getElementById('year').innerText = new Date().getFullYear();
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="js/cropme.js"></script>
+  <script src="js/merge.js"></script>
+  <script src="js/site.js" asp-append-version="true"></script>
+</body>
+
+<!-- Import firebase configuration for image generate counter using Realtime database -->
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
+  import {
+    getDatabase,
+    ref,
+    child,
+    get,
+    update,
+  } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js';
+
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: 'AIzaSyCTkRQKgYsT6mWwem6LYJpi18-ErDVfp10',
+    authDomain: 'devfest-2e57f.firebaseapp.com',
+    databaseURL: 'https://devfest-2e57f-default-rtdb.firebaseio.com/',
+    projectId: 'devfest-2e57f',
+    storageBucket: 'devfest-2e57f.firebasestorage.app',
+    messagingSenderId: '843375373608',
+    appId: '1:843375373608:web:2f5884560d50845c23741d',
+  };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // DOM elements
+  const span = document.getElementById('countSpan');
+  const btn = document.getElementById('downloadimg');
+  let countVariable;
+
+  // Function to load the initial count from Firebase
+  function loadInitialCount() {
+    const dbRef = ref(db);
+    get(child(dbRef, 'counter'))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          countVariable = Number(snapshot.val());
+          span.textContent = countVariable;
+        } else {
+          console.log('No data available');
+          countVariable = 0; // Set to 0 if no data exists yet
+          span.textContent = countVariable;
+        }
+      })
+      .catch((error) => {
+        console.error('Error loading initial count:', error);
+      });
+  }
+
+  // Increment the counter and update Firebase
+  btn.onclick = function () {
+    const newCount = countVariable + 1;
+    update(ref(db, '/'), { counter: newCount })
+      .then(() => {
+        countVariable = newCount;
+        span.textContent = countVariable;
+      })
+      .catch((error) => {
+        console.error('Error updating count:', error);
+      });
+  };
+
+  // Load the initial count on page load
+  document.addEventListener('DOMContentLoaded', loadInitialCount);
+</script>
+
 </html>

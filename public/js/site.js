@@ -152,6 +152,14 @@ $(document).ready(function () {
               console.log("Download count updated:", response.value);
             }
           );
+
+          // Show share section and update content
+          $("#share-section").show();
+          $("#share-avatar-img").attr("src", URL.createObjectURL(base64toBlob(b64)));
+          $("#downloadimg2").attr({
+            href: URL.createObjectURL(base64toBlob(b64)),
+            download: "DevFestMe-" + getFormattedTime() + ".png",
+          });
         });
       });
   }
@@ -243,9 +251,9 @@ $(document).ready(function () {
 
 function shareTo(platform) {
   var url = encodeURIComponent('https://devfestavatar.web.app');
-  var xText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at [@gdgadoekiti]!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olordavis");
-  var linkedinText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at [@gdgadoekiti]!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olorunfemidavis");
-  var facebookText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at [@gdgadoekiti]!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest");
+  var xText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at @gdgadoekiti!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olordavis");
+  var linkedinText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at @gdgadoekiti!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olorunfemidavis");
+  var facebookText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at @gdgadoekiti!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest");
   var shareUrl = '';
   switch(platform) {
     case 'x':
