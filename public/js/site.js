@@ -6,7 +6,20 @@
 //some useful variables
 var currentColor = "";
 var rawImg = "";
-var TempImage = "images/assets/picker.png";
+// Pick a random image from images/assets for TempImage
+var assetImages = [
+  "images/assets/picker1.png",
+  "images/assets/picker2.png",
+  "images/assets/picker3.png",
+  "images/assets/picker4.png",
+  "images/assets/picker5.png",
+  "images/assets/picker6.png",
+  "images/assets/picker7.png",
+  "images/assets/picker8.png",
+  "images/assets/picker9.png",
+  "images/assets/picker10.png"
+];
+var TempImage = assetImages[Math.floor(Math.random() * assetImages.length)];
 var ImageLength = 0;
 var general_to_crop;
 
@@ -75,7 +88,12 @@ $(document).ready(function () {
   function DownloadColor() {
     // Use correct template path
     var template = "images/avatar/" + currentColor + ".png";
-    console.log("DownloadColor called with currentColor:", currentColor, "template:", template);
+    console.log(
+      "DownloadColor called with currentColor:",
+      currentColor,
+      "template:",
+      template
+    );
     //Check if an image is chosen.
     if (rawImg === "") {
       toastr.warning("Pick an image");
