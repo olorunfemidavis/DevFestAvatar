@@ -6,10 +6,9 @@
 //some useful variables
 var currentColor = "";
 var rawImg = "";
-var TempImage = "images/assets/picker.jpg";
+var TempImage = "images/assets/picker.png";
 var ImageLength = 0;
 var general_to_crop;
-var templateMaxSize = 1200;
 
 //gbebodi
 $(document).ready(function () {
@@ -40,14 +39,18 @@ $(document).ready(function () {
   //Initialize CropMe
   general_to_crop = $("#tocrop").cropme();
 
-  // Show picker.jpg as the default image
+  // Show picker.png as the default image and scale to fit crop window
+  var cropContainerSize = 500; // Default, matches cropme.js
+  var cropViewportSize = (3 / 4) * cropContainerSize; // 375px viewport for 500px container
+  var imageSize = 500; // TempImage is 500x500px
+  var initialScale = cropViewportSize / imageSize; // Scale so image fits viewport
   general_to_crop.cropme("bind", {
     url: TempImage,
     position: {
-      scale: 1,
+      scale: initialScale,
     },
   });
-  rawImg = TempImage; // Set picker.jpg as the initial image
+  rawImg = TempImage; // Set picker.png as the initial image
   currentColor = ""; // No color selected yet
 
   // Remove automatic template binding and avatar creation on load
@@ -56,22 +59,12 @@ $(document).ready(function () {
   $(".color-btn").on("click", function () {
     currentColor = $(this).data("color");
     console.log("Color button clicked:", currentColor);
-    //Use template image from images/avatar/{color}.png
-    var template = "images/avatar/" + currentColor + ".png";
-    TempImage = template;
-    if (general_to_crop) {
-      general_to_crop.cropme("bind", {
-        url: rawImg, // Use the uploaded or default image
-      });
-      toastr.success("Template applied: " + currentColor);
-      if (rawImg !== "") {
-        console.log("Image present, triggering download.");
-        DownloadColor();
-      } else {
-        console.log("No image present, download not triggered.");
-      }
+    // Only trigger avatar generation and download, do not update preview
+    if (rawImg !== "") {
+      console.log("Image present, triggering download.");
+      DownloadColor();
     } else {
-      console.log("general_to_crop not initialized.");
+      console.log("No image present, download not triggered.");
     }
   });
 
@@ -102,45 +95,45 @@ $(document).ready(function () {
         var finalImageLength = (90.62962962962963 / 100) * ImageLength;
         var outputX = (6.16046296296296 / 100) * ImageLength;
         var outputY = (4.2025 / 100) * ImageLength;
-        mergeImages(
-          [
-            {
-              src: output,
-              x: outputX,
-              y: outputY,
+    mergeImages(
+      [
+        {
+          src: output,
+          x: outputX,
+          y: outputY,
               height: finalImageLength,
               width: finalImageLength,
-            },
-            {
-              src: template,
-              x: 0,
-              y: 0,
+        },
+        {
+          src: template,
+          x: 0,
+          y: 0,
               height: ImageLength,
               width: ImageLength,
-            },
-          ],
-          {
+        },
+      ],
+      {
             width: ImageLength,
             height: ImageLength,
-          }
-        ).then((b64) => {
-          console.log("Image stitched, preparing download.");
-          $("#downloadimg").attr({
-            href: URL.createObjectURL(base64toBlob(b64)),
-            download: "DevFestMe-" + getFormattedTime() + ".png",
-          });
-          ShowLoading(false);
-          $("#downloadimg").get(0).click();
-          toastr.success("Downloading");
-          $.getJSON(
-            "https://api.countapi.xyz/hit/devfestavatar.web.app/counts",
-            function (response) {
-              $("#foot").text(response.value);
-              console.log("Download count updated:", response.value);
-            }
-          );
-        });
+      }
+    ).then((b64) => {
+      console.log("Image stitched, preparing download.");
+      $("#downloadimg").attr({
+        href: URL.createObjectURL(base64toBlob(b64)),
+        download: "DevFestMe-" + getFormattedTime() + ".png",
       });
+      ShowLoading(false);
+      $("#downloadimg").get(0).click();
+      toastr.success("Downloading");
+      $.getJSON(
+        "https://api.countapi.xyz/hit/devfestavatar.web.app/counts",
+        function (response) {
+          $("#foot").text(response.value);
+          console.log("Download count updated:", response.value);
+        }
+      );
+        });
+    });
   }
 
   //Handle click from Upload input
@@ -230,3 +223,25 @@ $(document).ready(function () {
   setThemeBackground();
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeBackground);
 });
+
+function shareTo(platform) {
+  var url = encodeURIComponent('https://devfestavatar.web.app');
+  var xText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at [@gdgadoekiti]!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olordavis");
+  var linkedinText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at [@gdgadoekiti]!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olorunfemidavis");
+  var facebookText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at [@gdgadoekiti]!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest");
+  var shareUrl = '';
+  switch(platform) {
+    case 'x':
+      shareUrl = `https://x.com/intent/tweet?text=${xText}`;
+      break;
+    case 'linkedin':
+      shareUrl = `https://www.linkedin.com/feed/?shareActive&mini=true&text=${linkedinText}`;
+      break;
+    case 'facebook':
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${facebookText}`;
+      break;
+    default:
+      return;
+  }
+  window.open(shareUrl, '_blank');
+}
