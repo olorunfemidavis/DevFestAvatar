@@ -51,6 +51,7 @@ $(document).ready(function () {
     },
   });
   rawImg = TempImage; // Set picker.png as the initial image
+  ImageLength = imageSize; // Ensure correct crop/merge size for default image
   currentColor = ""; // No color selected yet
 
   // Remove automatic template binding and avatar creation on load
