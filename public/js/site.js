@@ -73,6 +73,10 @@ $(document).ready(function () {
   $(".color-btn").on("click", function () {
     currentColor = $(this).data("color");
     console.log("Color button clicked:", currentColor);
+    if (currentColor === "gemini") {
+      CreateWithGemini();
+      return;
+    }
     // Only trigger avatar generation and download, do not update preview
     if (rawImg !== "") {
       console.log("Image present, triggering download.");
@@ -81,6 +85,18 @@ $(document).ready(function () {
       console.log("No image present, download not triggered.");
     }
   });
+
+  // New method for Gemini button
+  function CreateWithGemini() {
+    if (!rawImg) {
+      toastr.warning("No image available for Gemini processing.");
+      return;
+    }
+    toastr.info("Gemini avatar creation triggered!");
+    // Call Gemini processing
+    //processWithGemini(rawImg);
+    processWithImagen(rawImg);
+  }
 
   //Process the chosen color
   //Step 1:  Crop the image from the  ViewPort within the Container
