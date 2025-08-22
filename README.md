@@ -26,6 +26,12 @@ Find the url at https://devfestavatar.web.app
 - Benjamin Olajesu (Co-Organizer)
 - Ibraheem Ogundele
 
+### 2025 Contributors
+
+- David Oluwabusayo (GDG Ado-Ekiti Lead)
+- Olorunfemi Davis (Co-Organizer)
+
+
 ### Chapter Variants
 
 In the past DevFest events, we created variants of this app for these chapters:
@@ -35,4 +41,3 @@ In the past DevFest events, we created variants of this app for these chapters:
 
 Do reach out for customizations and ideas.
 
-![GitHub Contributors Image](https://contrib.rocks/image?repo=fzany/DevFestAvatar)

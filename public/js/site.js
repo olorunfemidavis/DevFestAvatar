@@ -73,13 +73,9 @@ $(document).ready(function () {
   //Handles click by color buttons for circular avatars
   $(".color-btn").on("click", function () {
     currentColor = $(this).data("color");
-    console.log("Color button clicked:", currentColor);
     // Only trigger avatar generation and download, do not update preview
     if (rawImg !== "") {
-      console.log("Image present, triggering download.");
       DownloadColor();
-    } else {
-      console.log("No image present, download not triggered.");
     }
   });
 
@@ -90,16 +86,9 @@ $(document).ready(function () {
   function DownloadColor() {
     // Use correct template path
     var template = "images/avatar/" + currentColor + ".png";
-    console.log(
-      "DownloadColor called with currentColor:",
-      currentColor,
-      "template:",
-      template
-    );
     //Check if an image is chosen.
     if (rawImg === "") {
       toastr.warning("Pick an image");
-      console.log("DownloadColor: No image present, aborting download.");
       return;
     }
     ShowLoading(true);
@@ -111,8 +100,6 @@ $(document).ready(function () {
       })
       .then(function (output) {
         //Stitch Image
-        console.log("about to stitch");
-        // Center and size crop output to match template
         var finalImageLength = ImageLength;
         var outputX = 0;
         var outputY = 0;
@@ -138,7 +125,6 @@ $(document).ready(function () {
             height: finalImageLength,
           }
         ).then((b64) => {
-          console.log("Image stitched, preparing download.");
           $("#downloadimg").attr({
             href: URL.createObjectURL(base64toBlob(b64)),
             download: "DevFestMe-" + getFormattedTime() + ".png",
@@ -151,7 +137,6 @@ $(document).ready(function () {
             "https://abacus.jasoncameron.dev/hit/avatar/images",
             function (response) {
               $("#countSpan").text(response.value);
-              console.log("Download count updated:", response.value);
             }
           );
 
@@ -170,7 +155,6 @@ $(document).ready(function () {
 
   //Handle click from Upload input
   $("input:file").change(function () {
-    console.log($(this).val());
     readFile(this);
   });
 
@@ -182,7 +166,6 @@ $(document).ready(function () {
   //Read and process file
   function readFile(input) {
     if (input.files && input.files[0]) {
-      console.log("File input detected.");
       var reader = new FileReader();
       reader.onload = function (e) {
         rawImg = e.target.result;
@@ -197,13 +180,11 @@ $(document).ready(function () {
           if (this.height < this.width) {
             ImageLength = this.height;
           }
-          console.log("Image loaded. ImageLength:", ImageLength);
         };
       };
       reader.readAsDataURL(input.files[0]);
     } else {
       toastr.info("No Input.");
-      console.log("readFile: No file input detected.");
     }
   }
 
@@ -254,7 +235,6 @@ $(document).ready(function () {
 });
 
 async function shareTo(platform) {
-  console.log('[Share] shareTo called with platform:', platform);
   var url = encodeURIComponent('https://devfestavatar.web.app');
   var xText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olordavis, @gdgadoekiti");
   var linkedinText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olorunfemidavis, @gdgadoekiti");
@@ -275,7 +255,6 @@ async function shareTo(platform) {
       return;
   }
 
-  console.log('[Share] Final shareUrl:', shareUrl);
   window.open(shareUrl, '_blank');
 }
 
@@ -284,7 +263,6 @@ function copyCaption() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(caption)
       .then(() => {
-        console.log('[CopyCaption] Caption copied to clipboard.');
         toastr.success('Caption copied!');
       })
       .catch(err => {
@@ -299,7 +277,6 @@ function copyCaption() {
     textarea.select();
     try {
       document.execCommand('copy');
-      console.log('[CopyCaption] Caption copied using execCommand.');
       toastr.success('Caption copied!');
     } catch (err) {
       console.error('[CopyCaption] execCommand error:', err);
