@@ -87,10 +87,6 @@
   </noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#reserved-urls -->
-
-
   <div class="container">
     <main role="main" class="aarin">
       <div class="main-content-wrapper">
@@ -130,8 +126,6 @@
             <button onclick="copyCaption()">Copy Caption</button>
             <a id="downloadimg2" href="#" download="DevFestAvatar.png" style="margin-left:1em;">Download</a>
           </div>
-          <p id="captionText">Just generated my look for #DevFest2025! Join the movement: https://devfestavatar.web.app
-          </p>
           <p style="color:#f9ab00; font-weight:bold;">Don't forget to upload your avatar image to your post!</p>
         </div>
       </div>
@@ -148,12 +142,6 @@
           <div class="center_text dudu" style="line-height: 0px; margin: 5px">
             <span id="year"></span> Stat:
             <b><span id="countSpan"></span></b> imgs.
-            <span class="share-label">Share image:</span>
-            <div class="share-options" style="display: inline-block; margin-left: 10px;">
-              <a target="_blank" class="uploader dudu" href="#" onclick="shareTo('x')">X</a> |
-              <a target="_blank" class="uploader dudu" href="#" onclick="shareTo('linkedin')">LinkedIn</a> |
-              <a target="_blank" class="uploader dudu" href="#" onclick="shareTo('facebook')">Facebook</a>
-            </div>
           </div>
 
           <a href="https://github.com/olorunfemidavis/DevFestAvatar" target="_blank">
@@ -174,73 +162,5 @@
   <script src="js/merge.js"></script>
   <script src="js/site.js" asp-append-version="true"></script>
 </body>
-
-<!-- Import firebase configuration for image generate counter using Realtime database -->
-
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js';
-  import {
-    getDatabase,
-    ref,
-    child,
-    get,
-    update,
-  } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js';
-
-  // Firebase configuration
-  const firebaseConfig = {
-    apiKey: 'AIzaSyCTkRQKgYsT6mWwem6LYJpi18-ErDVfp10',
-    authDomain: 'devfest-2e57f.firebaseapp.com',
-    databaseURL: 'https://devfest-2e57f-default-rtdb.firebaseio.com/',
-    projectId: 'devfest-2e57f',
-    storageBucket: 'devfest-2e57f.firebasestorage.app',
-    messagingSenderId: '843375373608',
-    appId: '1:843375373608:web:2f5884560d50845c23741d',
-  };
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  // DOM elements
-  const span = document.getElementById('countSpan');
-  const btn = document.getElementById('downloadimg');
-  let countVariable;
-
-  // Function to load the initial count from Firebase
-  function loadInitialCount() {
-    const dbRef = ref(db);
-    get(child(dbRef, 'counter'))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          countVariable = Number(snapshot.val());
-          span.textContent = countVariable;
-        } else {
-          console.log('No data available');
-          countVariable = 0; // Set to 0 if no data exists yet
-          span.textContent = countVariable;
-        }
-      })
-      .catch((error) => {
-        console.error('Error loading initial count:', error);
-      });
-  }
-
-  // Increment the counter and update Firebase
-  btn.onclick = function () {
-    const newCount = countVariable + 1;
-    update(ref(db, '/'), { counter: newCount })
-      .then(() => {
-        countVariable = newCount;
-        span.textContent = countVariable;
-      })
-      .catch((error) => {
-        console.error('Error updating count:', error);
-      });
-  };
-
-  // Load the initial count on page load
-  document.addEventListener('DOMContentLoaded', loadInitialCount);
-</script>
 
 </html>

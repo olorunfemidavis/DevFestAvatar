@@ -451,14 +451,16 @@ body {
   .main-content-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start; /* Changed from center to flex-start */
+    justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
   }
   .main-content {
-    flex: 1;
+    max-width: 900px; /* Increased for cropme and controls */
+    width: 100%;
     margin-right: 2em;
     min-width: 0;
+    overflow: visible;
   }
   .share-section {
     align-self: flex-start;
@@ -498,6 +500,34 @@ body {
   .share-section button,
   .share-section a {
     color: var(--share-text);
+  }
+}
+
+/* Ensure share-section buttons obey theme for readability */
+.share-section button {
+  background: var(--share-bg, #fffbe7);
+  color: var(--share-text, #222);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  margin: 0 0.25em 0.5em 0.25em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.share-section button:hover {
+  background: var(--share-text, #222);
+  color: var(--share-bg, #fffbe7);
+}
+@media (prefers-color-scheme: dark) {
+  .share-section button {
+    background: var(--share-bg, #222);
+    color: var(--share-text, #fffbe7);
+    border: 1px solid #444;
+  }
+  .share-section button:hover {
+    background: var(--share-text, #fffbe7);
+    color: var(--share-bg, #222);
   }
 }
 

@@ -249,13 +249,15 @@ $(document).ready(function () {
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeBackground);
 });
 
-function shareTo(platform) {
+async function shareTo(platform) {
+  console.log('[Share] shareTo called with platform:', platform);
   var url = encodeURIComponent('https://devfestavatar.web.app');
-  var xText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at @gdgadoekiti!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olordavis");
-  var linkedinText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at @gdgadoekiti!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olorunfemidavis");
-  var facebookText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Join me at @gdgadoekiti!\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest");
+  var xText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olordavis, @gdgadoekiti");
+  var linkedinText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olorunfemidavis, @gdgadoekiti");
+  var facebookText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest");
   var shareUrl = '';
-  switch(platform) {
+
+  switch (platform) {
     case 'x':
       shareUrl = `https://x.com/intent/tweet?text=${xText}`;
       break;
@@ -268,5 +270,37 @@ function shareTo(platform) {
     default:
       return;
   }
+
+  console.log('[Share] Final shareUrl:', shareUrl);
   window.open(shareUrl, '_blank');
+}
+
+function copyCaption() {
+  const caption = "My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Create yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest";
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(caption)
+      .then(() => {
+        console.log('[CopyCaption] Caption copied to clipboard.');
+        toastr.success('Caption copied!');
+      })
+      .catch(err => {
+        console.error('[CopyCaption] Clipboard error:', err);
+        toastr.error('Failed to copy caption.');
+      });
+  } else {
+    // Fallback for older browsers
+    const textarea = document.createElement('textarea');
+    textarea.value = caption;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      console.log('[CopyCaption] Caption copied using execCommand.');
+      toastr.success('Caption copied!');
+    } catch (err) {
+      console.error('[CopyCaption] execCommand error:', err);
+      toastr.error('Failed to copy caption.');
+    }
+    document.body.removeChild(textarea);
+  }
 }
