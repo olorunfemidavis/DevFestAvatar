@@ -304,7 +304,7 @@ body {
 }
 
 .color-buttons-container .color-btn[data-color="date"]:hover::after {
-  content: "With Date";
+  content: "With Year";
   position: absolute;
   left: 50%;
   top: 110%;
@@ -321,7 +321,7 @@ body {
 }
 
 .color-buttons-container .color-btn[data-color="general"]:hover::after {
-  content: "With Logo and Date";
+  content: "General";
   position: absolute;
   left: 50%;
   top: 110%;
