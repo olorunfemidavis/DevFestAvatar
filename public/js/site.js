@@ -25,10 +25,11 @@ var general_to_crop;
 
 //gbebodi
 $(document).ready(function () {
+  // On page load, get current count
   $.getJSON(
-    "https://api.countapi.xyz/get/devfestavatar.web.app/counts",
+    "https://abacus.jasoncameron.dev/info/avatar/images",
     function (response) {
-      $("#foot").text(response.value);
+      $("#countSpan").text(response.value);
     }
   );
 
@@ -145,10 +146,11 @@ $(document).ready(function () {
           ShowLoading(false);
           $("#downloadimg").get(0).click();
           toastr.success("Downloading");
+          // After successful image generation, increment count
           $.getJSON(
-            "https://api.countapi.xyz/hit/devfestavatar.web.app/counts",
+            "https://abacus.jasoncameron.dev/hit/avatar/images",
             function (response) {
-              $("#foot").text(response.value);
+              $("#countSpan").text(response.value);
               console.log("Download count updated:", response.value);
             }
           );
