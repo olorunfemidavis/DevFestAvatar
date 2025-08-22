@@ -1,38 +1,51 @@
 # DevFestAvatar
 
-This project creates Avatars for #DevFest events.
+DevFestAvatar is a web app for creating custom avatars for #DevFest events. Easily generate, download, and share your unique DevFest look, and join the global conversation on responsible AI!
 
-### To Improve
+## Features
+- Create and customize your DevFest avatar
+- Download your avatar for use on social media
+- Share directly to X (Twitter), Facebook, and LinkedIn
+- Mobile-friendly and responsive design
+- Stats counter for total avatars generated
+- Theming support (light/dark)
 
-Simply clone the project and add the features you want. Create a PR so I can merge.
+## Getting Started
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/olorunfemidavis/DevFestAvatar.git
+   ```
+2. **Open the project in your favorite editor (VS Code recommended).**
+3. **Serve the `public` folder using a static server or deploy to Firebase/Netlify.**
 
-### Final Url:
+## Contributing
+Want to improve the app? Clone the project, add your features, and create a PR so we can review and merge your changes!
 
-Find the url at https://devfestavatar.web.app
+## Live Demo
+Find the app at: [https://devfestavatar.web.app](https://devfestavatar.web.app)
 
-### 2021 Contributors
-
+## Contributors
+### 2021
 - David Oluwabusayo (GDG Ado-Ekiti Lead)
 - Tabitha Ita (Co-Organizer)
 
-### 2022 Contributors
-
+### 2022
 - David Oluwabusayo (GDG Ado-Ekiti Lead)
 - Ibraheem Ogundele
 
-### 2024 Contributors
-
+### 2024
 - David Oluwabusayo (GDG Ado-Ekiti Lead)
 - Benjamin Olajesu (Co-Organizer)
 - Ibraheem Ogundele
 
-### Chapter Variants
+### 2025
+- David Oluwabusayo (GDG Ado-Ekiti Lead)
 
-In the past DevFest events, we created variants of this app for these chapters:
-
+## Chapter Variants
+DevFestAvatar has been adapted for these GDG chapters:
 - [GDG Port-Harcourt](https://gdg.community.dev/gdg-port-harcourt/)
 - [GDG Katsina](https://gdg.community.dev/gdg-katsina/)
 
-Do reach out for customizations and ideas.
+---
+For questions or support, reach out to the GDG Ado-Ekiti team.
 
-![GitHub Contributors Image](https://contrib.rocks/image?repo=fzany/DevFestAvatar)

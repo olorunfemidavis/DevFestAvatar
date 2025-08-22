@@ -1,12 +1,26 @@
 ﻿.mother {
-  background-image: url(../images/DevFest-General-01-1.gif);
+  background-image: none;
   background-repeat: no-repeat;
   background-size: cover;
   font-family: Roboto;
   font-weight: Regular;
-  /* background-color: #2b83fc; */
-  background-color: #f7f9fc;
-  overflow: hidden;
+  background-color: #f7f9fc; /* fallback */
+  overflow-x: hidden; /* Only hide horizontal overflow */
+  transition: background-color 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mother {
+    background-color: #111;
+    color: #fff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .mother {
+    background-color: #fff;
+    color: #111;
+  }
 }
 
 @media (max-width: 768px) {
@@ -62,9 +76,18 @@ h3 {
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
-html {
-  position: relative;
+html, body {
+  height: 100%;
   min-height: 100%;
+}
+
+body {
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.container {
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .footer {
@@ -72,9 +95,9 @@ html {
   margin: auto;
   align-content: center;
 
-  position: fixed;
+  position: static; /* Changed from fixed to static */
   left: 0;
-  bottom: 10px;
+  bottom: 0;
   width: 100%;
   text-align: center;
 }
@@ -153,11 +176,11 @@ html {
 .aarin {
   justify-content: center;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: auto;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .center_text {
@@ -176,4 +199,342 @@ html {
   .grid-horizontal-container {
     grid-gap: 5px;
   }
+}
+
+.color-buttons-container {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.color-buttons-container .color-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: inline-block;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.color-buttons-container .color-btn:active {
+  transform: scale(0.95);
+}
+
+.color-buttons-container .color-btn:hover {
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
+  filter: brightness(1.15);
+}
+
+.color-buttons-container .color-btn[data-color="blue"]:hover::after {
+  content: "Blue";
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.95;
+}
+
+.color-buttons-container .color-btn[data-color="green"]:hover::after {
+  content: "Green";
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.95;
+}
+
+.color-buttons-container .color-btn[data-color="pink"]:hover::after {
+  content: "Pink";
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.95;
+}
+
+.color-buttons-container .color-btn[data-color="yellow"]:hover::after {
+  content: "Yellow";
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.95;
+}
+
+.color-buttons-container .color-btn[data-color="date"]:hover::after {
+  content: "With Date";
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.95;
+}
+
+.color-buttons-container .color-btn[data-color="general"]:hover::after {
+  content: "With Logo and Date";
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.95;
+}
+
+/* Tooltip style for all buttons */
+.color-btn:hover::after {
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.95;
+}
+
+.themed-footer {
+  background: #fff;
+  color: #111;
+  border-top: 1px solid #e0e0e0;
+  padding: 18px 0 10px 0;
+  text-align: center;
+  transition: background 0.3s, color 0.3s;
+}
+
+.themed-footer, .themed-footer * {
+  color: inherit !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .themed-footer {
+    background: #111;
+    color: #fff;
+    border-top: 1px solid #333;
+  }
+  .themed-footer a {
+    color: #90cdf4 !important;
+  }
+  .themed-footer .dudu, .themed-footer .center_text, .themed-footer span, .themed-footer p, .themed-footer b {
+    color: #fff !important;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .themed-footer {
+    background: #fff;
+    color: #111;
+    border-top: 1px solid #e0e0e0;
+  }
+  .themed-footer a {
+    color: #2b83fc !important;
+  }
+  .themed-footer .dudu, .themed-footer .center_text, .themed-footer span, .themed-footer p, .themed-footer b {
+    color: #111 !important;
+  }
+}
+
+.themed-footer a {
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.themed-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .color-buttons-container {
+    flex-wrap: wrap;
+    margin-bottom: 60px; /* Extra space for footer */
+  }
+  .container {
+    padding-bottom: 80px; /* Prevent footer overlap */
+  }
+}
+
+@media (max-width: 500px) {
+  .color-buttons-container {
+    gap: 8px;
+    margin-bottom: 80px;
+  }
+  .container {
+    padding-bottom: 100px;
+  }
+}
+
+/* Share section styles - theme aware and mobile responsive */
+.share-section {
+  max-width: 350px;
+  margin: 2em auto;
+  background: var(--share-bg, #fffbe7);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1.5em 1em;
+  text-align: center;
+  transition: all 0.3s;
+  color: var(--share-text, #222);
+}
+.share-section h3,
+.share-section p,
+.share-section button,
+.share-section a {
+  color: var(--share-text, #222);
+}
+.main-content-wrapper {
+  display: block;
+  justify-content: center;
+  align-items: flex-start;
+}
+@media (min-width: 900px) {
+  .main-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .main-content {
+    max-width: 900px; /* Increased for cropme and controls */
+    width: 100%;
+    margin-right: 2em;
+    min-width: 0;
+    overflow: visible;
+  }
+  .share-section {
+    align-self: flex-start;
+    min-width: 250px;
+    max-width: 350px;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+@media (max-width: 899px) {
+  .main-content-wrapper {
+    display: block;
+  }
+  .share-section {
+    margin: 2em auto;
+    position: static;
+    max-width: 350px;
+    min-width: unset;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+}
+@media (max-width: 500px) {
+  .share-section {
+    max-width: 98vw;
+    padding: 1em 0.5em;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  .share-section {
+    --share-bg: #222;
+    --share-text: #fffbe7;
+    background: var(--share-bg);
+    color: var(--share-text);
+  }
+  .share-section h3,
+  .share-section p,
+  .share-section button,
+  .share-section a {
+    color: var(--share-text);
+  }
+}
+
+/* Ensure share-section buttons obey theme for readability */
+.share-section button {
+  background: var(--share-bg, #fffbe7);
+  color: var(--share-text, #222);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  margin: 0 0.25em 0.5em 0.25em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.share-section button:hover {
+  background: var(--share-text, #222);
+  color: var(--share-bg, #fffbe7);
+}
+@media (prefers-color-scheme: dark) {
+  .share-section button {
+    background: var(--share-bg, #222);
+    color: var(--share-text, #fffbe7);
+    border: 1px solid #444;
+  }
+  .share-section button:hover {
+    background: var(--share-text, #fffbe7);
+    color: var(--share-bg, #222);
+  }
+}
+
+/* Open source logo should be small and centered */
+.open-source-logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 80px;
+  height: auto;
 }

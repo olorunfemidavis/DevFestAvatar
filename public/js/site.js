@@ -5,20 +5,31 @@
 
 //some useful variables
 var currentColor = "";
-var currentShape = "";
 var rawImg = "";
-var TempImage = "images/empty.png";
+// Pick a random image from images/assets for TempImage
+var assetImages = [
+  "images/assets/picker1.png",
+  "images/assets/picker2.png",
+  "images/assets/picker3.png",
+  "images/assets/picker4.png",
+  "images/assets/picker5.png",
+  "images/assets/picker6.png",
+  "images/assets/picker7.png",
+  "images/assets/picker8.png",
+  "images/assets/picker9.png",
+  "images/assets/picker10.png"
+];
+var TempImage = assetImages[Math.floor(Math.random() * assetImages.length)];
 var ImageLength = 0;
 var general_to_crop;
-var templateMaxSize = 1080;
 
 //gbebodi
 $(document).ready(function () {
-  ShowCircle(false);
+  // On page load, get current count
   $.getJSON(
-    "https://api.countapi.xyz/get/devfestavatar.web.app/counts",
+    "https://abacus.jasoncameron.dev/info/avatar/images",
     function (response) {
-      $("#foot").text(response.value);
+      $("#countSpan").text(response.value);
     }
   );
 
@@ -42,66 +53,56 @@ $(document).ready(function () {
   //Initialize CropMe
   general_to_crop = $("#tocrop").cropme();
 
-  //Add the template Image
+  // Show picker.png as the default image and scale to fit crop window
+  var cropContainerSize = 500; // Default, matches cropme.js
+  var cropViewportSize = (3 / 4) * cropContainerSize; // 375px viewport for 500px container
+  var imageSize = 500; // TempImage is 500x500px
+  var initialScale = cropViewportSize / imageSize; // Scale so image fits viewport
   general_to_crop.cropme("bind", {
     url: TempImage,
     position: {
-      scale: 1,
+      scale: initialScale,
     },
   });
+  rawImg = TempImage; // Set picker.png as the initial image
+  ImageLength = imageSize; // Ensure correct crop/merge size for default image
+  currentColor = ""; // No color selected yet
 
-  //Handles click by Template thumbnails.
-  $("input:image").click(function () {
-    if ($(this).attr("alt") == "circle") {
-      ShowCircle(true);
-      return;
-    }
-    if ($(this).attr("alt") == "square") {
-      ShowCircle(false);
-      return;
-    }
+  // Remove automatic template binding and avatar creation on load
 
-    currentColor = $(this).attr("alt");
-    DownloadColor();
+  //Handles click by color buttons for circular avatars
+  $(".color-btn").on("click", function () {
+    currentColor = $(this).data("color");
+    // Only trigger avatar generation and download, do not update preview
+    if (rawImg !== "") {
+      DownloadColor();
+    }
   });
+
 
   //Process the chosen color
   //Step 1:  Crop the image from the  ViewPort within the Container
   //Step 2:  Perform the Join
   function DownloadColor() {
-    var directory = "images/";
-    var template = directory.concat(
-      "template-",
-      currentColor,
-      currentShape,
-      ".png"
-    );
-
+    // Use correct template path
+    var template = "images/avatar/" + currentColor + ".png";
     //Check if an image is chosen.
     if (rawImg === "") {
       toastr.warning("Pick an image");
       return;
     }
-
     ShowLoading(true);
-
     //Crop
-
     general_to_crop
       .cropme("crop", {
         type: "base64",
-        width: ImageLength,
+        width: ImageLength, // Use actual image size or template size
       })
       .then(function (output) {
         //Stitch Image
-        console.log("about to stitch");
-
-        //position the crop output relative to the resolved width.
-        var finalImageLength = (90.62962962962963 / 100) * ImageLength;
-
-        var outputX = (6.16046296296296 / 100) * ImageLength;
-        var outputY = (4.2025 / 100) * ImageLength;
-
+        var finalImageLength = ImageLength;
+        var outputX = 0;
+        var outputY = 0;
         mergeImages(
           [
             {
@@ -115,37 +116,45 @@ $(document).ready(function () {
               src: template,
               x: 0,
               y: 0,
-              height: ImageLength,
-              width: ImageLength,
+              height: finalImageLength,
+              width: finalImageLength,
             },
           ],
           {
-            width: ImageLength,
-            height: ImageLength,
+            width: finalImageLength,
+            height: finalImageLength,
           }
         ).then((b64) => {
           $("#downloadimg").attr({
             href: URL.createObjectURL(base64toBlob(b64)),
             download: "DevFestMe-" + getFormattedTime() + ".png",
           });
-
           ShowLoading(false);
           $("#downloadimg").get(0).click();
           toastr.success("Downloading");
-
+          // After successful image generation, increment count
           $.getJSON(
-            "https://api.countapi.xyz/hit/devfestavatar.web.app/counts",
+            "https://abacus.jasoncameron.dev/hit/avatar/images",
             function (response) {
-              $("#foot").text(response.value);
+              $("#countSpan").text(response.value);
             }
           );
+
+          // Show share section and update content
+          $("#share-section").show();
+          // Use base64 data URL for universal compatibility
+          $("#share-avatar-img").attr("src", b64.startsWith('data:image') ? b64 : 'data:image/png;base64,' + b64.split(',')[1]);
+          // Keep blob URL for downloadimg2
+          $("#downloadimg2").attr({
+            href: URL.createObjectURL(base64toBlob(b64)),
+            download: "DevFestMe-" + getFormattedTime() + ".png",
+          });
         });
       });
   }
 
   //Handle click from Upload input
   $("input:file").change(function () {
-    console.log($(this).val());
     readFile(this);
   });
 
@@ -165,17 +174,12 @@ $(document).ready(function () {
         });
         var image = new Image();
         image.src = rawImg;
-
         image.onload = function () {
           // access image size here
           ImageLength = this.width;
           if (this.height < this.width) {
             ImageLength = this.height;
           }
-          if (ImageLength > templateMaxSize) {
-            ImageLength = templateMaxSize;
-          }
-          // console.log(ImageLength);
         };
       };
       reader.readAsDataURL(input.files[0]);
@@ -187,18 +191,6 @@ $(document).ready(function () {
   function ShowLoading(show) {
     if (show == true) $(".dialog-mask").show().removeClass("collapse");
     else $(".dialog-mask").hide().addClass("collapse");
-  }
-
-  function ShowCircle(show) {
-    if (show == true) {
-      $(".circle-thumbnails").show().removeClass("collapse");
-      $(".square-thumbnails").hide().addClass("collapse");
-      currentShape = "-circle";
-    } else {
-      $(".square-thumbnails").show().removeClass("collapse");
-      $(".circle-thumbnails").hide().addClass("collapse");
-      currentShape = "";
-    }
   }
 
   function base64toBlob(base64Data) {
@@ -225,71 +217,71 @@ $(document).ready(function () {
     }
     return new Blob(byteArrays, { type: contentType });
   }
+
+  // Set background color based on system theme
+  function setThemeBackground() {
+    const mother = document.querySelector('.mother');
+    if (!mother) return;
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      mother.style.backgroundColor = '#111';
+      mother.style.color = '#fff';
+    } else {
+      mother.style.backgroundColor = '#fff';
+      mother.style.color = '#111';
+    }
+  }
+  setThemeBackground();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeBackground);
 });
 
-var $uploadCrop;
+async function shareTo(platform) {
+  var url = encodeURIComponent('https://devfestavatar.web.app');
+  var xText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olordavis, @gdgadoekiti");
+  var linkedinText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olorunfemidavis, @gdgadoekiti");
+  var facebookText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest");
+  var shareUrl = '';
 
-/* eslint-env browser */
-(function () {
-  "use strict";
-
-  // Check to make sure service workers are supported in the current browser,
-  // and that the current page is accessed from a secure origin. Using a
-  // service worker from an insecure origin will trigger JS console errors. See
-  // http://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features
-  var isLocalhost = Boolean(
-    window.location.hostname === "localhost" ||
-      // [::1] is the IPv6 localhost address.
-      window.location.hostname === "[::1]" ||
-      // 127.0.0.1/8 is considered localhost for IPv4.
-      window.location.hostname.match(
-        /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-      )
-  );
-
-  if (
-    "serviceWorker" in navigator &&
-    (window.location.protocol === "https:" || isLocalhost)
-  ) {
-    navigator.serviceWorker
-      .register("service-worker.js")
-      .then(function (registration) {
-        // updatefound is fired if service-worker.js changes.
-        registration.onupdatefound = function () {
-          // updatefound is also fired the very first time the SW is installed,
-          // and there's no need to prompt for a reload at that point.
-          // So check here to see if the page is already controlled,
-          // i.e. whether there's an existing service worker.
-          if (navigator.serviceWorker.controller) {
-            // The updatefound event implies that registration.installing is set:
-            // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
-            var installingWorker = registration.installing;
-
-            installingWorker.onstatechange = function () {
-              switch (installingWorker.state) {
-                case "installed":
-                  // At this point, the old content will have been purged and the
-                  // fresh content will have been added to the cache.
-                  // It's the perfect time to display a "New content is
-                  // available; please refresh." message in the page's interface.
-                  break;
-
-                case "redundant":
-                  throw new Error(
-                    "The installing " + "service worker became redundant."
-                  );
-
-                default:
-                // Ignore
-              }
-            };
-          }
-        };
-      })
-      .catch(function (e) {
-        console.error("Error during service worker registration:", e);
-      });
+  switch (platform) {
+    case 'x':
+      shareUrl = `https://x.com/intent/tweet?text=${xText}`;
+      break;
+    case 'linkedin':
+      shareUrl = `https://www.linkedin.com/feed/?shareActive&mini=true&text=${linkedinText}`;
+      break;
+    case 'facebook':
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${facebookText}`;
+      break;
+    default:
+      return;
   }
 
-  // Your custom JavaScript goes here
-})();
+  window.open(shareUrl, '_blank');
+}
+
+function copyCaption() {
+  const caption = "My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Create yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest";
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(caption)
+      .then(() => {
+        toastr.success('Caption copied!');
+      })
+      .catch(err => {
+        console.error('[CopyCaption] Clipboard error:', err);
+        toastr.error('Failed to copy caption.');
+      });
+  } else {
+    // Fallback for older browsers
+    const textarea = document.createElement('textarea');
+    textarea.value = caption;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      toastr.success('Caption copied!');
+    } catch (err) {
+      console.error('[CopyCaption] execCommand error:', err);
+      toastr.error('Failed to copy caption.');
+    }
+    document.body.removeChild(textarea);
+  }
+}
