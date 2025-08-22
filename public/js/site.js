@@ -155,7 +155,9 @@ $(document).ready(function () {
 
           // Show share section and update content
           $("#share-section").show();
-          $("#share-avatar-img").attr("src", URL.createObjectURL(base64toBlob(b64)));
+          // Use base64 data URL for universal compatibility
+          $("#share-avatar-img").attr("src", b64.startsWith('data:image') ? b64 : 'data:image/png;base64,' + b64.split(',')[1]);
+          // Keep blob URL for downloadimg2
           $("#downloadimg2").attr({
             href: URL.createObjectURL(base64toBlob(b64)),
             download: "DevFestMe-" + getFormattedTime() + ".png",
