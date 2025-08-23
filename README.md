@@ -40,6 +40,8 @@ Find the app at: [https://devfestavatar.web.app](https://devfestavatar.web.app)
 
 ### 2025
 - David Oluwabusayo (GDG Ado-Ekiti Lead)
+- [Ewuji John](https://github.com/JbravoI)
+
 
 ## Chapter Variants
 DevFestAvatar has been adapted for these GDG chapters:
