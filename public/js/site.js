@@ -236,9 +236,10 @@ $(document).ready(function () {
 
 async function shareTo(platform) {
   var url = encodeURIComponent('https://devfestavatar.web.app');
-  var xText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olordavis, @gdgadoekiti");
-  var linkedinText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest via @olorunfemidavis, @gdgadoekiti");
-  var facebookText = encodeURIComponent("My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly.\nCreate yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest");
+  var shareText = "Build Safe, Secure and Scalable Solutions with AI and Cloud. My avatar is ready for #DevFest2025!\n\nLet's connect, learn, and build innovative, scalable, and ethically sound applications. Create yours: devfestavatar.web.app\n#DevFest #AI #GoogleCloud";
+  var xText = encodeURIComponent(shareText + " via @olordavis, @gdgadoekiti");
+  var linkedinText = encodeURIComponent(shareText + " via @olorunfemidavis, @gdgadoekiti");
+  var facebookText = encodeURIComponent(shareText);
   var shareUrl = '';
 
   switch (platform) {
@@ -259,7 +260,7 @@ async function shareTo(platform) {
 }
 
 function copyCaption() {
-  const caption = "My avatar is ready for the global conversation on responsible AI. 🤖💬 Just generated my look for #DevFest2025!\nLet's connect, learn, and build the future, responsibly. Create yours: https://devfestavatar.web.app\n#ResponsibleAI #DevFest";
+  const caption = "Build Safe, Secure and Scalable Solutions with AI and Cloud. My avatar is ready for #DevFest2025!\n\nLet's connect, learn, and build innovative, scalable, and ethically sound applications. Create yours: devfestavatar.web.app\n#DevFest #AI #GoogleCloud";
   if (navigator.clipboard) {
     navigator.clipboard.writeText(caption)
       .then(() => {
