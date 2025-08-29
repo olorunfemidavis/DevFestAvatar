@@ -6,20 +6,9 @@
 //some useful variables
 var currentColor = "";
 var rawImg = "";
-// Pick a random image from images/assets for TempImage
-var assetImages = [
-  "images/assets/picker1.png",
-  "images/assets/picker2.png",
-  "images/assets/picker3.png",
-  "images/assets/picker4.png",
-  "images/assets/picker5.png",
-  "images/assets/picker6.png",
-  "images/assets/picker7.png",
-  "images/assets/picker8.png",
-  "images/assets/picker9.png",
-  "images/assets/picker10.png"
-];
-var TempImage = assetImages[Math.floor(Math.random() * assetImages.length)];
+// Pick a random image from images/assets/sample1.jpg to sample45.jpg for TempImage
+var assetImagesCount = 45;
+var TempImage = "images/assets/sample" + (Math.floor(Math.random() * assetImagesCount) + 1) + ".jpg";
 var ImageLength = 0;
 var general_to_crop;
 
