@@ -10,6 +10,8 @@ DevFestAvatar is a web app for creating custom avatars for #DevFest 2025. This y
 - Stats counter for total avatars generated
 - Theming support (light/dark)
 
+![DevFestAvatar Logo](public/images/icons/logos/logo.png)
+
 ## Contributing
 Want to improve the app? Clone the project, add your features, and create a PR so we can review and merge your changes!
 
@@ -18,25 +20,25 @@ Find the app at: [https://devfestavatar.web.app](https://devfestavatar.web.app)
 
 ## Contributors
 ### 2019
-- [David Oluwabusayo](https://github.com/stont) (GDG Ado-Ekiti Lead)
+- [David Oluwabusayo](https://github.com/stont) 
 - [Babatunde Lamidi](https://github.com/babatundelmd)
 
 ### 2021
-- [David Oluwabusayo](https://github.com/stont) (GDG Ado-Ekiti Lead)
+- [David Oluwabusayo](https://github.com/stont) 
 - Tabitha Ita (Co-Organizer)
 - [Fele Omolola](https://github.com/omololacrea8)
 
 ### 2022
-- [David Oluwabusayo](https://github.com/stont) (GDG Ado-Ekiti Lead)
+- [David Oluwabusayo](https://github.com/stont) 
 - [Ibraheem Ogundele](https://github.com/logboi1)
 
 ### 2024
-- [David Oluwabusayo](https://github.com/stont) (GDG Ado-Ekiti Lead)
+- [David Oluwabusayo](https://github.com/stont) 
 - Benjamin Olajesu (Co-Organizer)
 - [Ibraheem Ogundele](https://github.com/logboi1)
 
 ### 2025
-- [David Oluwabusayo](https://github.com/stont) (GDG Ado-Ekiti Lead)
+- [David Oluwabusayo](https://github.com/stont) 
 - [Ewuji John](https://github.com/JbravoI)
 
 
