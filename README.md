@@ -10,7 +10,7 @@ DevFestAvatar is a web app for creating custom avatars for #DevFest 2025. This y
 - Stats counter for total avatars generated
 - Theming support (light/dark)
 
-![DevFestAvatar Logo](public/images/icons/logos/logo.png)
+![DevFestAvatar Logo](public/images/icons/logos/wide.png)
 
 ## Contributing
 Want to improve the app? Clone the project, add your features, and create a PR so we can review and merge your changes!
