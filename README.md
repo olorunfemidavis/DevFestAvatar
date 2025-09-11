@@ -4,6 +4,7 @@ DevFestAvatar is a web app for creating custom avatars for #DevFest 2025. This y
 
 ## Features
 - Create and customize your DevFest avatar
+- Gemini AI (Nano Banana) image editing powered by gemini-2.5-flash-image-preview
 - Download your avatar for use on social media
 - Share directly to X, Facebook, and LinkedIn
 - Mobile-friendly and responsive design
@@ -64,6 +65,10 @@ DevFestAvatar has been adapted for these GDG chapters:
 ### 2021 GfD Promo
 ![GfD 2021 Promo](extras/images/2021_featured.png)
 [X post](https://x.com/googledevs/status/1456338241062416392)
+
+## Gemini AI Image Editing
+
+Gemini image editing is handled by a secure Firebase Function. The frontend sends your avatar image to the backend, which processes it using Gemini and returns the result.
 
 ---
 For questions or support, reach out to the GDG Ado-Ekiti team.
