@@ -64,6 +64,10 @@ $(document).ready(function () {
     currentColor = $(this).data("color");
     // Only trigger avatar generation and download, do not update preview
     if (rawImg !== "") {
+      if (currentColor === "gemini") {
+        CreateWithGemini();
+        return;
+      }
       DownloadColor();
     }
   });
@@ -142,6 +146,38 @@ $(document).ready(function () {
       });
   }
 
+  // New method for Gemini button
+  function CreateWithGemini() {
+    if (!rawImg) {
+      toastr.warning("No image available for Gemini processing.");
+      return;
+    }
+    ShowLoading(true);
+    toastr.info("Editing with Gemini (aka Nano Banana)!");
+    // Call Gemini processing
+    processWithGemini(rawImg, function (result) {
+      ShowLoading(false);
+      if (!result || !result.imageUrl) {
+        toastr.error("Gemini did not return a valid image.");
+        return;
+      }
+      toastr.info("Choose a color to download your Gemini-edited avatar!");
+      // Show the Gemini-generated image in CropMe and update rawImg/ImageLength
+      rawImg = result.imageUrl;
+      var image = new Image();
+      image.src = rawImg;
+      image.onload = function () {
+        ImageLength = this.width;
+        if (this.height < this.width) {
+          ImageLength = this.height;
+        }
+        general_to_crop.cropme("bind", {
+          url: rawImg,
+        });
+      };
+    });
+  }
+
   //Handle click from Upload input
   $("input:file").change(function () {
     readFile(this);
@@ -177,9 +213,22 @@ $(document).ready(function () {
     }
   }
 
+  // Show or hide a full-page loading overlay (custom implementation)
   function ShowLoading(show) {
-    if (show == true) $(".dialog-mask").show().removeClass("collapse");
-    else $(".dialog-mask").hide().addClass("collapse");
+    let overlayId = "gemini-loading-overlay";
+    if (show) {
+      if (!document.getElementById(overlayId)) {
+        let overlay = document.createElement("div");
+        overlay.id = overlayId;
+        overlay.innerHTML = '<div class="loading-spinner">Editing with Gemini (aka Nano Banana) ...</div>';
+        document.body.appendChild(overlay);
+      }
+      document.body.style.pointerEvents = "none";
+    } else {
+      let overlay = document.getElementById(overlayId);
+      if (overlay) overlay.remove();
+      document.body.style.pointerEvents = "auto";
+    }
   }
 
   function base64toBlob(base64Data) {
