@@ -1,6 +1,13 @@
-// Combined Gemini call: analyze and generate in one request
+// Gemini image analysis and generation API integration
+// Usage: window.processWithGemini(image, callback)
+
+/**
+ * Processes an image with Gemini backend (analyze and generate in one request).
+ * @param {string} currentImage - Data URL or relative path to the image.
+ * @param {function} callback - Called with result object or empty string on error.
+ */
 async function processWithGemini(currentImage, callback) {
-  // Supported MIME types
+  // Supported MIME types for Gemini backend
   const supportedMimeTypes = [
     "image/png",
     "image/jpeg",
@@ -9,7 +16,7 @@ async function processWithGemini(currentImage, callback) {
     "image/heif"
   ];
 
-  // Helper to check file size and mime type
+  // Validate image format and size (<= 20MB)
   function validateImage(fileOrDataUrl) {
     return new Promise((resolve, reject) => {
       if (typeof fileOrDataUrl === "string" && fileOrDataUrl.startsWith("data:")) {
@@ -51,13 +58,11 @@ async function processWithGemini(currentImage, callback) {
   // Validate and process image
   validateImage(currentImage)
     .then(async ({ base64Data, mimeType }) => {
-      // Call backend Firebase Function
       try {
+        // Call Gemini backend API
         const response = await fetch("https://api-uylfn4ivta-uc.a.run.app/gemini-image", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ base64Data, mimeType })
         });
         const result = await response.json();
@@ -69,23 +74,18 @@ async function processWithGemini(currentImage, callback) {
           });
         } else {
           toastr.error("Gemini did not return an image.");
-          if (typeof callback === "function") {
-            callback("");
-          }
+          if (typeof callback === "function") callback("");
         }
       } catch (err) {
         toastr.error("Error calling Gemini backend.");
-        if (typeof callback === "function") {
-          callback("");
-        }
+        if (typeof callback === "function") callback("");
       }
     })
     .catch(err => {
       toastr.error(err);
-      if (typeof callback === "function") {
-        callback("");
-      }
+      if (typeof callback === "function") callback("");
     });
 }
 
+// Expose to global scope
 window.processWithGemini = processWithGemini;
