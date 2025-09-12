@@ -220,7 +220,7 @@ $(document).ready(function () {
       if (!document.getElementById(overlayId)) {
         let overlay = document.createElement("div");
         overlay.id = overlayId;
-        overlay.innerHTML = '<div class="loading-spinner">Editing with Gemini (aka Nano Banana) ...</div>';
+        overlay.innerHTML = '<div class="loading-spinner">Editing with Gemini ...</div>';
         document.body.appendChild(overlay);
       }
       document.body.style.pointerEvents = "none";

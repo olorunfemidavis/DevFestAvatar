@@ -386,6 +386,23 @@ body {
   opacity: 0.95;
 }
 
+.color-buttons-container .color-btn[data-color="gemini"]:hover::after {
+  content: "Edit with Gemini AI";
+  position: absolute;
+  left: 50%;
+  top: 110%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.95;
+}
+
 /* Tooltip style for all buttons */
 .color-btn:hover::after {
   position: absolute;
@@ -487,6 +504,14 @@ body {
 
   .container {
     padding-bottom: 100px;
+  }
+
+  .color-btn-row2 {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 8px;
   }
 }
 
@@ -637,4 +662,27 @@ body {
   font-size: 2em;
   text-align: center;
   width: 100%;
+}
+
+/* Color button backgrounds */
+.color-blue {
+  background: linear-gradient(135deg, #b8ecf7 0%, #00ccff 100%);
+}
+.color-green {
+  background: linear-gradient(135deg, #c2f7bf 0%, #00df5e 100%);
+}
+.color-pink {
+  background: linear-gradient(135deg, #fed8d7 0%, #fe72af 100%);
+}
+.color-yellow {
+  background: linear-gradient(135deg, #ffe89c 0%, #ffd102 100%);
+}
+.color-date {
+  background: #fff url('../images/icons/buttons/date.png') center/100% no-repeat;
+}
+.color-general {
+  background: #fff url('../images/icons/buttons/general.png') center/100% no-repeat;
+}
+.color-gemini {
+  background: #fff url('../images/icons/buttons/gemini.png') center/100% no-repeat;
 }
