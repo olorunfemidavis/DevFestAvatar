@@ -73,22 +73,16 @@
           </div>
           <p class="mdc-typography--headline6 center_text">Choose color to download.</p>
           <div class="color-buttons-container"
-            style="display: flex; gap: 16px; justify-content: center; margin: 20px 0;">
-            <button class="color-btn" data-color="blue"
-              style="background: linear-gradient(135deg, #b8ecf7 0%, #00ccff 100%);"></button>
-            <button class="color-btn" data-color="green"
-              style="background: linear-gradient(135deg, #c2f7bf 0%, #00df5e 100%);"></button>
-            <button class="color-btn" data-color="pink"
-              style="background: linear-gradient(135deg, #fed8d7 0%, #fe72af 100%);"></button>
-            <button class="color-btn" data-color="yellow"
-              style="background: linear-gradient(135deg, #ffe89c 0%, #ffd102 100%);"></button>
-            <button class="color-btn" data-color="date"
-              style="background: #fff url('images/icons/buttons/date.png') center/100% no-repeat;"></button>
-            <button class="color-btn" data-color="general"
-              style="background: #fff url('images/icons/buttons/general.png') center/100% no-repeat;"></button>
-            <button class="color-btn" data-color="gemini"
-              style="background: #fff url('images/icons/buttons/gemini.png') center/100% no-repeat;"></button>
-
+            style="display: flex; gap: 16px; justify-content: center; margin: 20px 0; flex-wrap: wrap;">
+            <button class="color-btn color-blue" data-color="blue"></button>
+            <button class="color-btn color-green" data-color="green"></button>
+            <button class="color-btn color-pink" data-color="pink"></button>
+            <button class="color-btn color-yellow" data-color="yellow"></button>
+            <div class="color-btn-row2">
+              <button class="color-btn color-date" data-color="date"></button>
+              <button class="color-btn color-general" data-color="general"></button>
+              <button class="color-btn color-gemini" data-color="gemini"></button>
+            </div>
           </div>
           <a style="display: none" href="#" asp-action="Download" download id="downloadimg" download
             title="Download"></a>
@@ -136,13 +130,30 @@
     document.getElementById('year').innerText = new Date().getFullYear();
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="></script>
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <script src="js/cropme.js"></script>
   <script src="js/merge.js"></script>
   <script src="js/function_api.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBnL7YJ7WkPIh0r1jrodv2CfOG0f0_-_co",
+      authDomain: "devfestavatar.firebaseapp.com",
+      databaseURL: "https://devfestavatar.firebaseio.com",
+      projectId: "devfestavatar",
+      storageBucket: "devfestavatar.firebasestorage.app",
+      messagingSenderId: "734381521168",
+      appId: "1:734381521168:web:d3c239f3a1848569744d95"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="js/firebase_usage.js"></script>
+  <script src="js/image_utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/social.js"></script>
   <script src="js/site.js" asp-append-version="true"></script>
-
 </body>
 
 </html>

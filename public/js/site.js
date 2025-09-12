@@ -1,36 +1,34 @@
-﻿window.onload = function () {
+﻿// Main site logic for DevFest Avatar Creator
+// Handles UI, image cropping, merging, Gemini integration, and sharing
+
+window.onload = function () {
   mdc.autoInit();
   $(".dialog-mask").hide();
 };
 
-//some useful variables
 var currentColor = "";
 var rawImg = "";
-// Pick a random image from images/assets/sample1.jpg to sample45.jpg for TempImage
 var assetImagesCount = 45;
 var TempImage = "images/assets/sample" + (Math.floor(Math.random() * assetImagesCount) + 1) + ".jpg";
 var ImageLength = 0;
 var general_to_crop;
 
-//gbebodi
 $(document).ready(function () {
-  // On page load, get current count
-  $.getJSON(
-    "https://abacus.jasoncameron.dev/info/avatar/images",
-    function (response) {
-      $("#countSpan").text(response.value);
-    }
-  );
+  // Track site visit on every page load
+  window.trackSiteVisit();
 
-  //just in case of cors wahala
-  //edit: 2021: why is this here? check..
+  // On page load, get current count from Firebase usage/totalImages
+  if (window.firebase && window.firebase.database) {
+    window.firebase.database().ref(window.yearPrefixKey('usage/totalImages')).once('value').then(function (snapshot) {
+      $("#countSpan").text(snapshot.val() || 0);
+    });
+  }
+
   $("img").attr("crossorigin", "anonymous");
 
-  //Useful for unique file naming
   function getFormattedTime() {
     var today = new Date();
     var y = today.getFullYear();
-    // JavaScript months are 0-based.
     var m = today.getMonth() + 1;
     var d = today.getDate();
     var h = today.getHours();
@@ -39,30 +37,25 @@ $(document).ready(function () {
     return y + "-" + m + "-" + d + "-" + h + "-" + mi + "-" + s;
   }
 
-  //Initialize CropMe
+  // Initialize CropMe
   general_to_crop = $("#tocrop").cropme();
 
-  // Show picker.png as the default image and scale to fit crop window
-  var cropContainerSize = 500; // Default, matches cropme.js
-  var cropViewportSize = (3 / 4) * cropContainerSize; // 375px viewport for 500px container
-  var imageSize = 500; // TempImage is 500x500px
-  var initialScale = cropViewportSize / imageSize; // Scale so image fits viewport
+  // Show default image and scale to fit crop window
+  var cropContainerSize = 500;
+  var cropViewportSize = (3 / 4) * cropContainerSize;
+  var imageSize = 500;
+  var initialScale = cropViewportSize / imageSize;
   general_to_crop.cropme("bind", {
     url: TempImage,
-    position: {
-      scale: initialScale,
-    },
+    position: { scale: initialScale },
   });
-  rawImg = TempImage; // Set picker.png as the initial image
-  ImageLength = imageSize; // Ensure correct crop/merge size for default image
-  currentColor = ""; // No color selected yet
+  rawImg = TempImage;
+  ImageLength = imageSize;
+  currentColor = "";
 
-  // Remove automatic template binding and avatar creation on load
-
-  //Handles click by color buttons for circular avatars
+  // Color button click handler
   $(".color-btn").on("click", function () {
     currentColor = $(this).data("color");
-    // Only trigger avatar generation and download, do not update preview
     if (rawImg !== "") {
       if (currentColor === "gemini") {
         CreateWithGemini();
@@ -72,81 +65,53 @@ $(document).ready(function () {
     }
   });
 
-
-  //Process the chosen color
-  //Step 1:  Crop the image from the  ViewPort within the Container
-  //Step 2:  Perform the Join
+  // Download avatar with selected color
   function DownloadColor() {
-    // Use correct template path
     var template = "images/avatar/" + currentColor + ".png";
-    //Check if an image is chosen.
     if (rawImg === "") {
       toastr.warning("Pick an image");
       return;
     }
     ShowLoading(true);
-    //Crop
     general_to_crop
       .cropme("crop", {
         type: "base64",
-        width: ImageLength, // Use actual image size or template size
+        width: ImageLength,
       })
       .then(function (output) {
-        //Stitch Image
         var finalImageLength = ImageLength;
         var outputX = 0;
         var outputY = 0;
         mergeImages(
           [
-            {
-              src: output,
-              x: outputX,
-              y: outputY,
-              height: finalImageLength,
-              width: finalImageLength,
-            },
-            {
-              src: template,
-              x: 0,
-              y: 0,
-              height: finalImageLength,
-              width: finalImageLength,
-            },
+            { src: output, x: outputX, y: outputY, height: finalImageLength, width: finalImageLength },
+            { src: template, x: 0, y: 0, height: finalImageLength, width: finalImageLength },
           ],
-          {
-            width: finalImageLength,
-            height: finalImageLength,
-          }
+          { width: finalImageLength, height: finalImageLength }
         ).then((b64) => {
           $("#downloadimg").attr({
-            href: URL.createObjectURL(base64toBlob(b64)),
+            href: URL.createObjectURL(window.base64toBlob(b64)),
             download: "DevFestMe-" + getFormattedTime() + ".png",
           });
           ShowLoading(false);
           $("#downloadimg").get(0).click();
           toastr.success("Downloading");
-          // After successful image generation, increment count
-          $.getJSON(
-            "https://abacus.jasoncameron.dev/hit/avatar/images",
-            function (response) {
-              $("#countSpan").text(response.value);
-            }
-          );
-
-          // Show share section and update content
+          // Increment count in Firebase and update UI
+          window.trackTotalImagesCreated(function (newCount) {
+            $("#countSpan").text(newCount);
+          });
+          window.trackColorUsage(currentColor);
           $("#share-section").show();
-          // Use base64 data URL for universal compatibility
           $("#share-avatar-img").attr("src", b64.startsWith('data:image') ? b64 : 'data:image/png;base64,' + b64.split(',')[1]);
-          // Keep blob URL for downloadimg2
           $("#downloadimg2").attr({
-            href: URL.createObjectURL(base64toBlob(b64)),
+            href: URL.createObjectURL(window.base64toBlob(b64)),
             download: "DevFestMe-" + getFormattedTime() + ".png",
           });
         });
       });
   }
 
-  // New method for Gemini button
+  // Gemini button handler
   function CreateWithGemini() {
     if (!rawImg) {
       toastr.warning("No image available for Gemini processing.");
@@ -154,7 +119,6 @@ $(document).ready(function () {
     }
     ShowLoading(true);
     toastr.info("Editing with Gemini (aka Nano Banana)!");
-    // Call Gemini processing
     processWithGemini(rawImg, function (result) {
       ShowLoading(false);
       if (!result || !result.imageUrl) {
@@ -162,7 +126,6 @@ $(document).ready(function () {
         return;
       }
       toastr.info("Choose a color to download your Gemini-edited avatar!");
-      // Show the Gemini-generated image in CropMe and update rawImg/ImageLength
       rawImg = result.imageUrl;
       var image = new Image();
       image.src = rawImg;
@@ -171,56 +134,46 @@ $(document).ready(function () {
         if (this.height < this.width) {
           ImageLength = this.height;
         }
-        general_to_crop.cropme("bind", {
-          url: rawImg,
-        });
+        general_to_crop.cropme("bind", { url: rawImg });
       };
+      window.trackColorUsage(currentColor);
     });
   }
 
-  //Handle click from Upload input
+  // Image upload handler
   $("input:file").change(function () {
+    window.trackImageUpload();
     readFile(this);
   });
-
-  //Handle click from Upload Label
   $(".fileInput").click(function () {
     $("input:file").trigger("click");
   });
 
-  //Read and process file
+  // Read and process uploaded file
+  // Use image_utils.js for file reading
   function readFile(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        rawImg = e.target.result;
-        general_to_crop.cropme("bind", {
-          url: rawImg,
-        });
-        var image = new Image();
-        image.src = rawImg;
-        image.onload = function () {
-          // access image size here
-          ImageLength = this.width;
-          if (this.height < this.width) {
-            ImageLength = this.height;
-          }
-        };
+    window.readImageFile(input, function (dataUrl) {
+      rawImg = dataUrl;
+      general_to_crop.cropme("bind", { url: rawImg });
+      var image = new Image();
+      image.src = rawImg;
+      image.onload = function () {
+        ImageLength = this.width;
+        if (this.height < this.width) {
+          ImageLength = this.height;
+        }
       };
-      reader.readAsDataURL(input.files[0]);
-    } else {
-      toastr.info("No Input.");
-    }
+    });
   }
 
-  // Show or hide a full-page loading overlay (custom implementation)
+  // Show or hide loading overlay
   function ShowLoading(show) {
     let overlayId = "gemini-loading-overlay";
     if (show) {
       if (!document.getElementById(overlayId)) {
         let overlay = document.createElement("div");
         overlay.id = overlayId;
-        overlay.innerHTML = '<div class="loading-spinner">Editing with Gemini (aka Nano Banana) ...</div>';
+        overlay.innerHTML = '<div class="loading-spinner">Editing with Gemini ...</div>';
         document.body.appendChild(overlay);
       }
       document.body.style.pointerEvents = "none";
@@ -231,96 +184,11 @@ $(document).ready(function () {
     }
   }
 
-  function base64toBlob(base64Data) {
-    if (base64Data.includes(",")) {
-      //remove data:image/png;base64, and co.
-      base64Data = base64Data.split(",")[1];
-    }
-    contentType = "image/png";
-    var sliceSize = 1024;
-    var byteCharacters = atob(base64Data);
-    var bytesLength = byteCharacters.length;
-    var slicesCount = Math.ceil(bytesLength / sliceSize);
-    var byteArrays = new Array(slicesCount);
-
-    for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
-      var begin = sliceIndex * sliceSize;
-      var end = Math.min(begin + sliceSize, bytesLength);
-
-      var bytes = new Array(end - begin);
-      for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
-        bytes[i] = byteCharacters[offset].charCodeAt(0);
-      }
-      byteArrays[sliceIndex] = new Uint8Array(bytes);
-    }
-    return new Blob(byteArrays, { type: contentType });
-  }
-
-  // Set background color based on system theme
-  function setThemeBackground() {
-    const mother = document.querySelector('.mother');
-    if (!mother) return;
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      mother.style.backgroundColor = '#111';
-      mother.style.color = '#fff';
-    } else {
-      mother.style.backgroundColor = '#fff';
-      mother.style.color = '#111';
-    }
-  }
-  setThemeBackground();
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeBackground);
+  // Use theme.js for theme handling
+  window.setThemeBackground();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', window.setThemeBackground);
 });
 
-async function shareTo(platform) {
-  var url = encodeURIComponent('https://devfestavatar.web.app');
-  var shareText = "Build Safe, Secure and Scalable Solutions with AI and Cloud. My avatar is ready for #DevFest2025!\n\nLet's connect, learn, and build innovative, scalable, and ethically sound applications. Create yours: devfestavatar.web.app\n#DevFest #AI #GoogleCloud";
-  var xText = encodeURIComponent(shareText + " via @olordavis, @gdgadoekiti");
-  var linkedinText = encodeURIComponent(shareText + " via @olorunfemidavis, @gdgadoekiti");
-  var facebookText = encodeURIComponent(shareText);
-  var shareUrl = '';
-
-  switch (platform) {
-    case 'x':
-      shareUrl = `https://x.com/intent/tweet?text=${xText}`;
-      break;
-    case 'linkedin':
-      shareUrl = `https://www.linkedin.com/feed/?shareActive&mini=true&text=${linkedinText}`;
-      break;
-    case 'facebook':
-      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${facebookText}`;
-      break;
-    default:
-      return;
-  }
-
-  window.open(shareUrl, '_blank');
-}
-
-function copyCaption() {
-  const caption = "Build Safe, Secure and Scalable Solutions with AI and Cloud. My avatar is ready for #DevFest2025!\n\nLet's connect, learn, and build innovative, scalable, and ethically sound applications. Create yours: devfestavatar.web.app\n#DevFest #AI #GoogleCloud";
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(caption)
-      .then(() => {
-        toastr.success('Caption copied!');
-      })
-      .catch(err => {
-        console.error('[CopyCaption] Clipboard error:', err);
-        toastr.error('Failed to copy caption.');
-      });
-  } else {
-    // Fallback for older browsers
-    const textarea = document.createElement('textarea');
-    textarea.value = caption;
-    document.body.appendChild(textarea);
-    textarea.select();
-    try {
-      document.execCommand('copy');
-      toastr.success('Caption copied!');
-    } catch (err) {
-      console.error('[CopyCaption] execCommand error:', err);
-      toastr.error('Failed to copy caption.');
-    }
-    document.body.removeChild(textarea);
-  }
-}
+// Use social.js for sharing and caption
+window.shareTo = window.shareTo;
+window.copyCaption = window.copyCaption;
