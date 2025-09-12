@@ -26,3 +26,32 @@ For questions or support, reach out to the GDG Ado-Ekiti team.
 
 ## Wiki
 View full documentation, contributions, archieves and promotion details in the [Wiki](https://github.com/olorunfemidavis/DevFestAvatar/wiki)
+
+---
+## GDG Promotions of the Avatar Creator Tool
+Below is an archive of previous promotional posts showing past collaboration with the Google Developer Groups (GDG) and Google for Developers (GfD) communities. The tool was a huge hit, and we're happy to work together again in 2025!
+
+ ### 2021 GfD Promo 
+ <img src="extras/images/2021_featured.png" width="300" alt="GfD 2021 Promo"> 
+
+ [X post](https://x.com/googledevs/status/1456338241062416392) 
+
+ ### 2021 
+ <img src="extras/images/2021.png" width="300" alt="GDG 2021 Promo"> 
+
+ [X post](https://x.com/googledevgroups/status/1445780953473843200) 
+
+ ### 2020
+ <img src="extras/images/2020.png" width="300" alt="GDG 2020 Promo">
+
+ [X post](https://x.com/googledevgroups/status/1317099289827549189) 
+
+ ### 2019 
+
+ <img src="extras/images/2019.png" width="300" alt="GDG 2019 Promo">
+
+ [X post](https://x.com/googledevgroups/status/1174737006691311619) 
+
+ <img src="extras/images/2019.png" width="300" alt="GDG 2019 Promo"> 
+
+ [X post](https://x.com/googledevgroups/status/1174737006691311619) 
