@@ -50,8 +50,6 @@ Below is an archive of previous promotional posts showing past collaboration wit
 
  <img src="extras/images/2019.png" width="300" alt="GDG 2019 Promo">
 
- [X post](https://x.com/googledevgroups/status/1174737006691311619) 
+ [X post 1](https://x.com/googledevgroups/status/1174737006691311619) 
 
- <img src="extras/images/2019.png" width="300" alt="GDG 2019 Promo"> 
-
- [X post](https://x.com/googledevgroups/status/1174737006691311619) 
+ [X post 2](https://x.com/googledevgroups/status/1174737006691311619) 
