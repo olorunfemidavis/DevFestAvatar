@@ -135,8 +135,21 @@
   <script src="js/cropme.js"></script>
   <script src="js/merge.js"></script>
   <script src="js/function_api.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBnL7YJ7WkPIh0r1jrodv2CfOG0f0_-_co",
+      authDomain: "devfestavatar.firebaseapp.com",
+      databaseURL: "https://devfestavatar.firebaseio.com",
+      projectId: "devfestavatar",
+      storageBucket: "devfestavatar.firebasestorage.app",
+      messagingSenderId: "734381521168",
+      appId: "1:734381521168:web:d3c239f3a1848569744d95"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
   <script src="js/site.js" asp-append-version="true"></script>
-
 </body>
 
 </html>

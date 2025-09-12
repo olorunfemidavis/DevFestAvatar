@@ -14,13 +14,15 @@ var general_to_crop;
 
 //gbebodi
 $(document).ready(function () {
-  // On page load, get current count
-  $.getJSON(
-    "https://abacus.jasoncameron.dev/info/avatar/images",
-    function (response) {
-      $("#countSpan").text(response.value);
-    }
-  );
+  // Track site visit on every page load
+  trackSiteVisit();
+
+  // On page load, get current count from Firebase usage/totalImages
+  if (window.firebase && window.firebase.database) {
+    window.firebase.database().ref(yearPrefixKey('usage/totalImages')).once('value').then(function(snapshot) {
+      $("#countSpan").text(snapshot.val() || 0);
+    });
+  }
 
   //just in case of cors wahala
   //edit: 2021: why is this here? check..
@@ -118,6 +120,7 @@ $(document).ready(function () {
             height: finalImageLength,
           }
         ).then((b64) => {
+          // Track total images created
           $("#downloadimg").attr({
             href: URL.createObjectURL(base64toBlob(b64)),
             download: "DevFestMe-" + getFormattedTime() + ".png",
@@ -125,13 +128,20 @@ $(document).ready(function () {
           ShowLoading(false);
           $("#downloadimg").get(0).click();
           toastr.success("Downloading");
-          // After successful image generation, increment count
-          $.getJSON(
-            "https://abacus.jasoncameron.dev/hit/avatar/images",
-            function (response) {
-              $("#countSpan").text(response.value);
-            }
-          );
+          // After successful image generation, increment count in Firebase and update UI
+          if (window.firebase && window.firebase.database) {
+            var countRef = window.firebase.database().ref(yearPrefixKey('usage/totalImages'));
+            countRef.transaction(function(count) {
+              return (count || 0) + 1;
+            }, function(error, committed, snapshot) {
+              if (committed && snapshot) {
+                $("#countSpan").text(snapshot.val() || 0);
+              }
+            });
+          }
+
+          // Track color usage
+          trackColorUsage(currentColor);
 
           // Show share section and update content
           $("#share-section").show();
@@ -175,11 +185,14 @@ $(document).ready(function () {
           url: rawImg,
         });
       };
+      // Track color usage
+      trackColorUsage(currentColor);
     });
   }
 
   //Handle click from Upload input
   $("input:file").change(function () {
+    trackImageUpload();
     readFile(this);
   });
 
@@ -272,6 +285,12 @@ $(document).ready(function () {
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setThemeBackground);
 });
 
+// Helper to get year-prefixed Firebase key
+function yearPrefixKey(key) {
+  var year = new Date().getFullYear();
+  return year + '/' + key;
+}
+
 async function shareTo(platform) {
   var url = encodeURIComponent('https://devfestavatar.web.app');
   var shareText = "Build Safe, Secure and Scalable Solutions with AI and Cloud. My avatar is ready for #DevFest2025!\n\nLet's connect, learn, and build innovative, scalable, and ethically sound applications. Create yours: devfestavatar.web.app\n#DevFest #AI #GoogleCloud";
@@ -322,5 +341,36 @@ function copyCaption() {
       toastr.error('Failed to copy caption.');
     }
     document.body.removeChild(textarea);
+  }
+}
+
+// Firebase usage tracking integration
+function trackColorUsage(color) {
+  if (window.firebase && window.firebase.database) {
+    window.firebase.database().ref(yearPrefixKey('usage/colors/' + color)).transaction(function (count) {
+      return (count || 0) + 1;
+    });
+  }
+}
+function trackImageUpload() {
+  if (window.firebase && window.firebase.database) {
+    window.firebase.database().ref(yearPrefixKey('usage/imageUploads')).transaction(function (count) {
+      return (count || 0) + 1;
+    });
+  }
+}
+function trackTotalImagesCreated() {
+  if (window.firebase && window.firebase.database) {
+    window.firebase.database().ref(yearPrefixKey('usage/totalImages')).transaction(function (count) {
+      return (count || 0) + 1;
+    });
+  }
+}
+// Firebase usage tracking integration
+function trackSiteVisit() {
+  if (window.firebase && window.firebase.database) {
+    window.firebase.database().ref(yearPrefixKey('usage/siteVisits')).transaction(function (count) {
+      return (count || 0) + 1;
+    });
   }
 }
