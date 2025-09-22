@@ -645,7 +645,7 @@ body {
 }
 
 /* Gemini Loading Overlay Styles */
-#gemini-loading-overlay {
+#loading-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -657,7 +657,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-#gemini-loading-overlay .loading-spinner {
+#loading-overlay .loading-spinner {
   color: #fff;
   font-size: 2em;
   text-align: center;

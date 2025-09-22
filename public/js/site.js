@@ -166,29 +166,25 @@ $(document).ready(function () {
     });
   }
 
-  // Show or hide loading overlay
-  function ShowLoading(show) {
-    let overlayId = "gemini-loading-overlay";
-    if (show) {
-      if (!document.getElementById(overlayId)) {
-        let overlay = document.createElement("div");
-        overlay.id = overlayId;
-        overlay.innerHTML = '<div class="loading-spinner">Editing with Gemini ...</div>';
-        document.body.appendChild(overlay);
-      }
-      document.body.style.pointerEvents = "none";
-    } else {
-      let overlay = document.getElementById(overlayId);
-      if (overlay) overlay.remove();
-      document.body.style.pointerEvents = "auto";
-    }
-  }
-
   // Use theme.js for theme handling
   window.setThemeBackground();
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', window.setThemeBackground);
 });
 
-// Use social.js for sharing and caption
-window.shareTo = window.shareTo;
-window.copyCaption = window.copyCaption;
+// Show or hide loading overlay (global)
+function ShowLoading(show) {
+  let overlayId = "loading-overlay";
+  if (show) {
+    if (!document.getElementById(overlayId)) {
+      let overlay = document.createElement("div");
+      overlay.id = overlayId;
+      overlay.innerHTML = '<div class="loading-spinner">Processing ...</div>';
+      document.body.appendChild(overlay);
+    }
+    document.body.style.pointerEvents = "none";
+  } else {
+    let overlay = document.getElementById(overlayId);
+    if (overlay) { overlay.remove(); }
+    document.body.style.pointerEvents = "auto";
+  }
+}
