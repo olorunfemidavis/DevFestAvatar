@@ -22,7 +22,7 @@ Find the app at: [https://devfestavatar.web.app](https://devfestavatar.web.app)
 
 
 ---
-For questions or support, reach out to the GDG Ado-Ekiti team.
+For questions or support, reach out me via email or to the GDG Ado-Ekiti team.
 
 ## Wiki
 View full documentation, contributions, archieves and promotion details in the [Wiki](https://github.com/olorunfemidavis/DevFestAvatar/wiki)
