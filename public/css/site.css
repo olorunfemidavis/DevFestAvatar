@@ -62,8 +62,7 @@
     background-repeat: repeat;
     background-size: auto;
     background-position: center;
-    opacity: 0.075;
-    /* Match desktop opacity */
+    opacity: 0.075; /* Match desktop opacity */
   }
 }
 
@@ -73,8 +72,7 @@
     background-repeat: repeat;
     background-size: auto;
     background-position: center;
-    opacity: 0.075;
-    /* Match desktop opacity */
+    opacity: 0.075; /* Match desktop opacity */
   }
 }
 
@@ -152,7 +150,6 @@ body {
   width: 100%;
   text-align: center;
 }
-
 /* .crop_element {
 } */
 
@@ -188,93 +185,6 @@ body {
   margin-bottom: 0.5em;
   align-self: center;
   align-content: center;
-}
-
-/* Chapter input: hidden by default, centered under the upload control */
-.chapter-input {
-  display: none;
-  /* shown by JS when needed */
-  width: 250px;
-  height: 40px;
-  font-size: 20px;
-  margin: 12px auto;
-  /* vertical spacing and horizontal center */
-  text-align: center;
-  border-radius: 6px;
-  padding: 6px 10px;
-  box-sizing: border-box;
-}
-
-/* Wrapper to contain input + cancel; hidden by default */
-.chapter-wrapper {
-  display: none;
-  /* JS toggles display for animation */
-  text-align: center;
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 200ms ease, transform 200ms ease;
-}
-
-.chapter-wrapper.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* When wrapper is visible, reveal the input and cancel button */
-.chapter-wrapper.visible .chapter-input {
-  display: inline-block;
-}
-
-.chapter-wrapper.visible .chapter-cancel {
-  display: inline-block;
-}
-
-.chapter-cancel {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 8px 10px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  background: #fff;
-  color: #222;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.chapter-apply {
-  display: inline-block;
-  margin-left: 6px;
-  padding: 8px 12px;
-  border: none;
-  background: #2b83fc;
-  color: #fff;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.chapter-apply.disabled,
-.chapter-apply[disabled] {
-  background: #9bbce9;
-  cursor: not-allowed;
-  opacity: 0.8;
-}
-
-.chapter-wrapper.visible .chapter-apply,
-.chapter-wrapper.visible .chapter-cancel {
-  display: inline-block;
-}
-
-@media (max-width: 500px) {
-  .chapter-input {
-    width: 90%;
-    font-size: 18px;
-  }
-
-  .chapter-cancel {
-    margin-left: 6px;
-    padding: 6px 8px;
-  }
 }
 
 .upload {
@@ -330,7 +240,6 @@ body {
   .crop_element {
     margin-top: 15px;
   }
-
   .thumbnail-cc {
     width: 60px;
     height: 60px;
@@ -462,23 +371,6 @@ body {
 
 .color-buttons-container .color-btn[data-color="general"]:hover::after {
   content: "General";
-  position: absolute;
-  left: 50%;
-  top: 110%;
-  transform: translateX(-50%);
-  background: #222;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 13px;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 10;
-  opacity: 0.95;
-}
-
-.color-buttons-container .color-btn[data-color="chapter"]:hover::after {
-  content: "Chapter";
   position: absolute;
   left: 50%;
   top: 110%;
@@ -759,13 +651,12 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.5);
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 #loading-overlay .loading-spinner {
   color: #fff;
   font-size: 2em;
@@ -777,51 +668,21 @@ body {
 .color-blue {
   background: linear-gradient(135deg, #b8ecf7 0%, #00ccff 100%);
 }
-
 .color-green {
   background: linear-gradient(135deg, #c2f7bf 0%, #00df5e 100%);
 }
-
 .color-pink {
   background: linear-gradient(135deg, #fed8d7 0%, #fe72af 100%);
 }
-
 .color-yellow {
   background: linear-gradient(135deg, #ffe89c 0%, #ffd102 100%);
 }
-
 .color-date {
   background: #fff url('../images/icons/buttons/date.png') center/100% no-repeat;
 }
-
 .color-general {
   background: #fff url('../images/icons/buttons/general.png') center/100% no-repeat;
 }
-
-.color-chapter {
-  background: #fff url('../images/icons/buttons/chapter.png') center/100% no-repeat;
-}
-
 .color-gemini {
   background: #fff url('../images/icons/buttons/gemini.png') center/100% no-repeat;
-}
-
-/* Helper text styling */
-.chapter-help {
-  margin-top: 6px;
-  color: #b00020;
-  /* red-ish for errors */
-  font-size: 13px;
-  min-height: 1.2em;
-}
-
-/* sr-only utility for screen readers */
-.sr-only {
-  position: absolute !important;
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
-  /* added line */
 }
