@@ -70,6 +70,33 @@
           <div class="uploader row">
             <input type="file" style="display: none" accept="image/*" />
             <p class="fileInput upload">Upload Image</p>
+             <!-- Chapter input hidden by default; will be shown when user clicks the chapter button -->
+              <div class="chapter-wrapper">
+                <input
+                  type="text"
+                  id="chapter-location"
+                  class="chapter-input"
+                  placeholder="enter your city"
+                  aria-describedby="chapter-help"
+                />
+                <button type="button" class="chapter-apply" disabled>
+                  Apply
+                </button>
+                <button type="button" class="chapter-cancel">Cancel</button>
+                <!-- Inline helper / error text for visual users -->
+                <div
+                  id="chapter-help"
+                  class="chapter-help"
+                  aria-hidden="true"
+                ></div>
+                <!-- ARIA live region for screen readers announcing apply enable/disable -->
+                <div
+                  id="chapter-a11y"
+                  class="sr-only"
+                  aria-live="polite"
+                  aria-atomic="true"
+                ></div>
+              </div>
           </div>
           <p class="mdc-typography--headline6 center_text">Choose color to download.</p>
           <div class="color-buttons-container"
@@ -81,6 +108,10 @@
             <div class="color-btn-row2">
               <button class="color-btn color-date" data-color="date"></button>
               <button class="color-btn color-general" data-color="general"></button>
+              <button
+                  class="color-btn color-chapter"
+                  data-color="chapter"
+                ></button>
               <button class="color-btn color-gemini" data-color="gemini"></button>
             </div>
           </div>
