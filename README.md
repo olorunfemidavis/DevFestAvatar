@@ -31,6 +31,22 @@ View full documentation, contributions, archieves and promotion details in the [
 ## GDG Promotions of the Avatar Creator Tool
 Below is an archive of previous promotional posts showing past collaboration with the Google Developer Groups (GDG) and Google for Developers (GfD) communities. The tool was a huge hit, and we're happy to work together again in 2025!
 
+ ### 2025 Google For Developers (GfD) Promos
+
+ <img src="extras/images/2025_linkedin.png" width="400" alt="GfD 2025 Linkedin Promo">
+
+ [LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7397061117279170560) 
+
+<img src="extras/images/2025_x.png" width="400" alt="GfD 2025 X Promo">
+
+ [X post](https://x.com/googledevs/status/1991295425425326584) 
+   
+<img src="extras/images/2025_ig.png" width="400" alt="GfD 2025 IG Promo">
+
+ [Instagram post](https://www.instagram.com/p/DRNryG1k1Sr/?img_index=3&igsh=b2wzdGRsa2twYWdl) 
+
+---
+
  ### 2021 GfD Promo 
  <img src="extras/images/2021_featured.png" width="400" alt="GfD 2021 Promo"> 
 
