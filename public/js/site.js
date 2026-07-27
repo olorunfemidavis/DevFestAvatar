@@ -10,12 +10,21 @@ window.onload = function () {
 
 var currentColor = "";
 var rawImg = "";
-var assetImagesCount = 45;
-var TempImage = "images/assets/sample" + (Math.floor(Math.random() * assetImagesCount) + 1) + ".jpg";
+var assetImagesCount = 82;
+var TempImage = getRandomAssetImage();
 var ImageLength = 0;
 var general_to_crop;
 var hasUserUploadedImage = false;
 var currentGeneratedAvatarUrl = "";
+
+function getRandomAssetImage() {
+  var imageIndex = Math.floor(Math.random() * assetImagesCount) + 1;
+  return "images/assets/sample" + padAssetIndex(imageIndex) + ".webp";
+}
+
+function padAssetIndex(index) {
+  return ("000" + index).slice(-3);
+}
 
 function initializeUI() {
   // Initialize CropMe
