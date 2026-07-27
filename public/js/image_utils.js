@@ -52,6 +52,52 @@ function loadHeicConverter() {
   return heicConverterPromise;
 }
 
+function getFileExtension(fileName) {
+  return (fileName.split('.').pop() || '').trim().toLowerCase();
+}
+
+function getImageFileKind(file) {
+  var ext = getFileExtension(file.name || '');
+  var mime = (file.type || '').trim().toLowerCase();
+
+  if (ext === 'heic' || mime === 'image/heic' || mime === 'image/x-heic') {
+    return 'heic';
+  }
+  if (ext === 'heif' || mime === 'image/heif' || mime === 'image/x-heif') {
+    return 'heif';
+  }
+
+  return ext;
+}
+
+function normalizeHeicFile(file, kind) {
+  var mimeType = kind === 'heif' ? 'image/heif' : 'image/heic';
+  var normalizedExtension = kind === 'heif' ? '.heif' : '.heic';
+  var normalizedName = (file.name || 'upload' + normalizedExtension).replace(/\.(heic|heif)$/i, normalizedExtension);
+
+  if (typeof File === 'function') {
+    return new File([file], normalizedName, {
+      type: mimeType,
+      lastModified: file.lastModified || Date.now()
+    });
+  }
+
+  return new Blob([file], { type: mimeType });
+}
+
+function readBlobAsDataUrl(blob, callback) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    if (typeof ShowLoading === 'function') ShowLoading(false);
+    callback(e.target.result);
+  };
+  reader.onerror = function () {
+    if (typeof ShowLoading === 'function') ShowLoading(false);
+    toastr.error("Failed to read image file.");
+  };
+  reader.readAsDataURL(blob);
+}
+
 /**
  * Reads an uploaded file and returns a data URL via callback.
  * Supports HEIC/HEIF conversion using heic2any.
@@ -61,36 +107,34 @@ function loadHeicConverter() {
 function readImageFile(input, callback) {
   if (input.files && input.files[0]) {
     var file = input.files[0];
-    var ext = file.name.split('.').pop().toLowerCase();
-    if (ext === 'heic' || ext === 'heif') {
+    var fileKind = getImageFileKind(file);
+    if (fileKind === 'heic' || fileKind === 'heif') {
       // Show loading while converting
       if (typeof ShowLoading === 'function') ShowLoading(true);
       loadHeicConverter().then(function () {
         heic2any({
-          blob: file,
+          blob: normalizeHeicFile(file, fileKind),
           toType: "image/jpeg",
           quality: 0.9
         }).then(function (convertedBlob) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            if (typeof ShowLoading === 'function') ShowLoading(false);
-            callback(e.target.result);
-          };
-          reader.readAsDataURL(convertedBlob);
+          var outputBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+          if (!outputBlob) {
+            throw new Error("HEIC/HEIF conversion returned no image.");
+          }
+          readBlobAsDataUrl(outputBlob, callback);
         }).catch(function (err) {
           if (typeof ShowLoading === 'function') ShowLoading(false);
-          toastr.error("Failed to convert HEIC/HEIF image.");
+          if (window.console && console.error) {
+            console.error("HEIC/HEIF conversion failed", err);
+          }
+          toastr.error("This HEIC/HEIF image variant is not supported. Please export it as JPG or PNG and try again.");
         });
       }).catch(function (err) {
         if (typeof ShowLoading === 'function') ShowLoading(false);
         toastr.error(err.message || "HEIC/HEIF support not loaded.");
       });
     } else {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        callback(e.target.result);
-      };
-      reader.readAsDataURL(file);
+      readBlobAsDataUrl(file, callback);
     }
   } else {
     toastr.info("No Input.");
@@ -98,4 +142,5 @@ function readImageFile(input, callback) {
 }
 
 window.base64toBlob = base64toBlob;
+window.getImageFileKind = getImageFileKind;
 window.readImageFile = readImageFile;

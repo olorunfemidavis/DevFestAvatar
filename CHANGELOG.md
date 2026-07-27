@@ -39,6 +39,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixes
 - Switched the generated avatar preview to a persistent Blob URL to improve reliability on iOS WebKit browsers.
 - Improved the processing overlay contrast and loading affordance in dark mode.
+- Normalized HEIC/HEIF upload detection and conversion to handle uppercase extensions and inconsistent browser MIME types.
 
 ### Performance
 - Removed the large DevFest web header image from the page design.
