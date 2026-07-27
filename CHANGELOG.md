@@ -36,6 +36,10 @@ All notable changes to this project will be documented in this file.
 - Prevented bundled sample-image downloads from incrementing created-avatar or frame-usage counters.
 - Continued counting real uploaded images and real uploaded-image frame downloads.
 
+### Bug Fixes
+- Switched the generated avatar preview to a persistent Blob URL to improve reliability on iOS WebKit browsers.
+- Improved the processing overlay contrast and loading affordance in dark mode.
+
 ### Performance
 - Removed the large DevFest web header image from the page design.
 - Lazy-loaded the HEIC/HEIF converter only when a HEIC or HEIF file is uploaded.

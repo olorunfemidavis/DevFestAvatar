@@ -15,6 +15,7 @@ var TempImage = "images/assets/sample" + (Math.floor(Math.random() * assetImages
 var ImageLength = 0;
 var general_to_crop;
 var hasUserUploadedImage = false;
+var currentGeneratedAvatarUrl = "";
 
 function initializeUI() {
   // Initialize CropMe
@@ -92,6 +93,25 @@ function getFormattedTime() {
   return y + "-" + m + "-" + d + "-" + h + "-" + mi + "-" + s;
 }
 
+function setGeneratedAvatarPreview(base64Image) {
+  if (currentGeneratedAvatarUrl) {
+    URL.revokeObjectURL(currentGeneratedAvatarUrl);
+  }
+
+  currentGeneratedAvatarUrl = URL.createObjectURL(window.base64toBlob(base64Image));
+  var fileName = "DevFestMe-" + getFormattedTime() + ".png";
+
+  $("#downloadimg").attr({
+    href: currentGeneratedAvatarUrl,
+    download: fileName,
+  });
+  $("#share-avatar-img").attr("src", currentGeneratedAvatarUrl);
+  $("#downloadimg2").attr({
+    href: currentGeneratedAvatarUrl,
+    download: fileName,
+  });
+}
+
 // Download avatar with selected color
 function DownloadColor() {
   var template = "images/avatar/" + currentColor + ".png";
@@ -116,10 +136,7 @@ function DownloadColor() {
         ],
         { width: finalImageLength, height: finalImageLength }
       ).then((b64) => {
-        $("#downloadimg").attr({
-          href: URL.createObjectURL(window.base64toBlob(b64)),
-          download: "DevFestMe-" + getFormattedTime() + ".png",
-        });
+        setGeneratedAvatarPreview(b64);
         ShowLoading(false);
         $("#downloadimg").get(0).click();
         toastr.success("Downloading");
@@ -130,12 +147,13 @@ function DownloadColor() {
           window.trackColorUsage(currentColor);
         }
         $("#share-section").removeAttr("hidden").show();
-        $("#share-avatar-img").attr("src", b64.startsWith('data:image') ? b64 : 'data:image/png;base64,' + b64.split(',')[1]);
-        $("#downloadimg2").attr({
-          href: URL.createObjectURL(window.base64toBlob(b64)),
-          download: "DevFestMe-" + getFormattedTime() + ".png",
-        });
+      }).catch(function () {
+        ShowLoading(false);
+        toastr.error("Could not generate avatar.");
       });
+    }).catch(function () {
+      ShowLoading(false);
+      toastr.error("Could not crop image.");
     });
 }
 
@@ -217,7 +235,9 @@ function ShowLoading(show) {
     if (!document.getElementById(overlayId)) {
       let overlay = document.createElement("div");
       overlay.id = overlayId;
-      overlay.innerHTML = '<div class="loading-spinner">Processing...</div>';
+      overlay.setAttribute("role", "status");
+      overlay.setAttribute("aria-live", "polite");
+      overlay.innerHTML = '<div class="loading-spinner"><span class="loading-dot" aria-hidden="true"></span><span>Processing avatar...</span></div>';
       document.body.appendChild(overlay);
     }
     document.body.style.pointerEvents = "none";
