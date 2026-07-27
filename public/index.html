@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>#DevFest Avatar Creator</title>
   <meta name="description"
-    content="DevFest 2026: Building Safe, Secure and Scalable Solutions with AI and Cloud. Empowering developer communities worldwide to architect the future with practical AI and Google Cloud integration. Learn to build innovative, scalable, and ethically sound applications for a technology-driven future that benefits everyone." />
+    content="Create a DevFest 2026 profile avatar for the world's largest community-driven tech conference, returning October 1 to December 31, 2026." />
   <link rel="canonical" href="https://devfestavatar.web.app/" />
   <link rel="shortcut icon" href="https://devfestavatar.web.app/images/icons/logos/logo.png" />
-  <meta name="theme-color" content="#23457C" />
+  <meta name="theme-color" content="#f8fafd" />
   <meta name="date" content="2026-07-27" />
   <meta name="author" content="Google Developer Group Ado-Ekiti" />
   <meta property="og:logo" content="https://devfestavatar.web.app/images/icons/logos/logo.png" />
@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://devfestavatar.web.app/" />
   <meta property="og:title" content="#DevFest Avatar Creator" />
   <meta property="og:description"
-    content="DevFest 2026: Building Safe, Secure and Scalable Solutions with AI and Cloud. Empowering developer communities worldwide to architect the future with practical AI and Google Cloud integration. Build innovative, scalable, and ethically sound applications. Join us to shape a technology-driven future that benefits everyone." />
+    content="Create a fresh DevFest 2026 profile avatar for the community-driven tech conference returning October 1 to December 31, 2026." />
   <meta property="og:image" content="https://devfestavatar.web.app/images/icons/logos/wide.png" />
   <meta property="og:image:alt" content="DevFest Avatar Examples" />
   <meta property="og:image:width" content="1200" />
@@ -27,28 +27,23 @@
   <meta name="twitter:url" content="https://devfestavatar.web.app/" />
   <meta name="twitter:title" content="#DevFest Avatar Creator" />
   <meta name="twitter:description"
-    content="DevFest 2026: Building Safe, Secure and Scalable Solutions with AI and Cloud. Empowering developer communities worldwide to architect the future with practical AI and Google Cloud integration. Build innovative, scalable, and ethically sound applications. Join us to shape a technology-driven future that benefits everyone." />
+    content="Create a fresh DevFest 2026 profile avatar for the community-driven tech conference returning October 1 to December 31, 2026." />
   <meta name="twitter:image" content="https://devfestavatar.web.app/images/icons/logos/wide.png" />
   <meta name="twitter:image:alt" content="DevFest Avatar Example" />
   <meta name="twitter:site" content="@GDGAdoEkiti" />
   <meta name="twitter:creator" content="@olordavis" />
   <link rel="icon" type="image/png" href="https://devfestavatar.web.app/images/icons/logos/logo.png">
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/site.css" />
-  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet" />
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/solid.css"
-    integrity="sha384-qPldrzmea0i8jhonuql0da/kQWeaXdQl+krGXcTQUdRUGHcXBfSrBbZLbyMcCWcF" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/brands.css"
-    integrity="sha384-qVnmyLTtnGPGEN3HDG2MCEOXWH1Yk/i70lKRuV+gMCDQg+jblQlFGPf1mejWUyYG" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/fontawesome.css"
-    integrity="sha384-hM7EQerc09E4O3zhtvF2iqcB4ZkEu9xkLQndhXdGGCEJ/sB4JK54SuKGmIC35UTf" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropme@latest/dist/cropme.min.css" />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/toastr/toastr-2.1.4.min.css" />
+  <link rel="stylesheet" href="vendor/cropme/cropme-1.3.1.min.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/creator.css" />
+  <link rel="stylesheet" href="css/controls.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7C756ZV81X"></script>
@@ -56,85 +51,135 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-7C756ZV81X');
   </script>
 </head>
 
 <body class="mother">
-  <div class="container">
-    <main role="main" class="aarin">
-      <div class="main-content-wrapper">
-        <div id="main-content" class="main-content">
-          <div id="tocrop" class="crop_element"></div>
-          <div class="uploader row">
-            <input type="file" style="display: none" accept="image/*" />
-            <p class="fileInput upload">Upload Image</p>
-          </div>
-          <p class="mdc-typography--headline6 center_text">Choose style to download.</p>
-          <div class="color-buttons-container"
-            style="display: flex; gap: 16px; justify-content: center; margin: 20px 0; flex-wrap: wrap;">
-            <button class="color-btn color-blue" data-color="blue"></button>
-            <button class="color-btn color-green" data-color="green"></button>
-            <button class="color-btn color-pink" data-color="pink"></button>
-            <button class="color-btn color-yellow" data-color="yellow"></button>
-            <div class="color-btn-row2">
-              <button class="color-btn color-date" data-color="date"></button>
-              <button class="color-btn color-general" data-color="general"></button>
-              <button class="color-btn color-gemini" data-color="gemini"></button>
-            </div>
-          </div>
-          <a style="display: none" href="#" asp-action="Download" download id="downloadimg" download
-            title="Download"></a>
+  <a class="skip-link" href="#creator">Skip to creator</a>
+
+  <main class="page-shell" role="main">
+    <section id="creator" class="creator-layout" aria-label="Avatar creator">
+      <div class="creator-stage">
+        <div class="stage-heading">
+          <p class="eyebrow">DevFest 2026</p>
+          <h1>Frame your photo</h1>
         </div>
-        <div id="share-section" class="share-section" style="display:none;">
-          <h3>Your DevFest avatar is ready!</h3>
-          <img id="share-avatar-img" src="" alt="Your Avatar"
-            style="max-width:200px; border-radius:16px; margin-bottom:1em;" />
-          <div style="margin-bottom:1em;">
-            <button onclick="shareTo('x')">Share on X</button>
-            <button onclick="shareTo('facebook')">Share on Facebook</button>
-            <button onclick="shareTo('linkedin')">Share on LinkedIn</button>
-            <button onclick="copyCaption()">Copy Caption</button>
-            <a id="downloadimg2" href="#" download="DevFestAvatar.png" style="margin-left:1em;">Download</a>
-          </div>
-          <p style="color:#f9ab00; font-weight:bold;">Step 2: Share your DevFest avatar image now!</p>
+        <div class="signage-frame">
+          <div id="tocrop" class="crop_element"></div>
+          <span class="frame-year">2026</span>
+          <span class="frame-mark" aria-hidden="true">#</span>
         </div>
       </div>
-      <footer class="footer themed-footer">
-        <div class="grid-vertical-container">
-          <div class="dudu center_text">
-            With <span style="color: red">❤</span> by
-            <a style="color: #2b83fc" href="https://g.dev/olorunfemidavis" target="_blank">Olorunfemi Davis</a>
-            &
-            <a style="color: #2b83fc" href="https://gdg.community.dev/gdg-ado-ekiti">GDG Ado-Ekiti</a>
-            🇳🇬
+
+      <div id="main-content" class="main-content">
+        <div class="tool-panel">
+          <div class="panel-header">
+            <p class="eyebrow">Create</p>
+            <h2 id="create-heading">Upload your photo</h2>
           </div>
-          <div class="center_text dudu" style="line-height: 0px; margin: 5px">
-            <span id="year"></span> Stat:
-            <b><span id="countSpan"></span></b> imgs.
+
+          <ol class="agenda-steps" aria-label="Creation steps">
+            <li>Upload a photo</li>
+            <li>Pick a frame (auto-downloads)</li>
+            <li>Share your avatar</li>
+          </ol>
+
+          <div class="uploader">
+            <input id="avatar-file" type="file" accept="image/*" />
+            <button class="fileInput upload" type="button">
+              <span aria-hidden="true">+</span>
+              Upload photo
+            </button>
           </div>
-          <div style="display: flex; align-items: center; justify-content: center;">
-            <a href="https://github.com/olorunfemidavis/DevFestAvatar" target="_blank">
-              <img src="./images/open_source.png" alt="Open source" class="open-source-logo" />
-            </a>
-            <a target="_blank" style="color: #2b83fc; margin-left: 12px;" href="https://sites.google.com/view/devfestavatarcreatorprivacy/home">Privacy</a>
+
+          <div id="style-picker" class="style-picker" role="group" aria-label="Avatar style" hidden>
+            <button class="color-btn color-blue" type="button" data-color="blue" aria-label="Download blue frame">
+              <strong>Blue</strong>
+              <span>Cool badge</span>
+            </button>
+            <button class="color-btn color-green" type="button" data-color="green" aria-label="Download green frame">
+              <strong>Green</strong>
+              <span>GDG energy</span>
+            </button>
+            <button class="color-btn color-pink" type="button" data-color="pink" aria-label="Download pink frame">
+              <strong>Pink</strong>
+              <span>Social pop</span>
+            </button>
+            <button class="color-btn color-yellow" type="button" data-color="yellow" aria-label="Download yellow frame">
+              <strong>Yellow</strong>
+              <span>2026 glow</span>
+            </button>
+            <button class="color-btn image-style color-date" type="button" data-color="date"
+              aria-label="Download dated DevFest frame">
+              <strong>2026</strong>
+              <span>Dated mark</span>
+            </button>
+            <button class="color-btn image-style color-general" type="button" data-color="general"
+              aria-label="Download general DevFest frame">
+              <strong>Classic</strong>
+              <span>Logo frame</span>
+            </button>
+            <button class="color-btn image-style color-gemini" type="button" data-color="gemini"
+              aria-label="Edit photo with Gemini">
+              <strong>Gemini</strong>
+              <span>AI edit</span>
+            </button>
           </div>
-          <div class="center_text" style="margin-top:12px;">
-            <strong>Create your DevFest Print Badge:</strong>
-            <a href="https://devfestbadge.web.app" target="_blank" style="color:#2b83fc;">devfestbadge.web.app</a>
+
+          <div class="tool-note" aria-live="polite">
+            <span id="year"></span> community count:
+            <strong><span id="countSpan">0</span></strong> avatars
+          </div>
+          <a class="hidden-download" href="#" asp-action="Download" download id="downloadimg" title="Download"></a>
+        </div>
+
+        <div id="share-section" class="share-section" aria-live="polite" hidden>
+          <div class="panel-header">
+            <p class="eyebrow">Ready</p>
+            <h2>Your avatar is ready</h2>
+          </div>
+          <img id="share-avatar-img" src="" alt="Your generated DevFest avatar" />
+          <div class="share-actions">
+            <button type="button" onclick="shareTo('x')">Share on X</button>
+            <button type="button" onclick="shareTo('facebook')">Facebook</button>
+            <button type="button" onclick="shareTo('linkedin')">LinkedIn</button>
+            <button type="button" onclick="copyCaption()">Copy caption</button>
+            <a id="downloadimg2" href="#" download="DevFestAvatar.png">Download</a>
           </div>
         </div>
-      </footer>
-    </main>
-  </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer themed-footer">
+    <div class="footer-inner">
+      <p>
+        Built with ❤ by
+        <a href="https://g.dev/olorunfemidavis" target="_blank" rel="noopener">Olorunfemi Davis</a>
+        and
+        <a href="https://gdg.community.dev/gdg-ado-ekiti" target="_blank" rel="noopener">GDG Ado-Ekiti</a>.
+      </p>
+      <div class="footer-links">
+        <a class="github-link" href="https://github.com/olorunfemidavis/DevFestAvatar" target="_blank" rel="noopener"
+          aria-label="View source on GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor"
+              d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.45 9.45 0 0 1 12 7.02c.85 0 1.7.11 2.5.33 1.9-1.29 2.74-1.02 2.74-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.67-4.57 4.92.36.31.68.92.68 1.86v2.58c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+          </svg>
+          GitHub
+        </a>
+        <a href="privacy.html">Privacy</a>
+        <a target="_blank" rel="noopener" href="https://devfestbadge.web.app">Print badge</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     document.getElementById('year').innerText = new Date().getFullYear();
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" ></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="vendor/jquery/jquery-3.3.1.min.js"></script>
+  <script src="vendor/toastr/toastr-2.1.4.min.js"></script>
   <script src="js/cropme.js"></script>
   <script src="js/merge.js"></script>
   <script src="js/function_api.js"></script>
@@ -150,14 +195,15 @@
       messagingSenderId: "734381521168",
       appId: "1:734381521168:web:d3c239f3a1848569744d95"
     };
-    firebase.initializeApp(firebaseConfig);
+    if (window.firebase && typeof firebase.initializeApp === "function") {
+      firebase.initializeApp(firebaseConfig);
+    }
   </script>
   <script src="js/firebase_usage.js"></script>
   <script src="js/image_utils.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/social.js"></script>
   <script src="js/site.js" asp-append-version="true"></script>
-  <script src="js/heic2any.min.js"></script>
 </body>
 
 </html>

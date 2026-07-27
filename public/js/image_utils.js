@@ -27,6 +27,31 @@ function base64toBlob(base64Data) {
   return new Blob(byteArrays, { type: contentType });
 }
 
+var heicConverterPromise = null;
+
+function loadHeicConverter() {
+  if (typeof heic2any !== 'undefined') {
+    return Promise.resolve();
+  }
+  if (heicConverterPromise) {
+    return heicConverterPromise;
+  }
+
+  heicConverterPromise = new Promise(function (resolve, reject) {
+    var script = document.createElement('script');
+    script.src = 'js/heic2any.min.js';
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = function () {
+      heicConverterPromise = null;
+      reject(new Error('HEIC/HEIF support could not be loaded.'));
+    };
+    document.head.appendChild(script);
+  });
+
+  return heicConverterPromise;
+}
+
 /**
  * Reads an uploaded file and returns a data URL via callback.
  * Supports HEIC/HEIF conversion using heic2any.
@@ -40,7 +65,7 @@ function readImageFile(input, callback) {
     if (ext === 'heic' || ext === 'heif') {
       // Show loading while converting
       if (typeof ShowLoading === 'function') ShowLoading(true);
-      if (typeof heic2any !== 'undefined') {
+      loadHeicConverter().then(function () {
         heic2any({
           blob: file,
           toType: "image/jpeg",
@@ -56,10 +81,10 @@ function readImageFile(input, callback) {
           if (typeof ShowLoading === 'function') ShowLoading(false);
           toastr.error("Failed to convert HEIC/HEIF image.");
         });
-      } else {
+      }).catch(function (err) {
         if (typeof ShowLoading === 'function') ShowLoading(false);
-        toastr.error("HEIC/HEIF support not loaded.");
-      }
+        toastr.error(err.message || "HEIC/HEIF support not loaded.");
+      });
     } else {
       var reader = new FileReader();
       reader.onload = function (e) {

@@ -2,52 +2,96 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-07-27
+
+### Redesign
+- Reworked the landing experience into a focused DevFest Avatar Creator interface.
+- Removed the large header/hero row so the page starts with the actual creator flow.
+- Introduced a print-artifact inspired layout using DevFest 2026 brand colors, signage borders, agenda-style steps, and responsive panels.
+- Added light and dark theme support using the DevFest palette and existing system color preference.
+- Improved mobile and desktop responsiveness, including tighter mobile workflow steps and no horizontal overflow at tested viewport sizes.
+- Improved mobile Cropme slider visibility, including a clearer rail and larger thumb for touch devices.
+- Hid frame choices on initial page load and reveal them only after a user uploads a photo.
+- Replaced the old open-source badge image with an inline GitHub icon and text link.
+
+### Architecture
+- Split the previous large stylesheet into scoped CSS files:
+  - `tokens.css`
+  - `base.css`
+  - `creator.css`
+  - `controls.css`
+  - `footer.css`
+  - `privacy.css`
+  - `responsive.css`
+- Vendored required frontend runtime dependencies under `public/vendor` for simpler local development and Playwright testing.
+
+### Privacy
+- Added an in-house `privacy.html` page instead of linking to the previous Google Sites privacy page.
+- Documented browser-side image framing, Gemini image processing, Firebase aggregate counters, analytics, social sharing, and local file access.
+- Left Google Analytics off the privacy page itself.
+
+### Usage Tracking
+- Disabled Firebase usage writes on localhost and development hosts by default.
+- Added `?usageTracking=on` and `?usageTracking=off` query overrides for testing.
+- Prevented bundled sample-image downloads from incrementing created-avatar or frame-usage counters.
+- Continued counting real uploaded images and real uploaded-image frame downloads.
+
+### Performance
+- Removed the large DevFest web header image from the page design.
+- Lazy-loaded the HEIC/HEIF converter only when a HEIC or HEIF file is uploaded.
+- Kept sample generation and frame creation client-side for the standard avatar flow.
+
+### Verification
+- Captured Playwright screenshots for light and dark themes on desktop and mobile.
+- Verified no horizontal overflow on tested desktop and mobile viewport sizes.
+- Verified sample-image frame downloads do not call usage tracking, while uploaded-image downloads still do.
+
 ## [2026.1.0] - 2026-07-27
 
-### 🔒 Security
-- **Major Security Update**: Updated Firebase and dependencies to latest stable versions
-  - `firebase-admin`: 12.1.0 → 14.2.0
-  - `firebase-functions`: 6.4.0 → 4.9.0
-  - `firebase-functions-test`: 3.1.0 → 0.3.3
-  - `dotenv`: 16.2.0 → 16.4.5
-- **Vulnerability Reduction**: Reduced npm audit vulnerabilities from 51 to 12
-  - Fixed critical vulnerabilities in protobufjs
-  - Fixed high-severity vulnerabilities in fast-xml-parser, websocket-driver, and form-data
-  - Fixed high-severity vulnerabilities in jws, lodash, and glob
-  - Patched moderate-severity vulnerabilities in qs, uuid, and other transitive dependencies
-- **Node.js Version**: Confirmed compatibility with Node.js 22 LTS
+### Security
+- Major security update: updated Firebase and dependencies to latest stable versions.
+  - `firebase-admin`: 12.1.0 -> 14.2.0
+  - `firebase-functions`: 6.4.0 -> 4.9.0
+  - `firebase-functions-test`: 3.1.0 -> 0.3.3
+  - `dotenv`: 16.2.0 -> 16.4.5
+- Reduced npm audit vulnerabilities from 51 to 12.
+  - Fixed critical vulnerabilities in `protobufjs`.
+  - Fixed high-severity vulnerabilities in `fast-xml-parser`, `websocket-driver`, and `form-data`.
+  - Fixed high-severity vulnerabilities in `jws`, `lodash`, and `glob`.
+  - Patched moderate-severity vulnerabilities in `qs`, `uuid`, and other transitive dependencies.
+- Confirmed compatibility with Node.js 22 LTS.
 
-### 🚀 Features & Improvements
-- Enhanced security with latest Firebase Cloud Functions v2 API
-- Improved stability with updated Google Cloud dependencies
-- Better compatibility with modern development environments
+### Features And Improvements
+- Enhanced security with the latest Firebase Cloud Functions v2 API.
+- Improved stability with updated Google Cloud dependencies.
+- Improved compatibility with modern development environments.
 
-### 📝 Updates
-- Updated project references from DevFest 2025 to DevFest 2026
-- Updated all branding guidelines in Gemini AI prompts
-- Updated social sharing text to reflect 2026 conference
-- Updated meta tags and SEO information for 2026 event
-- Updated README with 2026 information and promotional section
+### Updates
+- Updated project references from DevFest 2025 to DevFest 2026.
+- Updated all branding guidelines in Gemini AI prompts.
+- Updated social sharing text to reflect the 2026 conference.
+- Updated meta tags and SEO information for the 2026 event.
+- Updated README with 2026 information and promotional section.
 
-### 🔄 Migration Notes
-- Firebase Functions v4.x includes breaking changes from v6.x
-  - All existing code is compatible (using `onRequest` from `firebase-functions/v2/https`)
-  - Review [Firebase Functions Migration Guide](https://firebase.google.com/docs/functions) for details
-- Firebase Admin SDK v14.x includes breaking changes from v12.x
-  - Test thoroughly in staging environment before production deployment
-  - Review [Firebase Admin SDK Changelog](https://firebase.google.com/docs/reference/admin/node)
+### Migration Notes
+- Firebase Functions v4.x includes breaking changes from v6.x.
+  - Existing code is compatible because it uses `onRequest` from `firebase-functions/v2/https`.
+  - Review the [Firebase Functions Migration Guide](https://firebase.google.com/docs/functions) for details.
+- Firebase Admin SDK v14.x includes breaking changes from v12.x.
+  - Test thoroughly in staging before production deployment.
+  - Review the [Firebase Admin SDK Changelog](https://firebase.google.com/docs/reference/admin/node).
 
-### ⚠️ Known Issues
-- 12 remaining vulnerabilities in transitive dependencies (mostly in google-gax and protobufjs)
-  - These are inherent to Firebase Admin SDK's dependency chain
-  - Community contributions welcome to help resolve these
+### Known Issues
+- 12 vulnerabilities remain in transitive dependencies, mostly in `google-gax` and `protobufjs`.
+  - These are inherent to Firebase Admin SDK's dependency chain.
+  - Community contributions are welcome to help resolve these.
 
-### 🔧 Technical Details
-- Updated functions/package.json with version 2026.1.0
-- Updated firebase.json for deployment configuration
-- Updated public/index.html meta tags and descriptions
-- Updated functions/gemini.js branding guidelines
-- Updated public/js/social.js share text
+### Technical Details
+- Updated `functions/package.json` with version `2026.1.0`.
+- Updated `firebase.json` for deployment configuration.
+- Updated `public/index.html` meta tags and descriptions.
+- Updated `functions/gemini.js` branding guidelines.
+- Updated `public/js/social.js` share text.
 
 ---
 
