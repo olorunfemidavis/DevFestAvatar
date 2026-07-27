@@ -1,15 +1,16 @@
 # DevFestAvatar
 
-DevFestAvatar is a web app for creating custom avatars for #DevFest 2025. This year’s theme is “Building Safe, Secure and Scalable Solutions with AI and Cloud.” Easily generate, download, and share your unique DevFest look, and join the global conversation on responsible AI and scalable cloud solutions!
+DevFestAvatar is a web app for creating custom avatars for #DevFest 2026. This year's theme continues "Building Safe, Secure and Scalable Solutions with AI and Cloud." Easily generate, download, and share your unique DevFest look, and join the global conversation on responsible AI and scalable cloud solutions!
 
 ## Features
 - Create and customize your DevFest avatar
-- Gemini AI (Nano Banana) image editing powered by gemini-2.5-flash-image-preview
+- Gemini AI (Advanced Models) image editing powered by gemini-2.5-flash-image-preview
 - Download your avatar for use on social media
 - Share directly to X, Facebook, and LinkedIn
 - Mobile-friendly and responsive design
 - Stats counter for total avatars generated
 - Theming support (light/dark)
+- Enhanced security with latest dependencies
 
 ### { } // + . -> <> * [] = <3 @ () 🌟 #️⃣🌐
 <img src="public/images/icons/logos/wide.png" width="400" alt="DevFestAvatar Logo">
@@ -29,9 +30,12 @@ View full documentation, contributions, archieves and promotion details in the [
 
 ---
 ## GDG Promotions of the Avatar Creator Tool
-Below is an archive of previous promotional posts showing past collaboration with the Google Developer Groups (GDG) and Google for Developers (GfD) communities. The tool was a huge hit, and we're happy to work together again in 2025!
+Below is an archive of previous promotional posts showing past collaboration with the Google Developer Groups (GDG) and Google for Developers (GfD) communities. The tool was a huge hit, and we're happy to work together again in 2026!
 
- ### 2025 Google For Developers (GfD) Promos
+### 2026 Google For Developers (GfD) Promos
+*(Coming soon)*
+
+### 2025 Google For Developers (GfD) Promos
 
  <img src="extras/images/2025_linkedin.png" width="400" alt="GfD 2025 Linkedin Promo">
 

@@ -1,0 +1,73 @@
+.document-shell {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: clamp(1rem, 2vw, 2rem);
+}
+
+.document-page {
+  border: 3px solid var(--line);
+  background: rgba(248, 248, 245, 0.95);
+  box-shadow: var(--shadow);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.document-page header {
+  display: grid;
+  gap: 0.7rem;
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.document-page h1 {
+  max-width: none;
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
+}
+
+.document-page h2 {
+  margin-top: 1.8rem;
+  margin-bottom: 0.65rem;
+}
+
+.document-page p,
+.document-page li {
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.document-page ul {
+  display: grid;
+  gap: 0.45rem;
+  padding-left: 1.3rem;
+}
+
+.document-page .summary {
+  max-width: 66ch;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.back-link {
+  display: inline-flex;
+  width: fit-content;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: var(--pastel-blue);
+  color: var(--black-02);
+  padding: 0.55rem 0.9rem;
+  font-weight: 700;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  background: var(--pastel-yellow);
+  color: var(--black-02);
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .document-page {
+    background: rgba(23, 25, 28, 0.94);
+  }
+}

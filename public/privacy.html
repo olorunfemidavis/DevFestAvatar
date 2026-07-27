@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy | DevFest Avatar Creator</title>
+  <meta name="description"
+    content="Privacy information for DevFest Avatar Creator, including image processing, analytics, sharing, and usage counters." />
+  <link rel="canonical" href="https://devfestavatar.web.app/privacy.html" />
+  <link rel="shortcut icon" href="https://devfestavatar.web.app/images/icons/logos/logo.png" />
+  <meta name="theme-color" content="#f0f0f0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/privacy.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body class="mother">
+  <a class="skip-link" href="#privacy">Skip to privacy content</a>
+
+  <main class="document-shell" role="main">
+    <article id="privacy" class="document-page">
+      <header>
+        <p class="eyebrow">DevFest Avatar Creator</p>
+        <h1>Privacy</h1>
+        <p class="summary">
+          DevFest Avatar Creator is built to keep the basic avatar flow simple: upload, frame, download. This page
+          explains what happens to photos and usage data.
+        </p>
+        <a class="back-link" href="index.html">Back to creator</a>
+      </header>
+
+      <section>
+        <h2>Photos</h2>
+        <p>
+          When you upload a photo and choose a standard frame, the crop and frame merge happen in your browser. The
+          generated avatar is downloaded to your device. We do not intentionally store uploaded photos or generated
+          avatars from the standard frame flow.
+        </p>
+        <p>
+          If you choose the Gemini style, your selected image is sent to the DevFest Avatar Creator backend so the image
+          can be processed and returned. Do not use the Gemini style for images you do not want sent for AI processing.
+        </p>
+      </section>
+
+      <section>
+        <h2>Usage Counts</h2>
+        <p>
+          The app stores aggregate usage counters in Firebase, such as site visits, uploaded image count, total avatars
+          created, and selected frame colors. These counters are not intended to identify individual people.
+        </p>
+        <p>
+          Demo downloads made from the bundled sample images are not counted as created avatars or frame usage. On
+          localhost and development hosts, usage writes are disabled unless explicitly enabled for testing.
+        </p>
+      </section>
+
+      <section>
+        <h2>Analytics</h2>
+        <p>
+          The creator page uses Google Analytics to understand general site traffic and improve the experience. Google
+          may process information such as page views, browser details, approximate location, and referrer information
+          according to its own policies.
+        </p>
+      </section>
+
+      <section>
+        <h2>Sharing</h2>
+        <p>
+          Sharing buttons open the selected social platform in a new window with prepared text and the site URL. The
+          generated image is not automatically uploaded by those buttons. Any information you post on a social platform
+          is handled by that platform.
+        </p>
+      </section>
+
+      <section>
+        <h2>Local Files</h2>
+        <p>
+          The app may read the image file you choose through your browser's file picker. HEIC or HEIF images may be
+          converted in the browser before framing. The app does not get access to other files on your device.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>
+          For questions about this project, contact the maintainer through
+          <a href="https://github.com/olorunfemidavis/DevFestAvatar" target="_blank" rel="noopener">GitHub</a>
+          or
+          <a href="https://g.dev/olorunfemidavis" target="_blank" rel="noopener">g.dev/olorunfemidavis</a>.
+        </p>
+        <p>Last updated: July 27, 2026.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer themed-footer">
+    <div class="footer-inner">
+      <p>
+        Built with
+        <svg class="love-mark" viewBox="0 0 32 28" role="img" aria-label="love for open source" focusable="false">
+          <defs>
+            <clipPath id="love-mark-clip">
+              <path
+                d="M16 25.5C9.2 20.1 4 15.7 4 9.6 4 5.9 6.8 3 10.4 3c2.1 0 4.1 1 5.6 2.7C17.5 4 19.5 3 21.6 3 25.2 3 28 5.9 28 9.6c0 6.1-5.2 10.5-12 15.9Z" />
+            </clipPath>
+          </defs>
+          <g clip-path="url(#love-mark-clip)">
+            <rect class="love-mark-blue" x="0" y="0" width="16" height="14" />
+            <rect class="love-mark-red" x="16" y="0" width="16" height="14" />
+            <rect class="love-mark-yellow" x="0" y="14" width="16" height="14" />
+            <rect class="love-mark-green" x="16" y="14" width="16" height="14" />
+          </g>
+          <path class="love-mark-outline"
+            d="M16 25.5C9.2 20.1 4 15.7 4 9.6 4 5.9 6.8 3 10.4 3c2.1 0 4.1 1 5.6 2.7C17.5 4 19.5 3 21.6 3 25.2 3 28 5.9 28 9.6c0 6.1-5.2 10.5-12 15.9Z" />
+        </svg>
+        by
+        <a href="https://g.dev/olorunfemidavis" target="_blank" rel="noopener">Olorunfemi Davis</a>
+        and
+        <a href="https://gdg.community.dev/gdg-ado-ekiti" target="_blank" rel="noopener">GDG Ado-Ekiti</a>.
+      </p>
+      <div class="footer-links">
+        <a class="github-link" href="https://github.com/olorunfemidavis/DevFestAvatar" target="_blank" rel="noopener"
+          aria-label="View source on GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor"
+              d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.45 9.45 0 0 1 12 7.02c.85 0 1.7.11 2.5.33 1.9-1.29 2.74-1.02 2.74-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.67-4.57 4.92.36.31.68.92.68 1.86v2.58c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+          </svg>
+          GitHub
+        </a>
+        <a href="index.html">Creator</a>
+        <a target="_blank" rel="noopener" href="https://devfestbadge.web.app">Print badge</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

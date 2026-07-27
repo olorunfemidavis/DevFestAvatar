@@ -4,15 +4,10 @@
  * Sets the background and text color based on system theme.
  */
 function setThemeBackground() {
-  const mother = document.querySelector('.mother');
-  if (!mother) return;
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    mother.style.backgroundColor = '#111';
-    mother.style.color = '#fff';
-  } else {
-    mother.style.backgroundColor = '#fff';
-    mother.style.color = '#111';
-  }
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  if (!themeMeta) return;
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  themeMeta.setAttribute('content', isDark ? '#101214' : '#f8fafd');
 }
 
 window.setThemeBackground = setThemeBackground;

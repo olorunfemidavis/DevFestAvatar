@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const fetch = require('node-fetch');
 require('dotenv').config();
 const { generateGeminiImage } = require('./gemini');
 const { onRequest } = require("firebase-functions/v2/https");

@@ -1,0 +1,83 @@
+.footer {
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+  padding: 0.8rem 1rem;
+}
+
+.footer-inner p {
+  margin: 0;
+}
+
+.love-mark {
+  width: 1.5rem;
+  height: 1.32rem;
+  margin: 0 0.2rem;
+  vertical-align: -0.24rem;
+}
+
+.love-mark-outline {
+  stroke: var(--line);
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+}
+
+.love-mark-blue,
+.love-mark-red,
+.love-mark-yellow,
+.love-mark-green {
+  stroke: none;
+}
+
+.love-mark-blue {
+  fill: var(--blue);
+}
+
+.love-mark-red {
+  fill: var(--red);
+}
+
+.love-mark-yellow {
+  fill: var(--yellow);
+}
+
+.love-mark-green {
+  fill: var(--green);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.85rem;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.github-link svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+}
+
+.github-link:hover,
+.github-link:focus-visible {
+  color: var(--blue);
+  text-decoration: none;
+}

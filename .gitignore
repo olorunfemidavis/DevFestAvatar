@@ -66,3 +66,10 @@ node_modules/
 
 # Ignore environment files
 functions/.env
+
+# Local test and screenshot artifacts
+ui-checks/
+test-results/
+playwright-report/
+playwright/.cache/
+*.trace.zip

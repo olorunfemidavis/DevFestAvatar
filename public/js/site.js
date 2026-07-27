@@ -2,20 +2,34 @@
 // Handles UI, image cropping, merging, Gemini integration, and sharing
 
 window.onload = function () {
-  mdc.autoInit();
+  if (window.mdc && typeof mdc.autoInit === "function") {
+    mdc.autoInit();
+  }
   $(".dialog-mask").hide();
 };
 
 var currentColor = "";
 var rawImg = "";
-var assetImagesCount = 45;
-var TempImage = "images/assets/sample" + (Math.floor(Math.random() * assetImagesCount) + 1) + ".jpg";
+var assetImagesCount = 82;
+var TempImage = getRandomAssetImage();
 var ImageLength = 0;
 var general_to_crop;
+var hasUserUploadedImage = false;
+var currentGeneratedAvatarUrl = "";
+
+function getRandomAssetImage() {
+  var imageIndex = Math.floor(Math.random() * assetImagesCount) + 1;
+  return "images/assets/sample" + padAssetIndex(imageIndex) + ".webp";
+}
+
+function padAssetIndex(index) {
+  return ("000" + index).slice(-3);
+}
 
 function initializeUI() {
   // Initialize CropMe
   general_to_crop = $("#tocrop").cropme();
+  hideFramePicker();
 
   // Show default image and scale to fit crop window
   var cropContainerSize = 500;
@@ -29,6 +43,7 @@ function initializeUI() {
   rawImg = TempImage;
   ImageLength = imageSize;
   currentColor = "";
+  hasUserUploadedImage = false;
 
   // Use theme.js for theme handling
   window.setThemeBackground();
@@ -38,7 +53,13 @@ function initializeUI() {
 function setupEventListeners() {
   // Color button click handler
   $(".color-btn").on("click", function () {
+    if (!hasUserUploadedImage) {
+      toastr.info("Upload a photo first.");
+      return;
+    }
     currentColor = $(this).data("color");
+    $(".color-btn").removeClass("is-active");
+    $(this).addClass("is-active");
     if (rawImg !== "") {
       if (currentColor === "gemini") {
         CreateWithGemini();
@@ -81,6 +102,25 @@ function getFormattedTime() {
   return y + "-" + m + "-" + d + "-" + h + "-" + mi + "-" + s;
 }
 
+function setGeneratedAvatarPreview(base64Image) {
+  if (currentGeneratedAvatarUrl) {
+    URL.revokeObjectURL(currentGeneratedAvatarUrl);
+  }
+
+  currentGeneratedAvatarUrl = URL.createObjectURL(window.base64toBlob(base64Image));
+  var fileName = "DevFestMe-" + getFormattedTime() + ".png";
+
+  $("#downloadimg").attr({
+    href: currentGeneratedAvatarUrl,
+    download: fileName,
+  });
+  $("#share-avatar-img").attr("src", currentGeneratedAvatarUrl);
+  $("#downloadimg2").attr({
+    href: currentGeneratedAvatarUrl,
+    download: fileName,
+  });
+}
+
 // Download avatar with selected color
 function DownloadColor() {
   var template = "images/avatar/" + currentColor + ".png";
@@ -105,25 +145,24 @@ function DownloadColor() {
         ],
         { width: finalImageLength, height: finalImageLength }
       ).then((b64) => {
-        $("#downloadimg").attr({
-          href: URL.createObjectURL(window.base64toBlob(b64)),
-          download: "DevFestMe-" + getFormattedTime() + ".png",
-        });
+        setGeneratedAvatarPreview(b64);
         ShowLoading(false);
         $("#downloadimg").get(0).click();
         toastr.success("Downloading");
-        // Increment count in Firebase and update UI
-        window.trackTotalImagesCreated(function (newCount) {
-          $("#countSpan").text(newCount);
-        });
-        window.trackColorUsage(currentColor);
-        $("#share-section").show();
-        $("#share-avatar-img").attr("src", b64.startsWith('data:image') ? b64 : 'data:image/png;base64,' + b64.split(',')[1]);
-        $("#downloadimg2").attr({
-          href: URL.createObjectURL(window.base64toBlob(b64)),
-          download: "DevFestMe-" + getFormattedTime() + ".png",
-        });
+        if (hasUserUploadedImage) {
+          window.trackTotalImagesCreated(function (newCount) {
+            $("#countSpan").text(newCount);
+          });
+          window.trackColorUsage(currentColor);
+        }
+        $("#share-section").removeAttr("hidden").show();
+      }).catch(function () {
+        ShowLoading(false);
+        toastr.error("Could not generate avatar.");
       });
+    }).catch(function () {
+      ShowLoading(false);
+      toastr.error("Could not crop image.");
     });
 }
 
@@ -152,8 +191,21 @@ function CreateWithGemini() {
       }
       general_to_crop.cropme("bind", { url: rawImg });
     };
-    window.trackColorUsage(currentColor);
+    if (hasUserUploadedImage) {
+      window.trackColorUsage(currentColor);
+    }
   });
+}
+
+function hideFramePicker() {
+  $("#style-picker").attr("hidden", true);
+  $("#create-heading").text("Upload your photo");
+  $(".color-btn").removeClass("is-active");
+}
+
+function revealFramePicker() {
+  $("#style-picker").removeAttr("hidden");
+  $("#create-heading").text("Choose a DevFest style");
 }
 
 // Read and process uploaded file
@@ -161,6 +213,8 @@ function CreateWithGemini() {
 function readFile(input) {
   window.readImageFile(input, function (dataUrl) {
     rawImg = dataUrl;
+    hasUserUploadedImage = true;
+    revealFramePicker();
     general_to_crop.cropme("bind", { url: rawImg });
     var image = new Image();
     image.src = rawImg;
@@ -190,7 +244,9 @@ function ShowLoading(show) {
     if (!document.getElementById(overlayId)) {
       let overlay = document.createElement("div");
       overlay.id = overlayId;
-      overlay.innerHTML = '<div class="loading-spinner">Processing ...</div>';
+      overlay.setAttribute("role", "status");
+      overlay.setAttribute("aria-live", "polite");
+      overlay.innerHTML = '<div class="loading-spinner"><span class="loading-dot" aria-hidden="true"></span><span>Processing avatar...</span></div>';
       document.body.appendChild(overlay);
     }
     document.body.style.pointerEvents = "none";

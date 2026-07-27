@@ -1,0 +1,51 @@
+:root {
+  --font-headline: "Google Sans", "Product Sans", Arial, Helvetica, sans-serif;
+  --font-body: "Google Sans", "Product Sans", Arial, Helvetica, sans-serif;
+  --font-subhead: "Roboto Mono", "SFMono-Regular", Consolas, monospace;
+
+  --google-blue-500: #4285f4;
+  --google-green-500: #34a853;
+  --google-yellow-600: #f9ab00;
+  --google-yellow-500: #fbbc04;
+  --google-red-500: #ea4335;
+  --halftone-blue: #57caff;
+  --halftone-green: #5cdb6d;
+  --halftone-yellow: #ffd427;
+  --halftone-red: #ff7daf;
+  --pastel-blue: #c3ecf6;
+  --pastel-green: #ccf6c5;
+  --pastel-yellow: #ffe7a5;
+  --pastel-red: #f8d8d8;
+  --off-white: #f0f0f0;
+  --black-02: #1e1e1e;
+
+  --bg: var(--off-white);
+  --paper: var(--off-white);
+  --surface: #ffffff;
+  --text: var(--black-02);
+  --muted: #5f6368;
+  --line: var(--black-02);
+  --soft-line: #dfe5f2;
+  --blue: var(--google-blue-500);
+  --green: var(--google-green-500);
+  --yellow: var(--google-yellow-600);
+  --red: var(--google-red-500);
+  --pink: var(--halftone-red);
+  --cyan: var(--pastel-blue);
+  --shadow: 0 24px 70px rgba(60, 64, 67, 0.16);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--black-02);
+    --paper: var(--black-02);
+    --surface: #ffffff;
+    --text: var(--off-white);
+    --muted: #c5c8ce;
+    --line: var(--off-white);
+    --soft-line: #30353d;
+    --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
