@@ -6,7 +6,7 @@
  */
 async function shareTo(platform) {
   var url = encodeURIComponent('https://devfestavatar.web.app');
-  var shareText = "Build Safe, Secure and Scalable Solutions with AI and Cloud. My avatar is ready for #DevFest2025!\n\nLet's connect, learn, and build innovative, scalable, and ethically sound applications. Create yours: devfestavatar.web.app\n#DevFest #AI #GoogleCloud";
+  var shareText = "Build Safe, Secure and Scalable Solutions with AI and Cloud. My avatar is ready for #DevFest2026!\n\nLet's connect, learn, and build innovative, scalable, and ethically sound applications. Create yours: devfestavatar.web.app\n#DevFest #AI #GoogleCloud";
   var xText = encodeURIComponent(shareText + " via @olordavis, @gdgadoekiti");
   var linkedinText = encodeURIComponent(shareText + " via @olorunfemidavis, @gdgadoekiti");
   var facebookText = encodeURIComponent(shareText);
@@ -31,7 +31,7 @@ async function shareTo(platform) {
  * Copies the default caption to the clipboard.
  */
 function copyCaption() {
-  const caption = "Build Safe, Secure and Scalable Solutions with AI and Cloud. My avatar is ready for #DevFest2025!\n\nLet's connect, learn, and build innovative, scalable, and ethically sound applications. Create yours: devfestavatar.web.app\n#DevFest #AI #GoogleCloud";
+  const caption = "Build Safe, Secure and Scalable Solutions with AI and Cloud. My avatar is ready for #DevFest2026!\n\nLet's connect, learn, and build innovative, scalable, and ethically sound applications. Create yours: devfestavatar.web.app\n#DevFest #AI #GoogleCloud";
   if (navigator.clipboard) {
     navigator.clipboard.writeText(caption)
       .then(() => { toastr.success('Caption copied!'); })

@@ -61,7 +61,7 @@ DevFest Thematic Lighting: Weaving through this gentle ambiance are magical, lum
 Color Palette: The overall color scheme is rich and harmonious. The DevFest brand colors are seamlessly integrated into the Ghibli palette. The primary blues, greens, yellows, and reds are present but are saturated in a way that feels organic and painterly, not digital. The OFF White (#f0f0f0) of the building trims and the deep Black 02 (#1e1e1e) of the character's shirt provide grounding and contrast.
 Atmosphere: The mood is one of peaceful engagement and wonder. It's a snapshot of a person fully present, absorbing the knowledge and community around them. It combines the cozy, everyday magic of Studio Ghibli with the forward-thinking optimism of a developer conference, suggesting that technology, at its best, is a humanistic and creative endeavor.
 
-DevFest 2025 Branding Guidelines:
+DevFest 2026 Branding Guidelines:
 - Modern, clean, professional aesthetic
 - Use Google's core colors visually (do not render color codes, names, or hex values as text anywhere in the image): Blue 500 (#4285f4), Green 500 (#34a853), Yellow 600 (#f9ab00), Red 500 (#ea4335)
 - Halftones, pastels, and grayscale as accents
