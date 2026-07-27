@@ -17,6 +17,43 @@
   margin: 0;
 }
 
+.love-mark {
+  width: 1.5rem;
+  height: 1.32rem;
+  margin: 0 0.2rem;
+  vertical-align: -0.24rem;
+}
+
+.love-mark-outline {
+  stroke: var(--line);
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+}
+
+.love-mark-blue,
+.love-mark-red,
+.love-mark-yellow,
+.love-mark-green {
+  stroke: none;
+}
+
+.love-mark-blue {
+  fill: var(--blue);
+}
+
+.love-mark-red {
+  fill: var(--red);
+}
+
+.love-mark-yellow {
+  fill: var(--yellow);
+}
+
+.love-mark-green {
+  fill: var(--green);
+}
+
 .footer-links {
   display: flex;
   align-items: center;
