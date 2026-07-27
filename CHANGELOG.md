@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-07-28
+
+### Performance
+- Replaced the previous bundled JPG starter avatars with 82 anonymized 500x500 WebP assets.
+- Reduced bundled starter-avatar asset weight to about 3.17 MB.
+- Updated random starter-avatar selection to use zero-padded `sample001.webp` through `sample082.webp`.
+- Added Firebase Hosting cache headers for `/images/assets/**`.
+
+### Gemini
+- Split Gemini image generation code into focused modules for config, validation, background loading, prompt text, and API response handling.
+- Updated Gemini image generation request handling to use the current Interactions-style request shape while keeping the frontend response contract unchanged.
+- Sanitized bundled Gemini background prompts to remove old named-style wording and leftover clutter details.
+- Removed the one-off background sanitizing script after applying the cleanup.
+
+### Cleanup
+- Removed the unused `public/images/open_source.png` asset.
+- Removed the older `sample1.jpg` through `sample45.jpg` starter avatar assets.
+
 ## [Unreleased] - 2026-07-27
 
 ### Redesign
