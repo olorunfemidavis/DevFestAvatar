@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-No unreleased changes.
+### Bug Fixes
+- Reset Cropme image state and initial fit scale whenever a new image is loaded, so small and large uploads start centered in the preview instead of inheriting the previous crop position.
 
 ## [2026.1.2] - 2026-07-29
 
