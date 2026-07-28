@@ -1,75 +1,72 @@
 # DevFestAvatar
 
-DevFestAvatar is a web app for creating custom avatars for #DevFest 2026. This year's theme continues "Building Safe, Secure and Scalable Solutions with AI and Cloud." Easily generate, download, and share your unique DevFest look, and join the global conversation on responsible AI and scalable cloud solutions!
+DevFestAvatar is a lightweight web app for creating DevFest 2026 profile images. Users upload a photo, pick a DevFest frame, then download or share the result. The standard avatar flow runs in the browser; the optional Gemini mode uses Firebase Functions for image editing.
+
+Live app: [https://devfestavatar.web.app](https://devfestavatar.web.app)
+
+<img src="public/images/icons/logos/wide.png" width="400" alt="DevFestAvatar logo">
 
 ## Features
-- Create and customize your DevFest avatar
-- Gemini AI (Advanced Models) image editing powered by gemini-2.5-flash-image-preview
-- Download your avatar for use on social media
-- Share directly to X, Facebook, and LinkedIn
-- Mobile-friendly and responsive design
-- Stats counter for total avatars generated
-- Theming support (light/dark)
-- Enhanced security with latest dependencies
 
-### { } // + . -> <> * [] = <3 @ () 🌟 #️⃣🌐
-<img src="public/images/icons/logos/wide.png" width="400" alt="DevFestAvatar Logo">
+- Upload, crop, frame, download, and share DevFest avatars.
+- DevFest 2026 print-artifact inspired interface with light and dark theme support.
+- Responsive layout for phones, tablets, laptops, and large monitors.
+- Optional Gemini image edit flow through Firebase Functions.
+
+## Project Structure
+
+```text
+public/                 Static web app
+public/css/             Split frontend styles
+public/js/              Browser-side app logic
+functions/              Firebase Functions API
+```
+
+## Local Development
+
+Serve the static app:
+
+```powershell
+http-server ./public -p 8081
+```
+
+Open the URL printed by `http-server`.
+
+## Functions
+
+The Firebase function code requires Node.js 22.
+
+```powershell
+cd functions
+npm install
+npm run serve
+```
+
+Gemini image editing expects:
+
+```text
+GEMINI_API_KEY
+```
+
+The Gemini implementation is split into small modules under `functions/gemini/` for config, validation, prompt text, background loading, and response parsing.
+
+## Deployment
+
+Deploy hosting and functions with Firebase CLI:
+
+```powershell
+firebase deploy
+```
+
+Deploy functions only:
+
+```powershell
+cd functions
+npm run deploy
+```
 
 ## Contributing
-Want to improve the app? Clone the project, add your features, and create a PR so we can review and merge your changes!
 
-## Live Demo
-Find the app at: [https://devfestavatar.web.app](https://devfestavatar.web.app)
+Contributions are welcome. Keep changes small, test the browser flow on mobile and desktop, and avoid committing generated local-only artifacts.
 
-
----
-For questions or support, reach out me via email or to the GDG Ado-Ekiti team.
-
-## Wiki
-View full documentation, contributions, archieves and promotion details in the [Wiki](https://github.com/olorunfemidavis/DevFestAvatar/wiki)
-
----
-## GDG Promotions of the Avatar Creator Tool
-Below is an archive of previous promotional posts showing past collaboration with the Google Developer Groups (GDG) and Google for Developers (GfD) communities. The tool was a huge hit, and we're happy to work together again in 2026!
-
-### 2026 Google For Developers (GfD) Promos
-*(Coming soon)*
-
-### 2025 Google For Developers (GfD) Promos
-
- <img src="extras/images/2025_linkedin.png" width="400" alt="GfD 2025 Linkedin Promo">
-
- [LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7397061117279170560) 
-
-<img src="extras/images/2025_x.png" width="400" alt="GfD 2025 X Promo">
-
- [X post](https://x.com/googledevs/status/1991295425425326584) 
-   
-<img src="extras/images/2025_ig.png" width="400" alt="GfD 2025 IG Promo">
-
- [Instagram post](https://www.instagram.com/p/DRNryG1k1Sr/?img_index=3&igsh=b2wzdGRsa2twYWdl) 
-
----
-
- ### 2021 GfD Promo 
- <img src="extras/images/2021_featured.png" width="400" alt="GfD 2021 Promo"> 
-
- [X post](https://x.com/googledevs/status/1456338241062416392) 
-
- ### 2021 
- <img src="extras/images/2021.png" width="400" alt="GDG 2021 Promo"> 
-
- [X post](https://x.com/googledevgroups/status/1445780953473843200) 
-
- ### 2020
- <img src="extras/images/2020.png" width="400" alt="GDG 2020 Promo">
-
- [X post](https://x.com/googledevgroups/status/1317099289827549189) 
-
- ### 2019 
-
- <img src="extras/images/2019.png" width="400" alt="GDG 2019 Promo">
-
- [X post 1](https://x.com/googledevgroups/status/1174737006691311619) 
-
- [X post 2](https://x.com/googledevgroups/status/1174737006691311619) 
+Full documentation is in the [Wiki](https://github.com/olorunfemidavis/DevFestAvatar/wiki).
