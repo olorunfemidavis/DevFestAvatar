@@ -681,12 +681,15 @@
             var _this = this;
 
             window.onresize = this.resize.bind(this);
-            this.properties.image.src = obj.url;
             var properties = this.properties;
             var options = this.options;
             var self = this;
-            return new Promise(function (resolve) {
+            return new Promise(function (resolve, reject) {
               _this.properties.image.onload = function () {
+                properties.image.style.transform = "none";
+                properties.image.style.transformOrigin = "";
+                properties.image.style.opacity = 0;
+
                 var imageData = properties.image.getBoundingClientRect();
                 var containerData =
                   properties.container.getBoundingClientRect();
@@ -747,6 +750,8 @@
                 setRotationOrigin.call(self);
                 resolve(self.properties.image);
               };
+              _this.properties.image.onerror = reject;
+              _this.properties.image.src = obj.url;
             });
           },
         },

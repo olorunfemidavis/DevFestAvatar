@@ -48,6 +48,8 @@ Gemini image editing expects:
 GEMINI_API_KEY
 ```
 
+Firebase deploy loads function environment values from `functions/.env`. Keep the local `GEMINI_API_KEY` in that file current before deploying, and never commit the file.
+
 The Gemini implementation is split into small modules under `functions/gemini/` for config, validation, prompt text, background loading, and response parsing.
 
 ## Deployment

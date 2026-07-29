@@ -2,7 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2026-07-28
+## [Unreleased]
+
+### Gemini
+- Preserved the uploaded image aspect ratio and canvas shape in Gemini edits so users can crop the generated image in the app.
+
+### Bug Fixes
+- Reset Cropme image state and initial fit scale whenever a new image is loaded, so small and large uploads start centered in the preview instead of inheriting the previous crop position.
+
+## [2026.1.2] - 2026-07-29
+
+### Gemini
+- Fixed the deployed Gemini image function by deploying the current Interactions API implementation to production.
+- Synced the deployed function environment with a working `GEMINI_API_KEY` from the local environment.
+- Verified the production `/gemini-image` endpoint returns generated JPEG output.
+
+### Dependencies
+- Updated `firebase-functions` from `^4.9.0` to `^7.3.2` to resolve the Cloud Build peer dependency conflict with `firebase-admin@14.2.0`.
+
+## [2026.1.1] - 2026-07-28
 
 ### Performance
 - Replaced the previous bundled JPG starter avatars with 82 anonymized 500x500 WebP assets.

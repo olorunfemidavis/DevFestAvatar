@@ -16,6 +16,7 @@ var ImageLength = 0;
 var general_to_crop;
 var hasUserUploadedImage = false;
 var currentGeneratedAvatarUrl = "";
+var cropFallbackViewportSize = 375;
 
 function getRandomAssetImage() {
   var imageIndex = Math.floor(Math.random() * assetImagesCount) + 1;
@@ -31,23 +32,47 @@ function initializeUI() {
   general_to_crop = $("#tocrop").cropme();
   hideFramePicker();
 
-  // Show default image and scale to fit crop window
-  var cropContainerSize = 500;
-  var cropViewportSize = (3 / 4) * cropContainerSize;
-  var imageSize = 500;
-  var initialScale = cropViewportSize / imageSize;
-  general_to_crop.cropme("bind", {
-    url: TempImage,
-    position: { scale: initialScale },
-  });
   rawImg = TempImage;
-  ImageLength = imageSize;
   currentColor = "";
   hasUserUploadedImage = false;
+  bindImageForCropping(TempImage);
 
   // Use theme.js for theme handling
   window.setThemeBackground();
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', window.setThemeBackground);
+}
+
+function getCropViewportSize() {
+  var viewport = document.querySelector("#tocrop .viewport");
+  return viewport && viewport.offsetWidth ? viewport.offsetWidth : cropFallbackViewportSize;
+}
+
+function getInitialCropScale(width, height) {
+  var shortestSide = Math.max(1, Math.min(width, height));
+  return getCropViewportSize() / shortestSide;
+}
+
+function bindImageForCropping(url) {
+  return new Promise(function (resolve, reject) {
+    var image = new Image();
+    image.onload = function () {
+      var width = image.naturalWidth || image.width;
+      var height = image.naturalHeight || image.height;
+      ImageLength = Math.min(width, height);
+
+      general_to_crop.cropme("bind", {
+        url: url,
+        position: {
+          x: 0,
+          y: 0,
+          scale: getInitialCropScale(width, height),
+          angle: 0,
+        },
+      }).then(resolve);
+    };
+    image.onerror = reject;
+    image.src = url;
+  });
 }
 
 function setupEventListeners() {
@@ -182,15 +207,9 @@ function CreateWithGemini() {
     }
     toastr.info("Choose a color to download your Gemini-edited avatar!");
     rawImg = result.imageUrl;
-    var image = new Image();
-    image.src = rawImg;
-    image.onload = function () {
-      ImageLength = this.width;
-      if (this.height < this.width) {
-        ImageLength = this.height;
-      }
-      general_to_crop.cropme("bind", { url: rawImg });
-    };
+    bindImageForCropping(rawImg).catch(function () {
+      toastr.error("Could not load the Gemini-edited avatar.");
+    });
     if (hasUserUploadedImage) {
       window.trackColorUsage(currentColor);
     }
@@ -215,15 +234,9 @@ function readFile(input) {
     rawImg = dataUrl;
     hasUserUploadedImage = true;
     revealFramePicker();
-    general_to_crop.cropme("bind", { url: rawImg });
-    var image = new Image();
-    image.src = rawImg;
-    image.onload = function () {
-      ImageLength = this.width;
-      if (this.height < this.width) {
-        ImageLength = this.height;
-      }
-    };
+    bindImageForCropping(rawImg).catch(function () {
+      toastr.error("Could not load the selected image.");
+    });
   });
 }
 

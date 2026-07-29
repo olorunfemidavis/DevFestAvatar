@@ -4,7 +4,6 @@ const DEFAULT_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/inter
 const RESPONSE_FORMAT = {
     type: 'image',
     mime_type: 'image/jpeg',
-    aspect_ratio: '1:1',
     image_size: '512'
 };
 

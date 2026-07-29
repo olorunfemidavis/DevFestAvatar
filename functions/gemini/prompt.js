@@ -1,10 +1,23 @@
 function buildAvatarPrompt(backgroundDescription) {
-    return `Transform the uploaded photo into one square DevFest Avatar Creator preview image.
+    return `Step 1:
+Analyze the uploaded photo and derive a detailed internal description of the person's face, expression, pose, clothing, accessories, framing, lighting, and any notable features. Use that analysis only to preserve the person accurately in the generated image.
 
-Keep the person's recognizable identity, pose, face shape, skin tone, expression, and framing. Create a polished full-bleed 1:1 illustrated portrait that reads clearly at social-avatar size. Use a warm hand-painted animation look with soft watercolor texture, careful linework, gentle light, and modern editorial polish. Do not imitate any named artist, studio, or copyrighted character style.
+Step 2:
+Transform the uploaded photo into a DevFest Avatar Creator preview image.
+
+Preserve the uploaded image's original aspect ratio, orientation, canvas shape, and overall framing. Do not crop, zoom, pad, stretch, rotate, square, or recompose the image. Return an edited version of the same image shape so the user can choose the final crop in the app.
+
+Keep the person's recognizable identity, face shape, skin tone, expression, pose, clothing silhouette, accessories, and original framing. Create a polished full-bleed illustrated portrait that reads clearly at social-avatar size after the user crops it. Use a warm nostalgic hand-painted animation look with soft watercolor texture, careful linework, gentle light, and modern editorial polish. Do not imitate any named artist, studio, or copyrighted character style.
 
 Use this background as inspiration, but keep it secondary to the person:
 ${backgroundDescription}
+
+Atmosphere:
+- Primary lighting should feel soft, bright, and human: gentle overcast daylight, tender shadows, and a calm event-day glow rather than harsh contrast.
+- Add subtle DevFest thematic light as translucent painterly arcs, ribbons, or soft reflections in blue, green, yellow, and red. These accents should feel woven into the environment, not pasted on top.
+- Let the colors interact naturally with nearby surfaces: faint glow on walls, soft reflections on paths, glass, leaves, or clothing edges where appropriate.
+- The mood should communicate peaceful engagement, community, curiosity, and wonder: a person present in a creative developer gathering, surrounded by thoughtful visual energy.
+- Keep the image rich and vibrant, but avoid visual noise. The face must remain the clearest and most important element.
 
 DevFest 2026 Branding Guidelines:
 - Modern, clean, professional aesthetic
