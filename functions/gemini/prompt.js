@@ -3,9 +3,11 @@ function buildAvatarPrompt(backgroundDescription) {
 Analyze the uploaded photo and derive a detailed internal description of the person's face, expression, pose, clothing, accessories, framing, lighting, and any notable features. Use that analysis only to preserve the person accurately in the generated image.
 
 Step 2:
-Transform the uploaded photo into one square DevFest Avatar Creator preview image.
+Transform the uploaded photo into a DevFest Avatar Creator preview image.
 
-Keep the person's recognizable identity, face shape, skin tone, expression, pose, clothing silhouette, accessories, and original framing. Create a polished full-bleed 1:1 illustrated portrait that reads clearly at social-avatar size. Use a warm nostalgic hand-painted animation look with soft watercolor texture, careful linework, gentle light, and modern editorial polish. Do not imitate any named artist, studio, or copyrighted character style.
+Preserve the uploaded image's original aspect ratio, orientation, canvas shape, and overall framing. Do not crop, zoom, pad, stretch, rotate, square, or recompose the image. Return an edited version of the same image shape so the user can choose the final crop in the app.
+
+Keep the person's recognizable identity, face shape, skin tone, expression, pose, clothing silhouette, accessories, and original framing. Create a polished full-bleed illustrated portrait that reads clearly at social-avatar size after the user crops it. Use a warm nostalgic hand-painted animation look with soft watercolor texture, careful linework, gentle light, and modern editorial polish. Do not imitate any named artist, studio, or copyrighted character style.
 
 Use this background as inspiration, but keep it secondary to the person:
 ${backgroundDescription}

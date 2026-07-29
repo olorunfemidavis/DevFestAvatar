@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Gemini
+- Preserved the uploaded image aspect ratio and canvas shape in Gemini edits so users can crop the generated image in the app.
+
 ### Bug Fixes
 - Reset Cropme image state and initial fit scale whenever a new image is loaded, so small and large uploads start centered in the preview instead of inheriting the previous crop position.
 
