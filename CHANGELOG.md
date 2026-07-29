@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### Gemini
 - Preserved the uploaded image aspect ratio and canvas shape in Gemini edits so users can crop the generated image in the app.
+- Added dynamic Gemini output sizing based on uploaded image dimensions, capped at `1K` for cost and response-size control.
+- Expanded the Gemini background inspiration pool to 82 sanitized, background-only cultural scene descriptions.
 
 ### Bug Fixes
 - Reset Cropme image state and initial fit scale whenever a new image is loaded, so small and large uploads start centered in the preview instead of inheriting the previous crop position.
