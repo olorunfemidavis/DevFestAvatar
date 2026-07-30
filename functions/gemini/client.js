@@ -4,13 +4,13 @@ const {
     RESPONSE_FORMAT
 } = require('./config');
 
-async function sendGeminiImageRequest({ base64Data, mimeType, prompt }) {
+async function sendGeminiImageRequest({ base64Data, imageSize, mimeType, prompt }) {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) throw new Error('Missing Gemini API key in environment variables.');
 
     const endpoint = process.env.GEMINI_ENDPOINT || DEFAULT_ENDPOINT;
     const model = process.env.GEMINI_IMAGE_MODEL || DEFAULT_MODEL;
-    const requestBody = buildRequestBody({ base64Data, mimeType, model, prompt });
+    const requestBody = buildRequestBody({ base64Data, imageSize, mimeType, model, prompt });
 
     const response = await fetch(endpoint, {
         method: 'POST',
@@ -40,7 +40,7 @@ async function sendGeminiImageRequest({ base64Data, mimeType, prompt }) {
     return extractImage(result);
 }
 
-function buildRequestBody({ base64Data, mimeType, model, prompt }) {
+function buildRequestBody({ base64Data, imageSize, mimeType, model, prompt }) {
     return {
         model,
         input: [
@@ -51,7 +51,10 @@ function buildRequestBody({ base64Data, mimeType, model, prompt }) {
                 data: base64Data
             }
         ],
-        response_format: RESPONSE_FORMAT
+        response_format: {
+            ...RESPONSE_FORMAT,
+            image_size: imageSize || RESPONSE_FORMAT.image_size
+        }
     };
 }
 
