@@ -61,7 +61,7 @@
   transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
 }
 
-.upload span {
+.upload .upload-icon {
   display: inline-grid;
   width: 1.35rem;
   height: 1.35rem;
@@ -69,6 +69,7 @@
   border: 2px solid var(--black-02);
   border-radius: 50%;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .upload:hover,
@@ -217,17 +218,34 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .agenda-steps li,
-  .color-btn strong {
-    color: var(--black-02);
+  .agenda-steps li {
+    background: #1e1e1e;
+    border-color: #30353d;
+    color: #f0f0f0;
   }
 
-  .agenda-steps li::before,
-  .color-btn span {
-    color: #5f6368;
+  .agenda-steps li::before {
+    color: #94a3b8;
   }
 
   .color-btn {
-    background: #ffffff;
+    background: #1e1e1e;
+    border-color: #30353d;
+    color: #f0f0f0;
+  }
+
+  .color-btn strong {
+    color: #f0f0f0;
+  }
+
+  .color-btn span {
+    color: #c5c8ce;
+  }
+
+  .color-btn:hover,
+  .color-btn:focus-visible,
+  .color-btn.is-active {
+    border-color: var(--pastel-blue);
+    box-shadow: 4px 4px 0 var(--pastel-blue);
   }
 }

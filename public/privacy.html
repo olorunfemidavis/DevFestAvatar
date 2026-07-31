@@ -102,7 +102,7 @@
   <footer class="footer themed-footer">
     <div class="footer-inner">
       <p>
-        Built with
+        <span data-i18n="footer_built_with">Built with</span>
         <svg class="love-mark" viewBox="0 0 32 28" role="img" aria-label="love for open source" focusable="false">
           <defs>
             <clipPath id="love-mark-clip">
@@ -119,12 +119,28 @@
           <path class="love-mark-outline"
             d="M16 25.5C9.2 20.1 4 15.7 4 9.6 4 5.9 6.8 3 10.4 3c2.1 0 4.1 1 5.6 2.7C17.5 4 19.5 3 21.6 3 25.2 3 28 5.9 28 9.6c0 6.1-5.2 10.5-12 15.9Z" />
         </svg>
-        by
+        <span data-i18n="footer_by">by</span>
         <a href="https://g.dev/olorunfemidavis" target="_blank" rel="noopener">Olorunfemi Davis</a>
-        and
+        <span data-i18n="footer_and">and</span>
         <a href="https://gdg.community.dev/gdg-ado-ekiti" target="_blank" rel="noopener">GDG Ado-Ekiti</a>.
       </p>
       <div class="footer-links">
+        <div class="lang-selector-wrapper">
+          <select id="language-select" class="lang-select" aria-label="Select Language">
+            <option value="en">🌐 English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="pt">Português</option>
+            <option value="yo">Èdè Yorùbá</option>
+            <option value="de">Deutsch</option>
+            <option value="tr">Türkçe</option>
+            <option value="ar">العربية</option>
+            <option value="hi">हिन्दी</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="sw">Kiswahili</option>
+          </select>
+        </div>
         <a class="github-link" href="https://github.com/olorunfemidavis/DevFestAvatar" target="_blank" rel="noopener"
           aria-label="View source on GitHub">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -134,10 +150,24 @@
           GitHub
         </a>
         <a href="index.html">Creator</a>
-        <a target="_blank" rel="noopener" href="https://devfestbadge.web.app">Print badge</a>
+        <a target="_blank" rel="noopener" href="https://devfestbadge.web.app" data-i18n="footer_link_print_badge">Print badge</a>
       </div>
     </div>
   </footer>
+  <script src="js/i18n.js"></script>
+  <script>
+    if (window.i18n && typeof window.i18n.init === 'function') {
+      window.i18n.init();
+    }
+    var sel = document.getElementById('language-select');
+    if (sel) {
+      sel.addEventListener('change', function (e) {
+        if (window.i18n && typeof window.i18n.setLanguage === 'function') {
+          window.i18n.setLanguage(e.target.value);
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>
