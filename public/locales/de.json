@@ -6,8 +6,8 @@
   "create_eyebrow": "Erstellen",
   "create_title": "Laden Sie Ihr Foto hoch",
   "step_1": "Foto hochladen",
-  "step_2": "Rahmen wählen (automatischer Download)",
-  "step_3": "Avatar teilen",
+  "step_2": "Rahmen wählen",
+  "step_3": "Teilen Sie Ihr Avatar",
   "upload_btn": "Foto hochladen",
   "language_selector_label": "Sprache",
 
@@ -45,6 +45,7 @@
 
   "toast_photo_uploaded": "Foto hochgeladen! Wählen Sie jetzt einen Rahmenstil.",
   "toast_avatar_downloaded": "{color}-Avatar heruntergeladen!",
+  "toast_avatar_created": "{color}-Avatar erstellt! Klicken Sie unten auf Herunterladen.",
   "toast_caption_copied": "Text in Zwischenablage kopiert!",
   "default_share_caption": "Ich habe gerade meinen #DevFest 2026 Profil-Avatar erstellt! Treten Sie Ihrer lokalen Google Developer Group bei unter https://devfestavatar.web.app"
 }

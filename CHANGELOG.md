@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### UI & UX Enhancements
+- **Disabled Auto-Download**: Removed automatic file download upon selecting a frame color. Users now preview their framed avatar in the UI and manually click download when ready.
+- **Smooth Panel Focus**: Added automatic smooth scrolling to the **Ready** panel upon frame generation, bringing the preview and download actions directly into view on mobile screens.
+- **Redesigned Ready Panel Buttons**:
+  - Elevated the **Download** button to the primary CTA button (Google Blue with white text and yellow hover in dark mode; primary pastel blue in light mode).
+  - Redesigned secondary share and copy buttons for dark theme to eliminate bright white glare (`#1e1e1e` dark surface with soft borders and subtle hover glows).
+  - Updated Step 2 title to "Pick a frame".
+
+### Security & Database Rules
+- Added `database.rules.json` to enforce Realtime Database security rules (public reads, historical `2025` data protection, type validation, and monotonic counter increments).
+- Configured `firebase.json` with `"database": { "rules": "database.rules.json" }`.
+
+### Documentation
+- Added multi-lingual `README.md` documentation across 10 strategic languages (`es`, `fr`, `pt`, `yo`, `de`, `tr`, `ar`, `hi`, `ja`, `sw`) in `docs/locales/`.
+
 ## [2026.1.3] - 2026-07-31
 
 ### Localization

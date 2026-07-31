@@ -204,8 +204,9 @@
   background: var(--surface);
   color: var(--black-02);
   cursor: pointer;
-  padding: 0 0.85rem;
+  padding: 0 1rem;
   font-weight: 700;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
 }
 
 .share-actions button:hover,
@@ -215,6 +216,18 @@
   background: var(--pastel-yellow);
   color: var(--black-02);
   text-decoration: none;
+}
+
+.share-actions .btn-download-primary {
+  background: var(--pastel-blue);
+  color: var(--black-02);
+  border-color: var(--black-02);
+}
+
+.share-actions .btn-download-primary:hover,
+.share-actions .btn-download-primary:focus-visible {
+  background: var(--pastel-yellow);
+  box-shadow: 4px 4px 0 var(--black-02);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -269,5 +282,35 @@
   .upload:hover .upload-icon,
   .upload:focus-visible .upload-icon {
     border-color: #1e1e1e;
+  }
+
+  .share-actions button,
+  .share-actions a {
+    background: #1e1e1e;
+    border-color: #30353d;
+    color: #f0f0f0;
+  }
+
+  .share-actions button:hover,
+  .share-actions button:focus-visible,
+  .share-actions a:hover,
+  .share-actions a:focus-visible {
+    background: #2a2e35;
+    border-color: var(--pastel-blue);
+    color: #ffffff;
+    box-shadow: 2px 2px 0 var(--pastel-blue);
+  }
+
+  .share-actions .btn-download-primary {
+    background: var(--google-blue-500, #4285f4);
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+
+  .share-actions .btn-download-primary:hover,
+  .share-actions .btn-download-primary:focus-visible {
+    background: var(--google-yellow-500, #fbbc04);
+    color: #1e1e1e;
+    box-shadow: 4px 4px 0 #ffffff;
   }
 }

@@ -6,8 +6,8 @@
   "create_eyebrow": "बनाएं",
   "create_title": "अपनी तस्वीर अपलोड करें",
   "step_1": "तस्वीर अपलोड करें",
-  "step_2": "फ्रेम चुनें (स्वचालित डाउनलोड)",
-  "step_3": "अपना अवतार शेयर करें",
+  "step_2": "फ्रेम चुनें",
+  "step_3": "अपना अवतार साझा करें",
   "upload_btn": "तस्वीर अपलोड करें",
   "language_selector_label": "भाषा",
 
@@ -45,6 +45,7 @@
 
   "toast_photo_uploaded": "तस्वीर अपलोड हो गई! अब एक फ्रेम स्टाइल चुनें।",
   "toast_avatar_downloaded": "{color} अवतार डाउनलोड हो गया!",
+  "toast_avatar_created": "{color} अवतार तैयार है! नीचे डाउनलोड पर क्लिक करें।",
   "toast_caption_copied": "कैप्शन क्लिपबोर्ड पर कॉपी हो गया!",
   "default_share_caption": "मैंने अभी अपना #DevFest 2026 अवतार बनाया! अपने स्थानीय Google Developer Group में शामिल हों: https://devfestavatar.web.app"
 }

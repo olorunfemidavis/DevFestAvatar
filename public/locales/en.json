@@ -6,7 +6,7 @@
   "create_eyebrow": "Create",
   "create_title": "Upload your photo",
   "step_1": "Upload a photo",
-  "step_2": "Pick a frame (auto-downloads)",
+  "step_2": "Pick a frame",
   "step_3": "Share your avatar",
   "upload_btn": "Upload photo",
   "language_selector_label": "Language",
@@ -45,6 +45,7 @@
 
   "toast_photo_uploaded": "Photo uploaded! Now select a frame style.",
   "toast_avatar_downloaded": "{color} avatar downloaded!",
+  "toast_avatar_created": "{color} avatar created! Click Download below.",
   "toast_caption_copied": "Caption copied to clipboard!",
   "default_share_caption": "I just generated my #DevFest 2026 profile avatar! Join your local Google Developer Group and frame your photo at https://devfestavatar.web.app"
 }

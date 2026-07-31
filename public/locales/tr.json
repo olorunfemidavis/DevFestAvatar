@@ -6,7 +6,7 @@
   "create_eyebrow": "Oluştur",
   "create_title": "Fotoğrafınızı yükleyin",
   "step_1": "Fotoğraf yükleyin",
-  "step_2": "Çerçeve seçin (otomatik indirilir)",
+  "step_2": "Çerçeve seçin",
   "step_3": "Profil resminizi paylaşın",
   "upload_btn": "Fotoğraf yükle",
   "language_selector_label": "Dil",
@@ -45,6 +45,7 @@
 
   "toast_photo_uploaded": "Fotoğraf yüklendi! Şimdi bir çerçeve stili seçin.",
   "toast_avatar_downloaded": "{color} profil resmi indirildi!",
+  "toast_avatar_created": "{color} profil resmi oluşturuldu! Aşağıdaki İndir düğmesine tıklayın.",
   "toast_caption_copied": "Metin panoya kopyalandı!",
   "default_share_caption": "#DevFest 2026 profil resmimi oluşturdum! Siz de yerel Google Developer Group topluluğunuza katılın: https://devfestavatar.web.app"
 }

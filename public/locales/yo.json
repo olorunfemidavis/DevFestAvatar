@@ -6,8 +6,8 @@
   "create_eyebrow": "Ṣèdá",
   "create_title": "Tẹ àwòrán rẹ síbẹ̀",
   "step_1": "Tẹ àwòrán síbẹ̀",
-  "step_2": "Mu fírẹ́ẹ̀mù kan (ìgbà síbẹ̀ fúnra rẹ̀)",
-  "step_3": "Pín àwòrán rẹ",
+  "step_2": "Mu fírẹ́ẹ̀mù kan",
+  "step_3": "Pín àwòrán prófílì rẹ",
   "upload_btn": "Tẹ àwòrán síbẹ̀",
   "language_selector_label": "Èdè",
 
@@ -45,6 +45,7 @@
 
   "toast_photo_uploaded": "A ti tẹ àwòrán síbẹ̀! Mu irú fírẹ́ẹ̀mù tí o fẹ́ nísinsìnyí.",
   "toast_avatar_downloaded": "A ti gba àwòrán prófílì {color} síbẹ̀!",
+  "toast_avatar_created": "Àwòrán prófílì {color} ti ṣe tán! Tẹ Gba síbẹ̀ nísàlẹ̀.",
   "toast_caption_copied": "A ti ṣàdàkọ àkọsílẹ̀ sí clipboard!",
   "default_share_caption": "Mo ṣẹ̀ṣẹ̀ ṣe àwòrán prófílì mi fún #DevFest 2026! Hù pọ̀ mọ́ Google Developer Group tìrẹ ní https://devfestavatar.web.app"
 }

@@ -6,7 +6,7 @@
   "create_eyebrow": "Créer",
   "create_title": "Importer votre photo",
   "step_1": "Importez une photo",
-  "step_2": "Choisissez un cadre (téléchargement auto)",
+  "step_2": "Choisissez un cadre",
   "step_3": "Partagez votre avatar",
   "upload_btn": "Importer une photo",
   "language_selector_label": "Langue",
@@ -45,6 +45,7 @@
 
   "toast_photo_uploaded": "Photo importée ! Choisissez maintenant un style de cadre.",
   "toast_avatar_downloaded": "Avatar {color} téléchargé !",
+  "toast_avatar_created": "Avatar {color} créé ! Cliquez sur Télécharger ci-dessous.",
   "toast_caption_copied": "Légende copiée dans le presse-papiers !",
   "default_share_caption": "Je viens de générer mon avatar de profil #DevFest 2026 ! Rejoignez votre Google Developer Group local sur https://devfestavatar.web.app"
 }
