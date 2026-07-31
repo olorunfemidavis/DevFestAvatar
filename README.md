@@ -1,5 +1,8 @@
 # DevFestAvatar
 
+**Read this in other languages:**  
+[English](README.md) | [Español](docs/locales/README.es.md) | [Français](docs/locales/README.fr.md) | [Português](docs/locales/README.pt.md) | [Èdè Yorùbá](docs/locales/README.yo.md) | [Deutsch](docs/locales/README.de.md) | [Türkçe](docs/locales/README.tr.md) | [العربية](docs/locales/README.ar.md) | [हिन्दी](docs/locales/README.hi.md) | [日本語](docs/locales/README.ja.md) | [Kiswahili](docs/locales/README.sw.md)
+
 DevFestAvatar is a lightweight web app for creating DevFest 2026 profile images. Users upload a photo, pick a DevFest frame, then download or share the result. The standard avatar flow runs in the browser; the optional Gemini mode uses Firebase Functions for image editing.
 
 Live app: [https://devfestavatar.web.app](https://devfestavatar.web.app)
