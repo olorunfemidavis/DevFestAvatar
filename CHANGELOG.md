@@ -4,13 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2026.1.4] - 2026-07-31
+
 ### UI & UX Enhancements
-- **Disabled Auto-Download**: Removed automatic file download upon selecting a frame color. Users now preview their framed avatar in the UI and manually click download when ready.
+- **Disabled Auto-Download**: Removed automatic file download upon selecting a color. Users now preview their framed avatar in the UI and manually click download when ready.
 - **Smooth Panel Focus**: Added automatic smooth scrolling to the **Ready** panel upon frame generation, bringing the preview and download actions directly into view on mobile screens.
+- **Mobile 2-Column Grid**: Optimized the frame style picker on mobile screens into a compact 2-column grid, featuring Gemini AI Edit as a full-width spanned row to cut vertical scroll height by 50%.
 - **Redesigned Ready Panel Buttons**:
   - Elevated the **Download** button to the primary CTA button (Google Blue with white text and yellow hover in dark mode; primary pastel blue in light mode).
   - Redesigned secondary share and copy buttons for dark theme to eliminate bright white glare (`#1e1e1e` dark surface with soft borders and subtle hover glows).
-  - Updated Step 2 title to "Pick a frame".
+  - Updated Step 2 title to "Pick a color" across all 12 supported languages.
 
 ### Security & Database Rules
 - Added `database.rules.json` to enforce Realtime Database security rules (public reads, historical `2025` data protection, type validation, and monotonic counter increments).

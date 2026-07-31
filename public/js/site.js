@@ -241,7 +241,7 @@ function revealFramePicker() {
   if (window.i18n && typeof window.i18n.t === 'function') {
     $("#create-heading").text(window.i18n.t('step_2'));
   } else {
-    $("#create-heading").text("Choose a DevFest style");
+    $("#create-heading").text("Pick a color");
   }
 }
 
