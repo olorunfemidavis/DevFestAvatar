@@ -248,4 +248,26 @@
     border-color: var(--pastel-blue);
     box-shadow: 4px 4px 0 var(--pastel-blue);
   }
+
+  .upload {
+    background: var(--google-blue-500, #4285f4);
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+
+  .upload .upload-icon {
+    border-color: #ffffff;
+  }
+
+  .upload:hover,
+  .upload:focus-visible {
+    background: var(--google-yellow-500, #fbbc04);
+    color: #1e1e1e;
+    box-shadow: 6px 6px 0 #ffffff;
+  }
+
+  .upload:hover .upload-icon,
+  .upload:focus-visible .upload-icon {
+    border-color: #1e1e1e;
+  }
 }
