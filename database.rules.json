@@ -1,0 +1,23 @@
+{
+  "rules": {
+    ".read": true,
+    "$year": {
+      "usage": {
+        "siteVisits": {
+          ".write": "$year >= '2026' && newData.isNumber() && newData.val() >= 0 && (!data.exists() || newData.val() >= data.val())"
+        },
+        "imageUploads": {
+          ".write": "$year >= '2026' && newData.isNumber() && newData.val() >= 0 && (!data.exists() || newData.val() >= data.val())"
+        },
+        "totalImages": {
+          ".write": "$year >= '2026' && newData.isNumber() && newData.val() >= 0 && (!data.exists() || newData.val() >= data.val())"
+        },
+        "colors": {
+          "$color": {
+            ".write": "$year >= '2026' && newData.isNumber() && newData.val() >= 0 && (!data.exists() || newData.val() >= data.val())"
+          }
+        }
+      }
+    }
+  }
+}
