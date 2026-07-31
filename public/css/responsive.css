@@ -37,9 +37,9 @@
     padding: 1rem;
   }
 
-  .agenda-steps,
   .style-picker {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
   }
 
   .agenda-steps {
@@ -84,7 +84,26 @@
   }
 
   .color-btn {
-    min-height: 4.5rem;
+    grid-template-columns: 2.4rem 1fr;
+    min-height: 3.6rem;
+    padding: 0.45rem 0.55rem;
+  }
+
+  .color-btn::before {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .color-btn strong {
+    font-size: 0.85rem;
+  }
+
+  .color-btn span {
+    font-size: 0.7rem;
+  }
+
+  .color-gemini {
+    grid-column: 1 / -1;
   }
 
   .footer {
