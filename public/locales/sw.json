@@ -6,8 +6,8 @@
   "create_eyebrow": "Tengeneza",
   "create_title": "Pakia picha yako",
   "step_1": "Pakia picha",
-  "step_2": "Chagua fremu (inajipakua yenyewe)",
-  "step_3": "Shiriki picha yako",
+  "step_2": "Chagua fremu",
+  "step_3": "Shiriki picha yako ya profaili",
   "upload_btn": "Pakia picha",
   "language_selector_label": "Lugha",
 
@@ -45,6 +45,7 @@
 
   "toast_photo_uploaded": "Picha imepakuliwa! Sasa chagua mtindo wa fremu.",
   "toast_avatar_downloaded": "Picha ya profaili ya {color} imepakuliwa!",
+  "toast_avatar_created": "Picha ya profaili ya {color} imetengenezwa! Bonyeza Pakua hapo chini.",
   "toast_caption_copied": "Maelezo yamenakiliwa kwenye ubao wa kunakili!",
   "default_share_caption": "Nimetengeneza picha yangu ya profaili ya #DevFest 2026! Jiunge na Google Developer Group yako ya eneo lako kwenye https://devfestavatar.web.app"
 }

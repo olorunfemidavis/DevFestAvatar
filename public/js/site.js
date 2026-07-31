@@ -182,10 +182,9 @@ function DownloadColor() {
       ).then((b64) => {
         setGeneratedAvatarPreview(b64);
         ShowLoading(false);
-        $("#downloadimg").get(0).click();
         var downloadMsg = (window.i18n && typeof window.i18n.t === 'function')
-          ? window.i18n.t('toast_avatar_downloaded', { color: currentColor })
-          : 'Downloading';
+          ? window.i18n.t('toast_avatar_created', { color: currentColor })
+          : 'Avatar ready! Click Download below.';
         toastr.success(downloadMsg);
         if (hasUserUploadedImage) {
           window.trackTotalImagesCreated(function (newCount) {
@@ -194,6 +193,10 @@ function DownloadColor() {
           window.trackColorUsage(currentColor);
         }
         $("#share-section").removeAttr("hidden");
+        var shareElem = document.getElementById("share-section");
+        if (shareElem && typeof shareElem.scrollIntoView === "function") {
+          shareElem.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       });
     });
 }

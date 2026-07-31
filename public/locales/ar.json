@@ -6,7 +6,7 @@
   "create_eyebrow": "إنشاء",
   "create_title": "تحميل صورتك",
   "step_1": "تحميل صورة",
-  "step_2": "اختر إطاراً (تنزيل تلقائي)",
+  "step_2": "اختر إطاراً",
   "step_3": "شارك صورتك الرمزية",
   "upload_btn": "تحميل صورة",
   "language_selector_label": "اللغة",
@@ -45,6 +45,7 @@
 
   "toast_photo_uploaded": "تم تحميل الصورة! اختر الآن نمط الإطار.",
   "toast_avatar_downloaded": "تم تنزيل الصورة الرمزية باللون {color}!",
+  "toast_avatar_created": "الصورة الرمزية باللون {color} جاهزة! انقر فوق تنزيل أدناه.",
   "toast_caption_copied": "تم نسخ النص إلى الحافظة!",
   "default_share_caption": "لقد قمت للتو بإنشاء صورتي الرمزية لـ #DevFest 2026! انضم إلى مجموعة مطوري جوجل المحلية: https://devfestavatar.web.app"
 }

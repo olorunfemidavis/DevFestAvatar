@@ -6,7 +6,7 @@
   "create_eyebrow": "생성",
   "create_title": "사진 업로드",
   "step_1": "사진 업로드",
-  "step_2": "프레임 선택 (자동 다운로드)",
+  "step_2": "프레임 선택",
   "step_3": "아바타 공유",
   "upload_btn": "사진 업로드",
   "language_selector_label": "언어",
@@ -45,6 +45,7 @@
 
   "toast_photo_uploaded": "사진이 업로드되었습니다! 프레임 스타일을 선택하세요.",
   "toast_avatar_downloaded": "{color} 아바타가 다운로드되었습니다!",
+  "toast_avatar_created": "{color} 아바타가 생성되었습니다! 아래 다운로드를 클릭하세요.",
   "toast_caption_copied": "문구가 클립보드에 복사되었습니다!",
   "default_share_caption": "#DevFest 2026 프로필 아바타를 만들었습니다! 현지 Google Developer Group에 참여하세요: https://devfestavatar.web.app"
 }
