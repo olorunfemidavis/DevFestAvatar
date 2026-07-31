@@ -1,12 +1,19 @@
 // Social sharing and clipboard utilities for DevFest Avatar Creator
 
+function t(key, params) {
+  if (window.i18n && typeof window.i18n.t === 'function') {
+    return window.i18n.t(key, params);
+  }
+  return key;
+}
+
 /**
  * Opens a social share dialog for the selected platform.
  * @param {string} platform - 'x', 'facebook', or 'linkedin'
  */
 async function shareTo(platform) {
   var url = encodeURIComponent('https://devfestavatar.web.app');
-  var shareText = "My profile is ready for #DevFest2026.\n\nDevFest returns October 1 - December 31, 2026 with community-led sessions, workshops, and builders everywhere. Create yours: devfestavatar.web.app\n#DevFest #GoogleDeveloperGroups";
+  var shareText = t('default_share_caption');
   var xText = encodeURIComponent(shareText + " via @olordavis, @gdgadoekiti");
   var linkedinText = encodeURIComponent(shareText + " via @olorunfemidavis, @gdgadoekiti");
   var facebookText = encodeURIComponent(shareText);
@@ -31,10 +38,11 @@ async function shareTo(platform) {
  * Copies the default caption to the clipboard.
  */
 function copyCaption() {
-  const caption = "My profile is ready for #DevFest2026.\n\nDevFest returns October 1 - December 31, 2026 with community-led sessions, workshops, and builders everywhere. Create yours: devfestavatar.web.app\n#DevFest #GoogleDeveloperGroups";
+  const caption = t('default_share_caption');
+  const successMsg = t('toast_caption_copied');
   if (navigator.clipboard) {
     navigator.clipboard.writeText(caption)
-      .then(() => { toastr.success('Caption copied!'); })
+      .then(() => { toastr.success(successMsg); })
       .catch(() => { toastr.error('Failed to copy caption.'); });
   } else {
     const textarea = document.createElement('textarea');
@@ -43,7 +51,7 @@ function copyCaption() {
     textarea.select();
     try {
       document.execCommand('copy');
-      toastr.success('Caption copied!');
+      toastr.success(successMsg);
     } catch (err) {
       toastr.error('Failed to copy caption.');
     }

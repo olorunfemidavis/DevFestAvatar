@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2026.1.3] - 2026-07-31
+
+### Localization
+- Added comprehensive multi-language localization (i18n) supporting 12 strategic GDG languages: English (`en`), Spanish (`es`), French (`fr`), Portuguese (`pt`), Yoruba (`yo`), German (`de`), Turkish (`tr`), Arabic (`ar` with RTL support), Hindi (`hi`), Japanese (`ja`), Korean (`ko`), and Swahili (`sw`).
+- Added browser language autodetection, URL language overrides (`?lang=yo`), `localStorage` persistence, and a footer language selector dropdown.
+- Localized all UI headings, step cards, style picker badge descriptions, upload buttons, share captions, and community count stat lines across `index.html` and `privacy.html`.
+- Updated dark theme styling for step cards and footer language selector to maintain high contrast and visual alignment.
+
 ### Gemini
 - Preserved the uploaded image aspect ratio and canvas shape in Gemini edits so users can crop the generated image in the app.
 - Added dynamic Gemini output sizing based on uploaded image dimensions, capped at `1K` for cost and response-size control.

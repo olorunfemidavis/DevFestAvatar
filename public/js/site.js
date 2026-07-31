@@ -105,6 +105,10 @@ function setupEventListeners() {
 }
 
 function performDeferredTasks() {
+  if (window.i18n && typeof window.i18n.init === 'function') {
+    window.i18n.init();
+  }
+
   // Track site visit on every page load
   window.trackSiteVisit();
 
@@ -114,6 +118,12 @@ function performDeferredTasks() {
       $("#countSpan").text(snapshot.val() || 0);
     });
   }
+
+  $("#language-select").on("change", function (e) {
+    if (window.i18n && typeof window.i18n.setLanguage === 'function') {
+      window.i18n.setLanguage(e.target.value);
+    }
+  });
 }
 
 function getFormattedTime() {
@@ -173,21 +183,18 @@ function DownloadColor() {
         setGeneratedAvatarPreview(b64);
         ShowLoading(false);
         $("#downloadimg").get(0).click();
-        toastr.success("Downloading");
+        var downloadMsg = (window.i18n && typeof window.i18n.t === 'function')
+          ? window.i18n.t('toast_avatar_downloaded', { color: currentColor })
+          : 'Downloading';
+        toastr.success(downloadMsg);
         if (hasUserUploadedImage) {
           window.trackTotalImagesCreated(function (newCount) {
             $("#countSpan").text(newCount);
           });
           window.trackColorUsage(currentColor);
         }
-        $("#share-section").removeAttr("hidden").show();
-      }).catch(function () {
-        ShowLoading(false);
-        toastr.error("Could not generate avatar.");
+        $("#share-section").removeAttr("hidden");
       });
-    }).catch(function () {
-      ShowLoading(false);
-      toastr.error("Could not crop image.");
     });
 }
 
@@ -218,13 +225,21 @@ function CreateWithGemini() {
 
 function hideFramePicker() {
   $("#style-picker").attr("hidden", true);
-  $("#create-heading").text("Upload your photo");
+  if (window.i18n && typeof window.i18n.t === 'function') {
+    $("#create-heading").text(window.i18n.t('create_title'));
+  } else {
+    $("#create-heading").text("Upload your photo");
+  }
   $(".color-btn").removeClass("is-active");
 }
 
 function revealFramePicker() {
   $("#style-picker").removeAttr("hidden");
-  $("#create-heading").text("Choose a DevFest style");
+  if (window.i18n && typeof window.i18n.t === 'function') {
+    $("#create-heading").text(window.i18n.t('step_2'));
+  } else {
+    $("#create-heading").text("Choose a DevFest style");
+  }
 }
 
 // Read and process uploaded file
@@ -237,6 +252,9 @@ function readFile(input) {
     bindImageForCropping(rawImg).catch(function () {
       toastr.error("Could not load the selected image.");
     });
+    if (window.i18n && typeof window.i18n.t === 'function') {
+      toastr.success(window.i18n.t('toast_photo_uploaded'));
+    }
   });
 }
 
@@ -247,7 +265,7 @@ $(document).ready(function () {
   setupEventListeners();
 
   // Defer non-critical tasks to run after the main UI is responsive.
-  setTimeout(performDeferredTasks, 100); 
+  setTimeout(performDeferredTasks, 100);
 });
 
 // Show or hide loading overlay (global)

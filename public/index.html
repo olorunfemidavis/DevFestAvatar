@@ -62,8 +62,8 @@
     <section id="creator" class="creator-layout" aria-label="Avatar creator">
       <div class="creator-stage">
         <div class="stage-heading">
-          <p class="eyebrow">DevFest Avatar 2026</p>
-          <h1>Frame your photo</h1>
+          <p class="eyebrow" data-i18n="stage_eyebrow">DevFest Avatar 2026</p>
+          <h1 data-i18n="stage_title">Frame your photo</h1>
         </div>
         <div class="signage-frame">
           <div id="tocrop" class="crop_element"></div>
@@ -75,77 +75,78 @@
       <div id="main-content" class="main-content">
         <div class="tool-panel">
           <div class="panel-header">
-            <p class="eyebrow">Create</p>
-            <h2 id="create-heading">Upload your photo</h2>
+            <p class="eyebrow" data-i18n="create_eyebrow">Create</p>
+            <h2 id="create-heading" data-i18n="create_title">Upload your photo</h2>
           </div>
 
           <ol class="agenda-steps" aria-label="Creation steps">
-            <li>Upload a photo</li>
-            <li>Pick a frame (auto-downloads)</li>
-            <li>Share your avatar</li>
+            <li data-i18n="step_1">Upload a photo</li>
+            <li data-i18n="step_2">Pick a frame (auto-downloads)</li>
+            <li data-i18n="step_3">Share your avatar</li>
           </ol>
 
           <div class="uploader">
             <input id="avatar-file" type="file" accept="image/*" />
             <button class="fileInput upload" type="button">
-              <span aria-hidden="true">+</span>
-              Upload photo
+              <span class="upload-icon" aria-hidden="true">+</span>
+              <span data-i18n="upload_btn">Upload photo</span>
             </button>
           </div>
 
           <div id="style-picker" class="style-picker" role="group" aria-label="Avatar style" hidden>
             <button class="color-btn color-blue" type="button" data-color="blue" aria-label="Download blue frame">
-              <strong>Blue</strong>
-              <span>Cool badge</span>
+              <strong data-i18n="color_blue_label">Blue</strong>
+              <span data-i18n="color_blue_desc">Cool badge</span>
             </button>
             <button class="color-btn color-green" type="button" data-color="green" aria-label="Download green frame">
-              <strong>Green</strong>
-              <span>GDG energy</span>
+              <strong data-i18n="color_green_label">Green</strong>
+              <span data-i18n="color_green_desc">GDG energy</span>
             </button>
             <button class="color-btn color-pink" type="button" data-color="pink" aria-label="Download pink frame">
-              <strong>Pink</strong>
-              <span>Social pop</span>
+              <strong data-i18n="color_pink_label">Pink</strong>
+              <span data-i18n="color_pink_desc">Social pop</span>
             </button>
             <button class="color-btn color-yellow" type="button" data-color="yellow" aria-label="Download yellow frame">
-              <strong>Yellow</strong>
-              <span>2026 glow</span>
+              <strong data-i18n="color_yellow_label">Yellow</strong>
+              <span data-i18n="color_yellow_desc">2026 glow</span>
             </button>
             <button class="color-btn image-style color-date" type="button" data-color="date"
               aria-label="Download dated DevFest frame">
-              <strong>2026</strong>
-              <span>Dated mark</span>
+              <strong data-i18n="color_date_label">2026</strong>
+              <span data-i18n="color_date_desc">Dated mark</span>
             </button>
             <button class="color-btn image-style color-general" type="button" data-color="general"
               aria-label="Download general DevFest frame">
-              <strong>Classic</strong>
-              <span>Logo frame</span>
+              <strong data-i18n="color_general_label">Classic</strong>
+              <span data-i18n="color_general_desc">Logo frame</span>
             </button>
             <button class="color-btn image-style color-gemini" type="button" data-color="gemini"
               aria-label="Edit photo with Gemini">
-              <strong>Gemini</strong>
-              <span>AI edit</span>
+              <strong data-i18n="color_gemini_label">Gemini</strong>
+              <span data-i18n="color_gemini_desc">AI edit</span>
             </button>
           </div>
 
           <div class="tool-note" aria-live="polite">
-            <span id="year"></span> community count:
-            <strong><span id="countSpan">0</span></strong> avatars
+            <span id="stat-prefix" data-i18n="stat_prefix">2026 community count:</span>
+            <strong><span id="countSpan">0</span></strong>
+            <span id="stat-suffix" data-i18n="stat_suffix">avatars</span>
           </div>
           <a class="hidden-download" href="#" asp-action="Download" download id="downloadimg" title="Download"></a>
         </div>
 
         <div id="share-section" class="share-section" aria-live="polite" hidden>
           <div class="panel-header">
-            <p class="eyebrow">Ready</p>
-            <h2>Your avatar is ready</h2>
+            <p class="eyebrow" data-i18n="ready_eyebrow">Ready</p>
+            <h2 data-i18n="ready_title">Your avatar is ready</h2>
           </div>
           <img id="share-avatar-img" src="" alt="Your generated DevFest avatar" />
           <div class="share-actions">
-            <button type="button" onclick="shareTo('x')">Share on X</button>
-            <button type="button" onclick="shareTo('facebook')">Facebook</button>
-            <button type="button" onclick="shareTo('linkedin')">LinkedIn</button>
-            <button type="button" onclick="copyCaption()">Copy caption</button>
-            <a id="downloadimg2" href="#" download="DevFestAvatar.png">Download</a>
+            <button type="button" onclick="shareTo('x')" data-i18n="btn_share_x">Share on X</button>
+            <button type="button" onclick="shareTo('facebook')" data-i18n="btn_share_facebook">Facebook</button>
+            <button type="button" onclick="shareTo('linkedin')" data-i18n="btn_share_linkedin">LinkedIn</button>
+            <button type="button" onclick="copyCaption()" data-i18n="btn_copy_caption">Copy caption</button>
+            <a id="downloadimg2" href="#" download="DevFestAvatar.png" data-i18n="btn_download">Download</a>
           </div>
         </div>
       </div>
@@ -155,7 +156,7 @@
   <footer class="footer themed-footer">
     <div class="footer-inner">
       <p>
-        Built with
+        <span data-i18n="footer_built_with">Built with</span>
         <svg class="love-mark" viewBox="0 0 32 28" role="img" aria-label="love for open source" focusable="false">
           <defs>
             <clipPath id="love-mark-clip">
@@ -172,12 +173,28 @@
           <path class="love-mark-outline"
             d="M16 25.5C9.2 20.1 4 15.7 4 9.6 4 5.9 6.8 3 10.4 3c2.1 0 4.1 1 5.6 2.7C17.5 4 19.5 3 21.6 3 25.2 3 28 5.9 28 9.6c0 6.1-5.2 10.5-12 15.9Z" />
         </svg>
-        by
+        <span data-i18n="footer_by">by</span>
         <a href="https://g.dev/olorunfemidavis" target="_blank" rel="noopener">Olorunfemi Davis</a>
-        and
+        <span data-i18n="footer_and">and</span>
         <a href="https://gdg.community.dev/gdg-ado-ekiti" target="_blank" rel="noopener">GDG Ado-Ekiti</a>.
       </p>
       <div class="footer-links">
+        <div class="lang-selector-wrapper">
+          <select id="language-select" class="lang-select" aria-label="Select Language">
+            <option value="en">🌐 English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="pt">Português</option>
+            <option value="yo">Èdè Yorùbá</option>
+            <option value="de">Deutsch</option>
+            <option value="tr">Türkçe</option>
+            <option value="ar">العربية</option>
+            <option value="hi">हिन्दी</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="sw">Kiswahili</option>
+          </select>
+        </div>
         <a class="github-link" href="https://github.com/olorunfemidavis/DevFestAvatar" target="_blank" rel="noopener"
           aria-label="View source on GitHub">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -186,15 +203,12 @@
           </svg>
           GitHub
         </a>
-        <a href="privacy.html">Privacy</a>
-        <a target="_blank" rel="noopener" href="https://devfestbadge.web.app">Print badge</a>
+        <a href="privacy.html" data-i18n="footer_link_privacy">Privacy</a>
+        <a target="_blank" rel="noopener" href="https://devfestbadge.web.app" data-i18n="footer_link_print_badge">Print badge</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('year').innerText = new Date().getFullYear();
-  </script>
   <script src="vendor/jquery/jquery-3.3.1.min.js"></script>
   <script src="vendor/toastr/toastr-2.1.4.min.js"></script>
   <script src="js/cropme.js"></script>
@@ -216,6 +230,7 @@
       firebase.initializeApp(firebaseConfig);
     }
   </script>
+  <script src="js/i18n.js"></script>
   <script src="js/firebase_usage.js"></script>
   <script src="js/image_utils.js"></script>
   <script src="js/theme.js"></script>
