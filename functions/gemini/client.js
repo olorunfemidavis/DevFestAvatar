@@ -102,6 +102,36 @@ function findImagePart(value) {
     return null;
 }
 
+async function checkGeminiHealth() {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+        throw new Error('Missing Gemini API key in environment variables.');
+    }
+
+    const endpoint = process.env.GEMINI_ENDPOINT || DEFAULT_ENDPOINT;
+    const model = process.env.GEMINI_IMAGE_MODEL || DEFAULT_MODEL;
+
+    const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'x-goog-api-key': apiKey,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            model,
+            input: 'ping'
+        })
+    });
+
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Gemini API healthcheck failed (${response.status}): ${text.slice(0, 200)}`);
+    }
+
+    return { available: true };
+}
+
 module.exports = {
+    checkGeminiHealth,
     sendGeminiImageRequest
 };

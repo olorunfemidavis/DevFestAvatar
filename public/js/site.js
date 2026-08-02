@@ -31,6 +31,7 @@ function initializeUI() {
   // Initialize CropMe
   general_to_crop = $("#tocrop").cropme();
   hideFramePicker();
+  updateGeminiButtonVisibility();
 
   rawImg = TempImage;
   currentColor = "";
@@ -111,6 +112,13 @@ function performDeferredTasks() {
 
   // Track site visit on every page load
   window.trackSiteVisit();
+
+  // Asynchronously check Gemini status in idle background without blocking page load
+  if (window.requestIdleCallback) {
+    window.requestIdleCallback(updateGeminiButtonVisibility);
+  } else {
+    setTimeout(updateGeminiButtonVisibility, 200);
+  }
 
   // On page load, get current count from Firebase usage/totalImages
   if (window.firebase && window.firebase.database) {
@@ -226,6 +234,20 @@ function CreateWithGemini() {
   });
 }
 
+function updateGeminiButtonVisibility() {
+  if (typeof window.checkGeminiStatus === 'function') {
+    window.checkGeminiStatus().then(function (status) {
+      if (status && status.available) {
+        $(".color-gemini").removeAttr("hidden").css("display", "");
+      } else {
+        $(".color-gemini").attr("hidden", true).css("display", "none");
+      }
+    }).catch(function () {
+      $(".color-gemini").attr("hidden", true).css("display", "none");
+    });
+  }
+}
+
 function hideFramePicker() {
   $("#style-picker").attr("hidden", true);
   if (window.i18n && typeof window.i18n.t === 'function') {
@@ -238,6 +260,7 @@ function hideFramePicker() {
 
 function revealFramePicker() {
   $("#style-picker").removeAttr("hidden");
+  updateGeminiButtonVisibility();
   if (window.i18n && typeof window.i18n.t === 'function') {
     $("#create-heading").text(window.i18n.t('step_2'));
   } else {

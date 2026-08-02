@@ -1,6 +1,6 @@
 // gemini.js (Node version for Firebase function)
 const { getRandomBackgroundDescription } = require('./gemini/backgrounds');
-const { sendGeminiImageRequest } = require('./gemini/client');
+const { sendGeminiImageRequest, checkGeminiHealth } = require('./gemini/client');
 const { getClosestGeminiImageSize, getImageDimensions } = require('./gemini/image-size');
 const { buildAvatarPrompt } = require('./gemini/prompt');
 const { validateImage } = require('./gemini/validation');
@@ -27,4 +27,4 @@ async function generateGeminiImage(base64Data, mimeType) {
     });
 }
 
-module.exports = { generateGeminiImage };
+module.exports = { generateGeminiImage, checkGeminiHealth };

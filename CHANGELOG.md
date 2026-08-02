@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Gemini AI Availability & Healthcheck
+- **Live Gemini API Healthcheck**: Added `GET /gemini-status` endpoint in Firebase Functions that performs a live health check to Google's Gemini Interactions API (`https://generativelanguage.googleapis.com/v1beta/interactions`) to verify API key authentication and quota availability.
+- **Dynamic UI Auto-Hiding**: Added frontend `window.checkGeminiStatus()` helper that automatically hides the **Gemini AI Edit** button when Gemini API credentials are missing, invalid, or over quota.
+- **Zero-Impact Performance**: Optimized status checks with 5-minute `sessionStorage` caching, a 2.5s `AbortController` timeout guard, and `requestIdleCallback` idle background execution to ensure zero impact on initial page load speeds.
+
 ## [2026.1.4] - 2026-07-31
 
 ### UI & UX Enhancements
