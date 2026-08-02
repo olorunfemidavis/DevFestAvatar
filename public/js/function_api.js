@@ -87,5 +87,56 @@ async function processWithGemini(currentImage, callback) {
     });
 }
 
+/**
+ * Checks if the Gemini backend endpoint and API key are available.
+ * Uses sessionStorage caching and a 2.5s AbortController timeout to prevent page load slowdowns.
+ * @returns {Promise<{available: boolean, reason?: string}>}
+ */
+async function checkGeminiStatus() {
+  const CACHE_KEY = "gemini_status_cache";
+  const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
+  try {
+    const cached = sessionStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (Date.now() - parsed.timestamp < CACHE_TTL_MS) {
+        return parsed.data;
+      }
+    }
+  } catch (e) {
+    // Ignore storage errors
+  }
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+  try {
+    const response = await fetch("https://api-uylfn4ivta-uc.a.run.app/gemini-status", {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+
+    if (!response.ok) return { available: false, reason: "HTTP " + response.status };
+    const data = await response.json();
+
+    try {
+      sessionStorage.setItem(CACHE_KEY, JSON.stringify({
+        timestamp: Date.now(),
+        data: data
+      }));
+    } catch (e) {
+      // Ignore storage errors
+    }
+
+    return data;
+  } catch (err) {
+    clearTimeout(timeoutId);
+    console.warn("[Gemini Check] Status check failed or timed out:", err);
+    return { available: false, reason: "Network error" };
+  }
+}
+
 // Expose to global scope
 window.processWithGemini = processWithGemini;
+window.checkGeminiStatus = checkGeminiStatus;
