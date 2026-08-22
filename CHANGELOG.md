@@ -4,10 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2026.1.5] - 2026-08-22
+
+### UI & UX Enhancements
+- **Systematic Neon Border Animation**: Added an interactive, Google-colored rotating conic-gradient neon border animation around active panels depending on the user's progress:
+  - **Step 1 (Visit)**: Glows the "Upload your photo" panel and the "Upload photo" button.
+  - **Step 2 (Upload)**: Glows the "Frame your photo" preview panel and all the color picker buttons (using a soft, cycling CSS `box-shadow` and `border-color` pulsing animation).
+  - **Step 3 (Ready)**: Glows the final "Your avatar is ready" sharing panel.
+  - Non-active panels and buttons dynamically return to a clean, static border using the standard line color.
+  - Fully supports `prefers-reduced-motion: reduce` for accessibility (stops rotation).
+- **Optimized Mobile Button Grid**: Redesigned the share actions section inside the mobile media query (`(max-width: 640px)`) using a 2-column CSS Grid. Arranged the 4 social/clipboard buttons into exactly 2 rows of 2 (stretching to 50% width each), while the blue "Download" button spans the full container width (`grid-column: 1 / -1`) directly below them.
+### Bug Fixes
+- **Share Panel Visibility**: Resolved a CSS specificity bug where the `.neon-border-box` display style overrode the HTML `[hidden]` attribute. Added `.neon-border-box[hidden] { display: none !important; }` to keep the ready/share panel hidden until the avatar is successfully generated.
+- **Footer Layout Restore**: Removed the neon wrapper from the footer to restore its original clean, static borders.
+
+
+## [2026.1.4-api] - 2026-08-02
+
 ### Gemini AI Availability & Healthcheck
 - **Live Gemini API Healthcheck**: Added `GET /gemini-status` endpoint in Firebase Functions that performs a live health check to Google's Gemini Interactions API (`https://generativelanguage.googleapis.com/v1beta/interactions`) to verify API key authentication and quota availability.
 - **Dynamic UI Auto-Hiding**: Added frontend `window.checkGeminiStatus()` helper that automatically hides the **Gemini AI Edit** button when Gemini API credentials are missing, invalid, or over quota.
 - **Zero-Impact Performance**: Optimized status checks with 5-minute `sessionStorage` caching, a 2.5s `AbortController` timeout guard, and `requestIdleCallback` idle background execution to ensure zero impact on initial page load speeds.
+
 
 ## [2026.1.4] - 2026-07-31
 
