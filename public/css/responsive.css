@@ -118,6 +118,24 @@
   .footer-links {
     justify-content: flex-start;
   }
+
+  .share-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .share-actions button {
+    width: 100%;
+    margin: 0;
+  }
+
+  .share-actions .btn-download-primary {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
 }
 
 @media (max-height: 740px) and (min-width: 901px) {

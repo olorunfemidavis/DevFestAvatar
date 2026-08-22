@@ -60,93 +60,99 @@
 
   <main class="page-shell" role="main">
     <section id="creator" class="creator-layout" aria-label="Avatar creator">
-      <div class="creator-stage">
-        <div class="stage-heading">
-          <p class="eyebrow" data-i18n="stage_eyebrow">DevFest Avatar 2026</p>
-          <h1 data-i18n="stage_title">Frame your photo</h1>
-        </div>
-        <div class="signage-frame">
-          <div id="tocrop" class="crop_element"></div>
-          <span class="frame-year">2026</span>
-          <span class="frame-mark" aria-hidden="true">#</span>
+      <div id="creator-stage-wrapper" class="neon-border-box">
+        <div class="creator-stage">
+          <div class="stage-heading">
+            <p class="eyebrow" data-i18n="stage_eyebrow">DevFest Avatar 2026</p>
+            <h1 data-i18n="stage_title">Frame your photo</h1>
+          </div>
+          <div class="signage-frame">
+            <div id="tocrop" class="crop_element"></div>
+            <span class="frame-year">2026</span>
+            <span class="frame-mark" aria-hidden="true">#</span>
+          </div>
         </div>
       </div>
 
       <div id="main-content" class="main-content">
-        <div class="tool-panel">
-          <div class="panel-header">
-            <p class="eyebrow" data-i18n="create_eyebrow">Create</p>
-            <h2 id="create-heading" data-i18n="create_title">Upload your photo</h2>
-          </div>
+        <div id="tool-panel-wrapper" class="neon-border-box glow">
+          <div class="tool-panel">
+            <div class="panel-header">
+              <p class="eyebrow" data-i18n="create_eyebrow">Create</p>
+              <h2 id="create-heading" data-i18n="create_title">Upload your photo</h2>
+            </div>
 
-          <ol class="agenda-steps" aria-label="Creation steps">
-            <li data-i18n="step_1">Upload a photo</li>
-            <li data-i18n="step_2">Pick a color</li>
-            <li data-i18n="step_3">Share your avatar</li>
-          </ol>
+            <ol class="agenda-steps" aria-label="Creation steps">
+              <li data-i18n="step_1">Upload a photo</li>
+              <li data-i18n="step_2">Pick a color</li>
+              <li data-i18n="step_3">Share your avatar</li>
+            </ol>
 
-          <div class="uploader">
-            <input id="avatar-file" type="file" accept="image/*" />
-            <button class="fileInput upload" type="button">
-              <span class="upload-icon" aria-hidden="true">+</span>
-              <span data-i18n="upload_btn">Upload photo</span>
-            </button>
-          </div>
+            <div class="uploader">
+              <input id="avatar-file" type="file" accept="image/*" />
+              <button id="upload-btn" class="fileInput upload glow" type="button">
+                <span class="upload-icon" aria-hidden="true">+</span>
+                <span data-i18n="upload_btn">Upload photo</span>
+              </button>
+            </div>
 
-          <div id="style-picker" class="style-picker" role="group" aria-label="Avatar style" hidden>
-            <button class="color-btn color-blue" type="button" data-color="blue" aria-label="Select blue frame">
-              <strong data-i18n="color_blue_label">Blue</strong>
-              <span data-i18n="color_blue_desc">Cool badge</span>
-            </button>
-            <button class="color-btn color-green" type="button" data-color="green" aria-label="Select green frame">
-              <strong data-i18n="color_green_label">Green</strong>
-              <span data-i18n="color_green_desc">GDG energy</span>
-            </button>
-            <button class="color-btn color-pink" type="button" data-color="pink" aria-label="Select pink frame">
-              <strong data-i18n="color_pink_label">Pink</strong>
-              <span data-i18n="color_pink_desc">Social pop</span>
-            </button>
-            <button class="color-btn color-yellow" type="button" data-color="yellow" aria-label="Select yellow frame">
-              <strong data-i18n="color_yellow_label">Yellow</strong>
-              <span data-i18n="color_yellow_desc">2026 glow</span>
-            </button>
-            <button class="color-btn image-style color-date" type="button" data-color="date"
-              aria-label="Select dated DevFest frame">
-              <strong data-i18n="color_date_label">2026</strong>
-              <span data-i18n="color_date_desc">Dated mark</span>
-            </button>
-            <button class="color-btn image-style color-general" type="button" data-color="general"
-              aria-label="Select general DevFest frame">
-              <strong data-i18n="color_general_label">Classic</strong>
-              <span data-i18n="color_general_desc">Logo frame</span>
-            </button>
-            <button class="color-btn image-style color-gemini" type="button" data-color="gemini"
-              aria-label="Edit photo with Gemini">
-              <strong data-i18n="color_gemini_label">Gemini</strong>
-              <span data-i18n="color_gemini_desc">AI edit</span>
-            </button>
-          </div>
+            <div id="style-picker" class="style-picker" role="group" aria-label="Avatar style" hidden>
+              <button class="color-btn color-blue" type="button" data-color="blue" aria-label="Select blue frame">
+                <strong data-i18n="color_blue_label">Blue</strong>
+                <span data-i18n="color_blue_desc">Cool badge</span>
+              </button>
+              <button class="color-btn color-green" type="button" data-color="green" aria-label="Select green frame">
+                <strong data-i18n="color_green_label">Green</strong>
+                <span data-i18n="color_green_desc">GDG energy</span>
+              </button>
+              <button class="color-btn color-pink" type="button" data-color="pink" aria-label="Select pink frame">
+                <strong data-i18n="color_pink_label">Pink</strong>
+                <span data-i18n="color_pink_desc">Social pop</span>
+              </button>
+              <button class="color-btn color-yellow" type="button" data-color="yellow" aria-label="Select yellow frame">
+                <strong data-i18n="color_yellow_label">Yellow</strong>
+                <span data-i18n="color_yellow_desc">2026 glow</span>
+              </button>
+              <button class="color-btn image-style color-date" type="button" data-color="date"
+                aria-label="Select dated DevFest frame">
+                <strong data-i18n="color_date_label">2026</strong>
+                <span data-i18n="color_date_desc">Dated mark</span>
+              </button>
+              <button class="color-btn image-style color-general" type="button" data-color="general"
+                aria-label="Select general DevFest frame">
+                <strong data-i18n="color_general_label">Classic</strong>
+                <span data-i18n="color_general_desc">Logo frame</span>
+              </button>
+              <button class="color-btn image-style color-gemini" type="button" data-color="gemini"
+                aria-label="Edit photo with Gemini">
+                <strong data-i18n="color_gemini_label">Gemini</strong>
+                <span data-i18n="color_gemini_desc">AI edit</span>
+              </button>
+            </div>
 
-          <div class="tool-note" aria-live="polite">
-            <span id="stat-prefix" data-i18n="stat_prefix">2026 community count:</span>
-            <strong><span id="countSpan">0</span></strong>
-            <span id="stat-suffix" data-i18n="stat_suffix">avatars</span>
+            <div class="tool-note" aria-live="polite">
+              <span id="stat-prefix" data-i18n="stat_prefix">2026 community count:</span>
+              <strong><span id="countSpan">0</span></strong>
+              <span id="stat-suffix" data-i18n="stat_suffix">avatars</span>
+            </div>
+            <a class="hidden-download" href="#" asp-action="Download" download id="downloadimg" title="Download"></a>
           </div>
-          <a class="hidden-download" href="#" asp-action="Download" download id="downloadimg" title="Download"></a>
         </div>
 
-        <div id="share-section" class="share-section" aria-live="polite" hidden>
-          <div class="panel-header">
-            <p class="eyebrow" data-i18n="ready_eyebrow">Ready</p>
-            <h2 data-i18n="ready_title">Your avatar is ready</h2>
-          </div>
-          <img id="share-avatar-img" src="" alt="Your generated DevFest avatar" />
-          <div class="share-actions">
-            <button type="button" onclick="shareTo('x')" data-i18n="btn_share_x">Share on X</button>
-            <button type="button" onclick="shareTo('facebook')" data-i18n="btn_share_facebook">Facebook</button>
-            <button type="button" onclick="shareTo('linkedin')" data-i18n="btn_share_linkedin">LinkedIn</button>
-            <button type="button" onclick="copyCaption()" data-i18n="btn_copy_caption">Copy caption</button>
-            <a id="downloadimg2" class="btn-download-primary" href="#" download="DevFestAvatar.png" data-i18n="btn_download">Download</a>
+        <div id="share-section" class="neon-border-box" aria-live="polite" hidden>
+          <div class="share-section">
+            <div class="panel-header">
+              <p class="eyebrow" data-i18n="ready_eyebrow">Ready</p>
+              <h2 data-i18n="ready_title">Your avatar is ready</h2>
+            </div>
+            <img id="share-avatar-img" src="" alt="Your generated DevFest avatar" />
+            <div class="share-actions">
+              <button type="button" onclick="shareTo('x')" data-i18n="btn_share_x">Share on X</button>
+              <button type="button" onclick="shareTo('facebook')" data-i18n="btn_share_facebook">Facebook</button>
+              <button type="button" onclick="shareTo('linkedin')" data-i18n="btn_share_linkedin">LinkedIn</button>
+              <button type="button" onclick="copyCaption()" data-i18n="btn_copy_caption">Copy caption</button>
+              <a id="downloadimg2" class="btn-download-primary" href="#" download="DevFestAvatar.png" data-i18n="btn_download">Download</a>
+            </div>
           </div>
         </div>
       </div>
@@ -155,8 +161,8 @@
 
   <footer class="footer themed-footer">
     <div class="footer-inner">
-      <p>
-        <span data-i18n="footer_built_with">Built with</span>
+        <p>
+          <span data-i18n="footer_built_with">Built with</span>
         <svg class="love-mark" viewBox="0 0 32 28" role="img" aria-label="love for open source" focusable="false">
           <defs>
             <clipPath id="love-mark-clip">

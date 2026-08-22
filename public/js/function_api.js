@@ -1,6 +1,10 @@
 // Gemini image analysis and generation API integration
 // Usage: window.processWithGemini(image, callback)
 
+const GEMINI_API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+  ? "http://127.0.0.1:5001/devfestavatar/us-central1/api"
+  : "https://api-uylfn4ivta-uc.a.run.app";
+
 /**
  * Processes an image with Gemini backend (analyze and generate in one request).
  * @param {string} currentImage - Data URL or relative path to the image.
@@ -60,7 +64,7 @@ async function processWithGemini(currentImage, callback) {
     .then(async ({ base64Data, mimeType }) => {
       try {
         // Call Gemini backend API
-        const response = await fetch("https://api-uylfn4ivta-uc.a.run.app/gemini-image", {
+        const response = await fetch(`${GEMINI_API_BASE}/gemini-image`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ base64Data, mimeType })
@@ -112,7 +116,7 @@ async function checkGeminiStatus() {
   const timeoutId = setTimeout(() => controller.abort(), 2500);
 
   try {
-    const response = await fetch("https://api-uylfn4ivta-uc.a.run.app/gemini-status", {
+    const response = await fetch(`${GEMINI_API_BASE}/gemini-status`, {
       signal: controller.signal
     });
     clearTimeout(timeoutId);
